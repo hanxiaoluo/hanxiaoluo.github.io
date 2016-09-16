@@ -5,12 +5,18 @@
     
   <url>
     <loc>http://yoursite.com/2016/09/16/hello-world/</loc>
-    <lastmod>2016-09-16T14:24:25.000Z</lastmod>
+    <lastmod>2016-09-16T14:31:59.000Z</lastmod>
     <data>
         <display>
-        <title>Hello World</title>
+        <title></title>
         <pubTime>2016-09-16T03:06:19.000Z</pubTime>
         
+        <tag>前端</tag>
+         
+        <tag>markdown</tag>
+         
+        <tag>css</tag>
+         
          
            
         </display>
