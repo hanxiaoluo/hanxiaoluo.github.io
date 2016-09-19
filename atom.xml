@@ -50,9 +50,9 @@
     </summary>
     
     
-      <category term="markdown" scheme="http://hanxiaoluo.site/tags/markdown/"/>
-    
       <category term="gitlab" scheme="http://hanxiaoluo.site/tags/gitlab/"/>
+    
+      <category term="markdown" scheme="http://hanxiaoluo.site/tags/markdown/"/>
     
   </entry>
   
@@ -85,9 +85,9 @@
     </summary>
     
     
-      <category term="hexo" scheme="http://hanxiaoluo.site/tags/hexo/"/>
-    
       <category term="markdown" scheme="http://hanxiaoluo.site/tags/markdown/"/>
+    
+      <category term="hexo" scheme="http://hanxiaoluo.site/tags/hexo/"/>
     
   </entry>
   
