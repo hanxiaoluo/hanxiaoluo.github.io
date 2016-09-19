@@ -4,13 +4,17 @@
 
     
   <url>
-    <loc>http://hanxiaoluo.site/2016/09/16/hello/</loc>
-    <lastmod>2016-09-17T13:43:45.000Z</lastmod>
+    <loc>http://hanxiaoluo.site/2016/09/16/hello-world/</loc>
+    <lastmod>2016-09-16T17:19:28.000Z</lastmod>
     <data>
         <display>
-        <title>Hello World1</title>
+        <title>Hello World</title>
         <pubTime>2016-09-16T09:12:45.000Z</pubTime>
         
+        <tag>hexo</tag>
+         
+        <tag>markdown</tag>
+         
          
            
         </display>
