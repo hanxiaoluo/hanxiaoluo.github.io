@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hanxiaoluo.site/"/>
-  <updated>2016-09-19T14:07:15.000Z</updated>
+  <updated>2016-09-19T15:30:13.000Z</updated>
   <id>http://hanxiaoluo.site/</id>
   
   <author>
@@ -14,6 +14,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>代码管理之gitlab的使用</title>
+    <link href="http://hanxiaoluo.site/2016/09/19/gitlab%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://hanxiaoluo.site/2016/09/19/gitlab的使用/</id>
+    <published>2016-09-19T13:28:32.000Z</published>
+    <updated>2016-09-19T15:30:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1、安装git"><a href="#1、安装git" class="headerlink" title="1、安装git"></a>1、安装git</h1><p>　　下载git客户端，指定目录进行安装。安装完毕，右键菜单，可以看到Git Bash Here 菜单项。</p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h1 id="2、建立远程分支"><a href="#2、建立远程分支" class="headerlink" title="2、建立远程分支"></a>2、建立远程分支</h1><p>　　输入用户名及密码，进入gitlab，在“你的项目”中可以看到我们要参与的项目。点击项目名称，可以看到项目信息。在页面上方，我们找到“仓库”，点击进入。此时就可以看到整个项目的源码。</p>
+<p>　 点击项目名称右侧的“+”，点击“New branch”，建立我们自己的分支，比如我的为tao.zhang,建立完毕，在项目名称左侧的下拉菜单，可以看到我们的分支，选中tao.zhang分支，可以看到该分支下的源码。</p>
+<p>　　此时tao.zhang分支下的内容与master分支下内容是一样的。</p>
+<h1 id="3、建立本地仓库"><a href="#3、建立本地仓库" class="headerlink" title="3、建立本地仓库"></a>3、建立本地仓库</h1><p>　　在自己的电脑E盘，建立名字为mygitlab的文件夹，进入该文件夹，右键菜单，点击“Git Bash Here”，进入命令行。执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">**git <span class="built_in">clone</span> [http://gitlab服务器IP地址/project.admin/Gemini](http://gitlab服务器IP地址/project.admin/Gemini)**</div></pre></td></tr></table></figure>
+<p>　　其中gitlab服务器IP地址根据自己的服务器IP地址而定。克隆下来默认为master分支，所以我们在文件夹里面看到的是master分支对应的内容。</p>
+<h1 id="4、建立本地分支"><a href="#4、建立本地分支" class="headerlink" title="4、建立本地分支"></a>4、建立本地分支</h1><p>　　在命令行下输入<strong>cd Gemini</strong>进入Gemini文件夹下，执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">**git checkout -b tao.zhang origin/tao.zhang**</div></pre></td></tr></table></figure>
+<p>我们此时观察本地Gemini文件夹下的内容，对应的才是我们远程分支下的内容。</p>
+<h1 id="5、上传到远程分支"><a href="#5、上传到远程分支" class="headerlink" title="5、上传到远程分支"></a>5、上传到远程分支</h1><p>　　进入命令行，依次执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">**git add .** //其中.表示所有的文件，git add 1.txt表示只上传1.txt</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">**git commit -m <span class="string">"注释"</span>**//双引号中为注释内容，便于代码管理</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">**git push origin tao.zhang** //真正的提交到远程分支操作</div></pre></td></tr></table></figure>
+<p>　　此时在远程分支，我们会看到我们上传的文件。</p>
+</the>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1、安装git&quot;&gt;&lt;a href=&quot;#1、安装git&quot; class=&quot;headerlink&quot; title=&quot;1、安装git&quot;&gt;&lt;/a&gt;1、安装git&lt;/h1&gt;&lt;p&gt;　　下载git客户端，指定目录进行安装。安装完毕，右键菜单，可以看到Git Bash Here 菜单项。&lt;/p&gt;
+&lt;p&gt;&lt;Excerpt in index | 首页摘要&gt;&lt;br&gt;+
+    
+    </summary>
+    
+    
+      <category term="markdown" scheme="http://hanxiaoluo.site/tags/markdown/"/>
+    
+      <category term="gitlab" scheme="http://hanxiaoluo.site/tags/gitlab/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello</title>
