@@ -52,7 +52,7 @@
 <h1 id="5、上传到远程分支"><a href="#5、上传到远程分支" class="headerlink" title="5、上传到远程分支"></a>5、上传到远程分支</h1><p>　　进入命令行执行如下命令：</p>
 <p><strong>git add .</strong>  //其中，git add .表示上传所有的文件，而git add 1.txt表示只上传文件1.txt</p>
 <p><strong>git commit -m “注释”</strong> //其中，双引号之内的内容表示操作注释，方便代码管理。</p>
-<p><strong>git push origin tao.zhang</strong> //该命令将表示将内容真正上传到远程分支。</p>
+<p><strong>git push origin tao.zhang</strong> //该命令表示将内容真正上传到远程分支。</p>
 <p>　　此时在远程分支，我们会看到我们上传的文件。</p>
 </the>]]></content>
     </entry>
