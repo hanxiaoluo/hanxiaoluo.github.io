@@ -67,7 +67,7 @@
     <link href="http://hanxiaoluo.site/2016/09/19/gitlab%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://hanxiaoluo.site/2016/09/19/gitlab的使用/</id>
     <published>2016-09-19T13:28:32.000Z</published>
-    <updated>2016-09-20T13:54:04.000Z</updated>
+    <updated>2016-09-20T14:02:29.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="1、安装git"><a href="#1、安装git" class="headerlink" title="1、安装git"></a>1、安装git</h1><p>　　下载git客户端，指定目录进行安装。安装完毕，右键菜单，可以看到Git Bash Here 菜单项。</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
@@ -77,13 +77,13 @@
 <p>　 点击项目名称右侧的“+”，点击“New branch”，建立我们自己的分支，比如我的为tao.zhang,建立完毕，在项目名称左侧的下拉菜单，可以看到我们的分支，选中tao.zhang分支，可以看到该分支下的源码。</p>
 <p>　　此时tao.zhang分支下的内容与master分支下内容是一样的。</p>
 <h1 id="3、建立本地仓库"><a href="#3、建立本地仓库" class="headerlink" title="3、建立本地仓库"></a>3、建立本地仓库</h1><p>　　在自己的电脑E盘，建立名字为mygitlab的文件夹，进入该文件夹，右键菜单，点击“Git Bash Here”，进入命令行。执行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> [http://gitlab服务器IP地址/project.admin/Gemini](http://gitlab服务器IP地址/project.admin/Gemini)</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> http://gitlab服务器IP地址/project.admin/Gemini</div></pre></td></tr></table></figure>
 <p>　　其中gitlab服务器IP地址根据自己的服务器IP地址而定。克隆下来默认为master分支，所以我们在文件夹里面看到的是master分支对应的内容。</p>
 <h1 id="4、建立本地分支"><a href="#4、建立本地分支" class="headerlink" title="4、建立本地分支"></a>4、建立本地分支</h1><p>　　在命令行下输入<strong>cd Gemini</strong>进入Gemini文件夹下，执行如下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -b tao.zhang origin/tao.zhang</div></pre></td></tr></table></figure>
 <p>我们此时观察本地Gemini文件夹下的内容，对应的才是我们远程分支下的内容。</p>
 <h1 id="5、上传到远程分支"><a href="#5、上传到远程分支" class="headerlink" title="5、上传到远程分支"></a>5、上传到远程分支</h1><p>　　进入命令行执行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">git add . //其中.表示所有的文件，git add 1.传1.tx  </div><div class="line">```  </div><div class="line"></div><div class="line">``` bash </div><div class="line">git commit -m <span class="string">"注释"</span>//双引号便于代码管  </div><div class="line">```  </div><div class="line"></div><div class="line">``` bash </div><div class="line">git push origin tao.zhang /远程分支操作</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">git add . //其中.表示所有的文件，git add 1.传1.tx </div><div class="line">```  </div><div class="line"></div><div class="line">``` bash </div><div class="line">git commit -m <span class="string">"注释"</span>//双引号便于代码管  </div><div class="line">```  </div><div class="line"></div><div class="line">``` bash </div><div class="line">git push origin tao.zhang /远程分支操作</div></pre></td></tr></table></figure>
 <p>　　此时在远程分支，我们会看到我们上传的文件。</p>
 </the>]]></content>
     
