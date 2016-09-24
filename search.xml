@@ -6,15 +6,7 @@
     <entry>
       <title><![CDATA[使用hexo在github上搭建个人博客]]></title>
       <url>http://hanxiaoluo.site/2016/09/20/%E4%BD%BF%E7%94%A8hexo%E5%9C%A8github%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-      <content type="html"><![CDATA[<h1 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h1><ul>
-<li>node.js安装</li>
-<li>git环境</li>
-<li>github账号</li>
-<li>使用npm安装hexo</li>
-<li>绑定自己的域名</li>
-<li>总结</li>
-</ul>
-<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
+      <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
 <h2 id="1、安装node-js"><a href="#1、安装node-js" class="headerlink" title="1、安装node.js"></a>1、安装node.js</h2><p>　　node.js官网地址：<a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a><br>下载最新版的node.js进行逐步安装即可。</p>
