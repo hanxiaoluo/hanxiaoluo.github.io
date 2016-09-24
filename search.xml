@@ -6,7 +6,7 @@
     <entry>
       <title><![CDATA[使用hexo在github上搭建个人博客]]></title>
       <url>http://hanxiaoluo.site/2016/09/20/%E4%BD%BF%E7%94%A8hexo%E5%9C%A8github%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-      <content type="html"><![CDATA[<h2 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h2><ul>
+      <content type="html"><![CDATA[<h1 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h1><ul>
 <li>node.js安装</li>
 <li>git环境</li>
 <li>github账号</li>

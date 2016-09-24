@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://hanxiaoluo.site/2016/09/20/%E4%BD%BF%E7%94%A8hexo%E5%9C%A8github%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2016-09-24T07:52:50.000Z</lastmod>
+    <lastmod>2016-09-24T07:56:58.000Z</lastmod>
     <data>
         <display>
         <title>使用hexo在github上搭建个人博客</title>
@@ -13,7 +13,7 @@
         
         <tag>hexo</tag>
          
-        <tag>markdown</tag>
+        <tag>github</tag>
          
          
            
@@ -30,9 +30,9 @@
         <title>代码管理之gitlab的使用</title>
         <pubTime>2016-09-19T13:28:32.000Z</pubTime>
         
-        <tag>markdown</tag>
-         
         <tag>gitlab</tag>
+         
+        <tag>markdown</tag>
          
          
            
@@ -49,9 +49,9 @@
         <title>git在qtcreator中的使用</title>
         <pubTime>2016-09-20T13:39:34.000Z</pubTime>
         
-        <tag>qtcreator</tag>
-         
         <tag>gitlab</tag>
+         
+        <tag>qtcreator</tag>
          
          
            
@@ -68,9 +68,9 @@
         <title>Hello</title>
         <pubTime>2016-09-16T09:12:45.000Z</pubTime>
         
-        <tag>hexo</tag>
-         
         <tag>markdown</tag>
+         
+        <tag>hexo</tag>
          
          
            
