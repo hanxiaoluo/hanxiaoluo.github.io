@@ -26,7 +26,7 @@
 <p>　一路点击next进行安装，直到路径选择界面，如下图所示。</p>
 <p>  <img src="http://odsh9s4s2.bkt.clouddn.com/pyqt%E5%AE%89%E8%A3%85.png" alt="配置git路径"><br>　一定要注意，<strong>这里的路径指的是python的安装路径</strong>，填写正确路径，点击“Install”按钮进行安装即可。</p>
 <h1 id="2、命令测试"><a href="#2、命令测试" class="headerlink" title="2、命令测试"></a>2、命令测试</h1><p>　　进入python自带的GUI工具-IDLE，输入import PyQt4，如果没有提示错误，则安装正确。</p>
-<h1 id="3、代码实例"><a href="#3、代码实例" class="headerlink" title="3、代码实例"></a>3、代码实例</h1><p>　　创建文件pyqt.py内容如下：　<br><code>from PyQt4.QtGui import (QMainWindow, QPushButton, QApplication, 
+<h1 id="3、代码实例"><a href="#3、代码实例" class="headerlink" title="3、代码实例"></a>3、代码实例</h1><p>创建文件pyqt.py内容如下：　　　　　<br><code>from PyQt4.QtGui import (QMainWindow, QPushButton, QApplication, 
                                      QVBoxLayout, QWidget)
 from PyQt4.QtCore import (Qt, QObject, SIGNAL)
 import anotherWindow
@@ -50,13 +50,15 @@ if __name__ == &#39;__main__&#39;:
     app = QApplication(sys.argv)
     w = OneWindow()
     w.show()     
-    app.exec_()</code><br>创建文件anotherWindow.py内容如下：<br><code>from PyQt4.QtGui import (QMainWindow)
+    app.exec_()</code></p>
+<p>创建文件anotherWindow.py内容如下：</p>
+<p><code>from PyQt4.QtGui import (QMainWindow)
 class AnotherWindow(QMainWindow):
     def __init__(self):
         super(AnotherWindow, self).__init__()
         self.resize(400, 300)
         self.setWindowTitle(&quot;this is another window&quot;)</code></p>
-<p>　　两个文件主要实现通过点击按钮完成多界面切换,在文件首行都存在# -<em>- coding: utf-8 -</em>-用以表明编码方式。</p>
+<p>　　两个文件主要实现通过点击按钮完成多界面切换,在文件首行都存在<strong># -<em>- coding: utf-8 -</em>-</strong>用以表明编码方式。</p>
 <h1 id="4、运行实例"><a href="#4、运行实例" class="headerlink" title="4、运行实例"></a>4、运行实例</h1><p>　　运行代码实例有多种方式，在此列举几种我自己常用方式。</p>
 <p>　　（1）dos命令行运行。进入pyqt.py文件所在目录，比如我的目录F:\mypython,运行命令python pyqt.py即看到代码实现的窗体。</p>
 <p>　　（2）python自带IDLE运行。打开IDLE环境，点击“File”菜单，选择”Open”菜单项，打开pyqt.py文件。此时会弹出另外一个窗体。点击“Run”菜单，选择“Run Module”菜单项，即可看到代码实现的窗体。</p>
