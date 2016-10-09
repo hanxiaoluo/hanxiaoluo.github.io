@@ -24,7 +24,7 @@
 <meta property="og:description" content="1、安装pyqt（事先必须先完成python的安装）　　我们可以在如下网址： http://www.riverbankcomputing.co.uk/software/pyqt/download这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。
 +">
 <meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/pyqt%E5%AE%89%E8%A3%85.png">
-<meta property="og:updated_time" content="2016-10-09T13:25:09.000Z">
+<meta property="og:updated_time" content="2016-10-09T13:32:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python图形用户界面之pyqt的使用">
 <meta name="twitter:description" content="1、安装pyqt（事先必须先完成python的安装）　　我们可以在如下网址： http://www.riverbankcomputing.co.uk/software/pyqt/download这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。
@@ -324,7 +324,7 @@
 <p>　一路点击next进行安装，直到路径选择界面，如下图所示。</p>
 <p>  <img src="http://odsh9s4s2.bkt.clouddn.com/pyqt%E5%AE%89%E8%A3%85.png" alt="配置git路径"><br>　一定要注意，<strong>这里的路径指的是python的安装路径</strong>，填写正确路径，点击“Install”按钮进行安装即可。</p>
 <h1 id="2、命令测试"><a href="#2、命令测试" class="headerlink" title="2、命令测试"></a>2、命令测试</h1><p>　　进入python自带的GUI工具-IDLE，输入import PyQt4，如果没有提示错误，则安装正确。</p>
-<h1 id="3、代码实例"><a href="#3、代码实例" class="headerlink" title="3、代码实例"></a>3、代码实例</h1><p>　　创建文件pyqt.py内容如下：<br>　　<br><code>from PyQt4.QtGui import (QMainWindow, QPushButton, QApplication, 
+<h1 id="3、代码实例"><a href="#3、代码实例" class="headerlink" title="3、代码实例"></a>3、代码实例</h1><p>　　创建文件pyqt.py内容如下：　<br><code>from PyQt4.QtGui import (QMainWindow, QPushButton, QApplication, 
                                      QVBoxLayout, QWidget)
 from PyQt4.QtCore import (Qt, QObject, SIGNAL)
 import anotherWindow
@@ -348,9 +348,7 @@ if __name__ == &#39;__main__&#39;:
     app = QApplication(sys.argv)
     w = OneWindow()
     w.show()     
-    app.exec_()</code></p>
-<p>创建文件anotherWindow.py内容如下：</p>
-<p><code>from PyQt4.QtGui import (QMainWindow)
+    app.exec_()</code><br>创建文件anotherWindow.py内容如下：<br><code>from PyQt4.QtGui import (QMainWindow)
 class AnotherWindow(QMainWindow):
     def __init__(self):
         super(AnotherWindow, self).__init__()
@@ -374,7 +372,7 @@ class AnotherWindow(QMainWindow):
         <p><span>本文标题:</span><a href="/2016/10/08/python图形用户界面之pyqt4的使用/">python图形用户界面之pyqt的使用</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">韩若熙</a></p>
         <p><span>发布时间:</span>2016-10-08, 23:01:42</p>
-        <p><span>最后更新:</span>2016-10-09, 21:25:09</p>
+        <p><span>最后更新:</span>2016-10-09, 21:32:16</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/10/08/python图形用户界面之pyqt4的使用/" title="python图形用户界面之pyqt的使用">http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/　　作者: 韩若熙" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
