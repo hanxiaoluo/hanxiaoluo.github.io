@@ -61,7 +61,7 @@ class AnotherWindow(QMainWindow):
         super(AnotherWindow, self).__init__()
         self.resize(400, 300)
         self.setWindowTitle(&quot;this is another window&quot;)
-</code></pre><p>　　两个文件主要实现通过点击按钮完成多界面切换,在文件首行都存在<strong># -<em>- coding: utf-8 -</em>-</strong>用以表明编码方式。</p>
+</code></pre><p>　　两个文件主要实现通过点击按钮完成多界面切换。</p>
 <h1 id="4、运行实例"><a href="#4、运行实例" class="headerlink" title="4、运行实例"></a>4、运行实例</h1><p>　　运行代码实例有多种方式，在此列举几种我自己常用方式。</p>
 <p>　　（1）dos命令行运行。进入pyqt.py文件所在目录，比如我的目录F:\mypython,运行命令python pyqt.py即看到代码实现的窗体。</p>
 <p>　　（2）python自带IDLE运行。打开IDLE环境，点击“File”菜单，选择”Open”菜单项，打开pyqt.py文件。此时会弹出另外一个窗体。点击“Run”菜单，选择“Run Module”菜单项，即可看到代码实现的窗体。</p>

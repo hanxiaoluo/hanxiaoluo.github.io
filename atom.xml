@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hanxiaoluo.site/"/>
-  <updated>2016-10-09T14:08:18.000Z</updated>
+  <updated>2016-10-09T14:12:20.000Z</updated>
   <id>http://hanxiaoluo.site/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://hanxiaoluo.site/2016/10/08/python%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E4%B9%8Bpyqt4%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/</id>
     <published>2016-10-08T15:01:42.000Z</published>
-    <updated>2016-10-09T14:08:18.000Z</updated>
+    <updated>2016-10-09T14:12:20.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="1、安装pyqt（事先必须先完成python的安装）"><a href="#1、安装pyqt（事先必须先完成python的安装）" class="headerlink" title="1、安装pyqt（事先必须先完成python的安装）"></a>1、安装pyqt（事先必须先完成python的安装）</h1><p>　　我们可以在如下网址： <a href="http://www.riverbankcomputing.co.uk/software/pyqt/download" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/pyqt/download</a><br>这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
@@ -77,7 +77,7 @@ class AnotherWindow(QMainWindow):
         super(AnotherWindow, self).__init__()
         self.resize(400, 300)
         self.setWindowTitle(&quot;this is another window&quot;)
-</code></pre><p>　　两个文件主要实现通过点击按钮完成多界面切换,在文件首行都存在<strong># -<em>- coding: utf-8 -</em>-</strong>用以表明编码方式。</p>
+</code></pre><p>　　两个文件主要实现通过点击按钮完成多界面切换。</p>
 <h1 id="4、运行实例"><a href="#4、运行实例" class="headerlink" title="4、运行实例"></a>4、运行实例</h1><p>　　运行代码实例有多种方式，在此列举几种我自己常用方式。</p>
 <p>　　（1）dos命令行运行。进入pyqt.py文件所在目录，比如我的目录F:\mypython,运行命令python pyqt.py即看到代码实现的窗体。</p>
 <p>　　（2）python自带IDLE运行。打开IDLE环境，点击“File”菜单，选择”Open”菜单项，打开pyqt.py文件。此时会弹出另外一个窗体。点击“Run”菜单，选择“Run Module”菜单项，即可看到代码实现的窗体。</p>
