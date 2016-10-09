@@ -15,21 +15,21 @@
 
 
 
-<meta name="description" content="1、安装git　　官网下载相应的git版本，安装即可。记下git.exe的路径，比如我的git路径为：D:\Git\Git\bin
+<meta name="description" content="1、安装pyqt（事先必须先完成python的安装）　　我们可以在如下网址： http://www.riverbankcomputing.co.uk/software/pyqt/download这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。
 +">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git在qtcreator中的使用">
-<meta property="og:url" content="http://hanxiaoluo.site/2016/09/20/git在qtcreator中的使用/index.html">
+<meta property="og:title" content="python图形用户界面之pyqt的使用">
+<meta property="og:url" content="http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/index.html">
 <meta property="og:site_name" content="韩若熙">
-<meta property="og:description" content="1、安装git　　官网下载相应的git版本，安装即可。记下git.exe的路径，比如我的git路径为：D:\Git\Git\bin
+<meta property="og:description" content="1、安装pyqt（事先必须先完成python的安装）　　我们可以在如下网址： http://www.riverbankcomputing.co.uk/software/pyqt/download这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。
 +">
-<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/qtcreatorgitset.png">
-<meta property="og:updated_time" content="2016-09-20T13:56:25.000Z">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/pyqt%E5%AE%89%E8%A3%85.png">
+<meta property="og:updated_time" content="2016-10-09T13:15:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git在qtcreator中的使用">
-<meta name="twitter:description" content="1、安装git　　官网下载相应的git版本，安装即可。记下git.exe的路径，比如我的git路径为：D:\Git\Git\bin
+<meta name="twitter:title" content="python图形用户界面之pyqt的使用">
+<meta name="twitter:description" content="1、安装pyqt（事先必须先完成python的安装）　　我们可以在如下网址： http://www.riverbankcomputing.co.uk/software/pyqt/download这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。
 +">
-<meta name="twitter:image" content="http://odsh9s4s2.bkt.clouddn.com/qtcreatorgitset.png">
+<meta name="twitter:image" content="http://odsh9s4s2.bkt.clouddn.com/pyqt%E5%AE%89%E8%A3%85.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -61,7 +61,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>git在qtcreator中的使用 | 韩若熙</title>
+<title>python图形用户界面之pyqt的使用 | 韩若熙</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -264,11 +264,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-git在qtcreator中的使用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-python图形用户界面之pyqt4的使用" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/20/git在qtcreator中的使用/" class="article-date">
-      <time datetime="2016-09-20T13:39:34.000Z" itemprop="datePublished">2016-09-20</time>
+      <a href="/2016/10/08/python图形用户界面之pyqt4的使用/" class="article-date">
+      <time datetime="2016-10-08T15:01:42.000Z" itemprop="datePublished">2016-10-08</time>
 </a>
 
 
@@ -283,7 +283,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      git在qtcreator中的使用
+      python图形用户界面之pyqt的使用
     </h1>
   
 
@@ -294,7 +294,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/qtcreator/">qtcreator</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyqt/">pyqt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -304,30 +304,36 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="1、安装git"><a href="#1、安装git" class="headerlink" title="1、安装git"></a>1、安装git</h1><p>　　官网下载相应的git版本，安装即可。记下git.exe的路径，比如我的git路径为：<strong>D:\Git\Git\bin</strong></p>
+        <h1 id="1、安装pyqt（事先必须先完成python的安装）"><a href="#1、安装pyqt（事先必须先完成python的安装）" class="headerlink" title="1、安装pyqt（事先必须先完成python的安装）"></a>1、安装pyqt（事先必须先完成python的安装）</h1><p>　　我们可以在如下网址： <a href="http://www.riverbankcomputing.co.uk/software/pyqt/download" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/pyqt/download</a><br>这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<h1 id="2、在IDE中设置git路径"><a href="#2、在IDE中设置git路径" class="headerlink" title="2、在IDE中设置git路径"></a>2、在IDE中设置git路径</h1><p>　　双击qtcreator运行，依次点击<strong>工具-选项-版本控制-Git</strong>，弹出如下界面:</p>
-<p><img src="http://odsh9s4s2.bkt.clouddn.com/qtcreatorgitset.png" alt="配置git路径"></p>
-<p>　　在“附加在系统PATH之前”后面的编辑框填写第一步获取到的git路径。</p>
-<h1 id="3、使用IDE新建工程"><a href="#3、使用IDE新建工程" class="headerlink" title="3、使用IDE新建工程"></a>3、使用IDE新建工程</h1><p>　　前面的建立过程此处不做详细介绍，与普通的qt工程建立相同。需要注意的是，工程建立最后一步，在“添加到版本控制系统”后面我们需要选中Git,然后点击“完成”即可。</p>
-<h1 id="4、本地仓库绑定github"><a href="#4、本地仓库绑定github" class="headerlink" title="4、本地仓库绑定github"></a>4、本地仓库绑定github</h1><p>　　打开我们新建立的qt工程文件夹(即.pro文件所在文件夹)，鼠标右键点击，进入git命令行。执行如下命令：</p>
-<p><strong>git remote add origin <a href="https://github.com/han/myqtCreator" target="_blank" rel="external">https://github.com/han/myqtCreator</a></strong></p>
-<p>完成本地仓库与github远程仓库的绑定。</p>
-<h1 id="5、建立分支"><a href="#5、建立分支" class="headerlink" title="5、建立分支"></a>5、建立分支</h1><p>　　由于在项目开发过程中，需要所有的开发人员团队合作，我们为每一个开发人员分配自己的分支，相应的我们需要建立自己的本地分支(相关git的知识可自行去学习)。在命令行下执行如下命令：</p>
-<p><strong>git checkout -b gh-pages origin/gh-pages</strong></p>
-<p>此时可能会出现牵出远程分支错误，如下：</p>
-<p>fatal: Cannot update paths and switch to branch ‘develop’ at the same time.<br>Did you intend to checkout ‘origin/develop’ which can not be resolved as commit? </p>
-<p>解决方法：</p>
-<p><strong>git fetch</strong></p>
-<p><strong>git checkout -b gh-pages origin/gh-pages</strong></p>
-<h1 id="6、git上传"><a href="#6、git上传" class="headerlink" title="6、git上传"></a>6、git上传</h1><p>　　如前面文章所讲，依次执行如下命令：</p>
-<p><strong>git add .</strong></p>
-<p><strong>git commit -m “注释”</strong></p>
-<p><strong>git push -u origin gh-pages</strong></p>
-<p>可以看到本地分支上的源码已经上传到远程分支。</p>
-<h1 id="7、qtcreator直接上传源码到github分支"><a href="#7、qtcreator直接上传源码到github分支" class="headerlink" title="7、qtcreator直接上传源码到github分支"></a>7、qtcreator直接上传源码到github分支</h1><p>　　我们对工程源码进行修改，比如添加打印信息：qDebug()&lt;&lt;”hello”;<br>修改完成，在菜单栏找到<strong>工具-Git-Local Repository -Commit</strong>，填写作者、邮箱、描述。右侧选中被修改的文件，点击“commit”按钮，完成提交。<br>　　我们此时观察到github远程仓库的代码已经更新，说明我们的源码修改已经被成功上传。</p>
+<p>　　对于windows系统来说，只需要下载exe格式的文件即可。在这个exe格式的文件中，已经包含了如下模块：</p>
+<ul>
+<li>pyqt</li>
+<li>Qt</li>
+<li>Qt Designer</li>
+<li>Qt Linguist</li>
+<li>Qt Assistant</li>
+<li>pyuic4(转换由设计师生成的.ui文件到.py)</li>
+<li>pylupdate4</li>
+<li>lrelease</li>
+<li>pyrcc4</li>
+<li>QScintilla(C++编辑器类Scintilla在QT环境下的移植版本)</li>
+</ul>
+<p>　一路点击next进行安装，直到路径选择界面，如下图所示。</p>
+<p>  <img src="http://odsh9s4s2.bkt.clouddn.com/pyqt%E5%AE%89%E8%A3%85.png" alt="配置git路径"><br>　一定要注意，<strong>这里的路径指的是python的安装路径</strong>，填写正确路径，点击“Install”按钮进行安装即可。</p>
+<h1 id="2、命令测试"><a href="#2、命令测试" class="headerlink" title="2、命令测试"></a>2、命令测试</h1><p>　　进入python自带的GUI工具-IDLE，输入import PyQt4，如果没有提示错误，则安装正确。</p>
+<h1 id="3、代码实例"><a href="#3、代码实例" class="headerlink" title="3、代码实例"></a>3、代码实例</h1><p>　　创建文件pyqt.py内容如下：<br>`　　</p>
+<h1 id="coding-utf-8"><a href="#coding-utf-8" class="headerlink" title="-- coding: utf-8 --"></a>-<em>- coding: utf-8 -</em>-</h1><p>from PyQt4.QtGui import (QMainWindow, QPushButton, QApplication,<br>                                     QVBoxLayout, QWidget)<br>from PyQt4.QtCore import (Qt, QObject, SIGNAL)<br>import anotherWindow<br>import sys<br>class OneWindow(QMainWindow):<br>    def <strong>init</strong>(self):<br>        super(OneWindow, self).<strong>init</strong>()<br>        self.setGeometry(100, 100, 600, 400)<br>        vLayout = QVBoxLayout()<br>        self.button = QPushButton(“OK”)<br>        vLayout.addWidget(self.button)<br>        widget = QWidget()<br>        widget.setLayout(vLayout)<br>        self.setCentralWidget(widget)<br>        QObject.connect(self.button,SIGNAL(“clicked()”) , self.anotherWindow)<br>    def anotherWindow(self):<br>        print ‘OK’<br>        self.another = anotherWindow.AnotherWindow()<br>        self.another.show()<br>if <strong>name</strong> == ‘<strong>main</strong>‘:<br>    app = QApplication(sys.argv)<br>    w = OneWindow()<br>    w.show()<br>    app.exec_()<br>`<br>创建文件anotherWindow.py内容如下：</p>
+<p>`</p>
+<h1 id="coding-utf-8-1"><a href="#coding-utf-8-1" class="headerlink" title="-- coding: utf-8 --"></a>-<em>- coding: utf-8 -</em>-</h1><p>from PyQt4.QtGui import (QMainWindow)<br>class AnotherWindow(QMainWindow):<br>    def <strong>init</strong>(self):<br>        super(AnotherWindow, self).<strong>init</strong>()<br>        self.resize(400, 300)<br>        self.setWindowTitle(“this is another window”)<br>`<br>　　两个文件主要实现通过点击按钮完成多界面切换。</p>
+<h1 id="4、运行实例"><a href="#4、运行实例" class="headerlink" title="4、运行实例"></a>4、运行实例</h1><p>　　运行代码实例有多种方式，在此列举几种我自己常用方式。</p>
+<p>　　（1）dos命令行运行。进入pyqt.py文件所在目录，比如我的目录F:\mypython,运行命令python pyqt.py即看到代码实现的窗体。</p>
+<p>　　（2）python自带IDLE运行。打开IDLE环境，点击“File”菜单，选择”Open”菜单项，打开pyqt.py文件。此时会弹出另外一个窗体。点击“Run”菜单，选择“Run Module”菜单项，即可看到代码实现的窗体。</p>
+<p>　　（3）利用PyCharm运行。点击”File”菜单，选择“New Project”建立“Pure Python”工程，选择工程目录及python.exe目录。在工程下新建”Python File”，分别创建pyqt.py文件及anotherWindow.py文件。运行工程后即可看到代码实现的窗体。</p>
+<h1 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h1><p>　　python拥有多种图形界面编程，因为我自己平时用qt比较多，所以选择了pyqt。查看pyqt中的qt帮助文档，发现与qt的帮助文档基本相同，没必要把时间浪费到API上。
+　　</p>
 </the>
       
     </div>
@@ -336,13 +342,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/09/20/git在qtcreator中的使用/">git在qtcreator中的使用</a></p>
+        <p><span>本文标题:</span><a href="/2016/10/08/python图形用户界面之pyqt4的使用/">python图形用户界面之pyqt的使用</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">韩若熙</a></p>
-        <p><span>发布时间:</span>2016-09-20, 21:39:34</p>
-        <p><span>最后更新:</span>2016-09-20, 21:56:25</p>
+        <p><span>发布时间:</span>2016-10-08, 23:01:42</p>
+        <p><span>最后更新:</span>2016-10-09, 21:15:09</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/09/20/git在qtcreator中的使用/" title="git在qtcreator中的使用">http://hanxiaoluo.site/2016/09/20/git在qtcreator中的使用/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://hanxiaoluo.site/2016/09/20/git在qtcreator中的使用/　　作者: 韩若熙" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/08/python图形用户界面之pyqt4的使用/" title="python图形用户界面之pyqt的使用">http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/　　作者: 韩若熙" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -354,16 +360,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/09/20/使用hexo在github上搭建个人博客/">
-                    使用hexo在github上搭建个人博客
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/09/19/gitlab的使用/">
-                    代码管理之gitlab的使用
+                <a href="/2016/09/20/使用hexo在github上搭建个人博客/">
+                    使用hexo在github上搭建个人博客
                 </a>
             </div>
         
@@ -375,7 +375,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、安装git"><span class="toc-number">1.</span> <span class="toc-text">1、安装git</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、在IDE中设置git路径"><span class="toc-number">2.</span> <span class="toc-text">2、在IDE中设置git路径</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、使用IDE新建工程"><span class="toc-number">3.</span> <span class="toc-text">3、使用IDE新建工程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、本地仓库绑定github"><span class="toc-number">4.</span> <span class="toc-text">4、本地仓库绑定github</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、建立分支"><span class="toc-number">5.</span> <span class="toc-text">5、建立分支</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6、git上传"><span class="toc-number">6.</span> <span class="toc-text">6、git上传</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7、qtcreator直接上传源码到github分支"><span class="toc-number">7.</span> <span class="toc-text">7、qtcreator直接上传源码到github分支</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、安装pyqt（事先必须先完成python的安装）"><span class="toc-number">1.</span> <span class="toc-text">1、安装pyqt（事先必须先完成python的安装）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、命令测试"><span class="toc-number">2.</span> <span class="toc-text">2、命令测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、代码实例"><span class="toc-number">3.</span> <span class="toc-text">3、代码实例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#coding-utf-8"><span class="toc-number">4.</span> <span class="toc-text">-- coding: utf-8 --</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#coding-utf-8-1"><span class="toc-number">5.</span> <span class="toc-text">-- coding: utf-8 --</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、运行实例"><span class="toc-number">6.</span> <span class="toc-text">4、运行实例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、总结"><span class="toc-number">7.</span> <span class="toc-text">5、总结</span></a></li></ol>
         
     </div>
     <style>
@@ -410,7 +410,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"git在qtcreator中的使用　| 韩若熙　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"python图形用户界面之pyqt的使用　| 韩若熙　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     </div>
 
@@ -420,7 +420,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2016/09/20/git在qtcreator中的使用/" data-title="git在qtcreator中的使用" data-url="http://hanxiaoluo.site/2016/09/20/git在qtcreator中的使用/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/10/08/python图形用户界面之pyqt4的使用/" data-title="python图形用户界面之pyqt的使用" data-url="http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/"></div>
     <script>
         var duoshuoQuery = {short_name:"hanxiaoluo"};
         var loadComment = function(){
@@ -443,15 +443,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/09/20/使用hexo在github上搭建个人博客/" title="上一篇: 使用hexo在github上搭建个人博客">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/09/19/gitlab的使用/" title="下一篇: 代码管理之gitlab的使用">
+            <a href="/2016/09/20/使用hexo在github上搭建个人博客/" title="下一篇: 使用hexo在github上搭建个人博客">
                 <i class="fa fa-angle-right"></i>
             </a>
         
