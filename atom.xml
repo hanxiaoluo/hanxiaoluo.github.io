@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hanxiaoluo.site/"/>
-  <updated>2016-10-09T13:15:09.000Z</updated>
+  <updated>2016-10-09T13:25:09.000Z</updated>
   <id>http://hanxiaoluo.site/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://hanxiaoluo.site/2016/10/08/python%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E4%B9%8Bpyqt4%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/</id>
     <published>2016-10-08T15:01:42.000Z</published>
-    <updated>2016-10-09T13:15:09.000Z</updated>
+    <updated>2016-10-09T13:25:09.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="1、安装pyqt（事先必须先完成python的安装）"><a href="#1、安装pyqt（事先必须先完成python的安装）" class="headerlink" title="1、安装pyqt（事先必须先完成python的安装）"></a>1、安装pyqt（事先必须先完成python的安装）</h1><p>　　我们可以在如下网址： <a href="http://www.riverbankcomputing.co.uk/software/pyqt/download" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/pyqt/download</a><br>这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
@@ -42,10 +42,39 @@
 <p>　一路点击next进行安装，直到路径选择界面，如下图所示。</p>
 <p>  <img src="http://odsh9s4s2.bkt.clouddn.com/pyqt%E5%AE%89%E8%A3%85.png" alt="配置git路径"><br>　一定要注意，<strong>这里的路径指的是python的安装路径</strong>，填写正确路径，点击“Install”按钮进行安装即可。</p>
 <h1 id="2、命令测试"><a href="#2、命令测试" class="headerlink" title="2、命令测试"></a>2、命令测试</h1><p>　　进入python自带的GUI工具-IDLE，输入import PyQt4，如果没有提示错误，则安装正确。</p>
-<h1 id="3、代码实例"><a href="#3、代码实例" class="headerlink" title="3、代码实例"></a>3、代码实例</h1><p>　　创建文件pyqt.py内容如下：<br>`　　</p>
-<h1 id="coding-utf-8"><a href="#coding-utf-8" class="headerlink" title="-- coding: utf-8 --"></a>-<em>- coding: utf-8 -</em>-</h1><p>from PyQt4.QtGui import (QMainWindow, QPushButton, QApplication,<br>                                     QVBoxLayout, QWidget)<br>from PyQt4.QtCore import (Qt, QObject, SIGNAL)<br>import anotherWindow<br>import sys<br>class OneWindow(QMainWindow):<br>    def <strong>init</strong>(self):<br>        super(OneWindow, self).<strong>init</strong>()<br>        self.setGeometry(100, 100, 600, 400)<br>        vLayout = QVBoxLayout()<br>        self.button = QPushButton(“OK”)<br>        vLayout.addWidget(self.button)<br>        widget = QWidget()<br>        widget.setLayout(vLayout)<br>        self.setCentralWidget(widget)<br>        QObject.connect(self.button,SIGNAL(“clicked()”) , self.anotherWindow)<br>    def anotherWindow(self):<br>        print ‘OK’<br>        self.another = anotherWindow.AnotherWindow()<br>        self.another.show()<br>if <strong>name</strong> == ‘<strong>main</strong>‘:<br>    app = QApplication(sys.argv)<br>    w = OneWindow()<br>    w.show()<br>    app.exec_()<br>`<br>创建文件anotherWindow.py内容如下：</p>
-<p>`</p>
-<h1 id="coding-utf-8-1"><a href="#coding-utf-8-1" class="headerlink" title="-- coding: utf-8 --"></a>-<em>- coding: utf-8 -</em>-</h1><p>from PyQt4.QtGui import (QMainWindow)<br>class AnotherWindow(QMainWindow):<br>    def <strong>init</strong>(self):<br>        super(AnotherWindow, self).<strong>init</strong>()<br>        self.resize(400, 300)<br>        self.setWindowTitle(“this is another window”)<br>`<br>　　两个文件主要实现通过点击按钮完成多界面切换。</p>
+<h1 id="3、代码实例"><a href="#3、代码实例" class="headerlink" title="3、代码实例"></a>3、代码实例</h1><p>　　创建文件pyqt.py内容如下：<br>　　<br><code>from PyQt4.QtGui import (QMainWindow, QPushButton, QApplication, 
+                                     QVBoxLayout, QWidget)
+from PyQt4.QtCore import (Qt, QObject, SIGNAL)
+import anotherWindow
+import sys
+class OneWindow(QMainWindow):
+    def __init__(self):
+        super(OneWindow, self).__init__()
+        self.setGeometry(100, 100, 600, 400)
+        vLayout = QVBoxLayout()
+        self.button = QPushButton(&quot;OK&quot;)
+        vLayout.addWidget(self.button)
+        widget = QWidget()
+        widget.setLayout(vLayout)
+        self.setCentralWidget(widget)
+        QObject.connect(self.button,SIGNAL(&quot;clicked()&quot;) , self.anotherWindow)        
+    def anotherWindow(self):
+        print &#39;OK&#39;
+        self.another = anotherWindow.AnotherWindow()
+        self.another.show()                          
+if __name__ == &#39;__main__&#39;:
+    app = QApplication(sys.argv)
+    w = OneWindow()
+    w.show()     
+    app.exec_()</code></p>
+<p>创建文件anotherWindow.py内容如下：</p>
+<p><code>from PyQt4.QtGui import (QMainWindow)
+class AnotherWindow(QMainWindow):
+    def __init__(self):
+        super(AnotherWindow, self).__init__()
+        self.resize(400, 300)
+        self.setWindowTitle(&quot;this is another window&quot;)</code></p>
+<p>　　两个文件主要实现通过点击按钮完成多界面切换,在文件首行都存在# -<em>- coding: utf-8 -</em>-用以表明编码方式。</p>
 <h1 id="4、运行实例"><a href="#4、运行实例" class="headerlink" title="4、运行实例"></a>4、运行实例</h1><p>　　运行代码实例有多种方式，在此列举几种我自己常用方式。</p>
 <p>　　（1）dos命令行运行。进入pyqt.py文件所在目录，比如我的目录F:\mypython,运行命令python pyqt.py即看到代码实现的窗体。</p>
 <p>　　（2）python自带IDLE运行。打开IDLE环境，点击“File”菜单，选择”Open”菜单项，打开pyqt.py文件。此时会弹出另外一个窗体。点击“Run”菜单，选择“Run Module”菜单项，即可看到代码实现的窗体。</p>
@@ -73,7 +102,7 @@
     <link href="http://hanxiaoluo.site/2016/09/20/%E4%BD%BF%E7%94%A8hexo%E5%9C%A8github%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
     <id>http://hanxiaoluo.site/2016/09/20/使用hexo在github上搭建个人博客/</id>
     <published>2016-09-20T13:39:37.000Z</published>
-    <updated>2016-09-24T08:11:52.000Z</updated>
+    <updated>2016-10-09T12:58:19.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="1、安装node-js"><a href="#1、安装node-js" class="headerlink" title="1、安装node.js"></a>1、安装node.js</h1><p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
