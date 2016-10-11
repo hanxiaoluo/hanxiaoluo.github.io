@@ -135,7 +135,7 @@ class AnotherWindow(QMainWindow):
     </entry>
     
     <entry>
-      <title><![CDATA[python的Web开发之Django框架应用]]></title>
+      <title><![CDATA[python的Web开发之Django框架应用(一)]]></title>
       <url>http://hanxiaoluo.site/2016/10/08/python%E7%9A%84Web%E5%BC%80%E5%8F%91%E4%B9%8BDjango%E6%A1%86%E6%9E%B6%E5%BA%94%E7%94%A8(%E4%B8%80)/</url>
       <content type="html"><![CDATA[<h1 id="1、安装python"><a href="#1、安装python" class="headerlink" title="1、安装python"></a>1、安装python</h1><p>　　在官网下载python进行安装，在此不做说明。</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
