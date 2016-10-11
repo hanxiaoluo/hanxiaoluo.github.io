@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hanxiaoluo.site/"/>
-  <updated>2016-10-11T13:19:45.000Z</updated>
+  <updated>2016-10-11T13:22:48.000Z</updated>
   <id>http://hanxiaoluo.site/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://hanxiaoluo.site/2016/10/11/python%E7%9A%84Web%E5%BC%80%E5%8F%91%E4%B9%8BDjango%E6%A1%86%E6%9E%B6%E5%BA%94%E7%94%A8(%E4%BA%8C)/"/>
     <id>http://hanxiaoluo.site/2016/10/11/python的Web开发之Django框架应用(二)/</id>
     <published>2016-10-11T12:50:09.000Z</published>
-    <updated>2016-10-11T13:19:45.000Z</updated>
+    <updated>2016-10-11T13:22:48.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="1、编写第一个静态页面"><a href="#1、编写第一个静态页面" class="headerlink" title="1、编写第一个静态页面"></a>1、编写第一个静态页面</h1><p>　　第一步，创建视图文件，代码如下：</p>
 <pre><code>from django.http import HttpResponse
@@ -65,20 +65,14 @@ urlpatterns = [
 <p> 可以看到页面的内容是我们每次访问页面的时间，是随时更新的。</p>
 <p>总结一下：</p>
 <ul>
-<li><p>进来的请求转入/hello/。</p>
-</li>
-<li><p>jango通过在ROOT_URLCONF配置来决定根URLconf。</p>
-</li>
-<li><p>Django在URLconf中的所有URL模式中，查找第一个匹配/hello/的条目。</p>
-</li>
-<li><p>如果找到匹配，将调用相应的视图函数。</p>
-</li>
-<li><p>视图函数返回一个HttpResponse。</p>
-</li>
-<li><p>Django转换HttpResponse为一个适合的HTTP response，以Web page显示出来。</p>
-</li>
+<li>进来的请求转入/hello/。</li>
+<li>jango通过在ROOT_URLCONF配置来决定根URLconf。</li>
+<li>Django在URLconf中的所有URL模式中，查找第一个匹配/hello/的条目。</li>
+<li>如果找到匹配，将调用相应的视图函数。</li>
+<li>视图函数返回一个HttpResponse。</li>
+<li>Django转换HttpResponse为一个适合的HTTP response，以Web page显示出来。</li>
 </ul>
-<p>　　其实做一个Django-powered页面，只需要写视图函数并用 URLconfs把它们和URLs对应起来就ok了。</p>
+<p>其实做一个Django-powered页面，只需要写视图函数并用 URLconfs把它们和URLs对应起来就ok了。</p>
 </the>]]></content>
     
     <summary type="html">

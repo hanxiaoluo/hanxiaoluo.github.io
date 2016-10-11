@@ -49,20 +49,14 @@ urlpatterns = [
 <p> 可以看到页面的内容是我们每次访问页面的时间，是随时更新的。</p>
 <p>总结一下：</p>
 <ul>
-<li><p>进来的请求转入/hello/。</p>
-</li>
-<li><p>jango通过在ROOT_URLCONF配置来决定根URLconf。</p>
-</li>
-<li><p>Django在URLconf中的所有URL模式中，查找第一个匹配/hello/的条目。</p>
-</li>
-<li><p>如果找到匹配，将调用相应的视图函数。</p>
-</li>
-<li><p>视图函数返回一个HttpResponse。</p>
-</li>
-<li><p>Django转换HttpResponse为一个适合的HTTP response，以Web page显示出来。</p>
-</li>
+<li>进来的请求转入/hello/。</li>
+<li>jango通过在ROOT_URLCONF配置来决定根URLconf。</li>
+<li>Django在URLconf中的所有URL模式中，查找第一个匹配/hello/的条目。</li>
+<li>如果找到匹配，将调用相应的视图函数。</li>
+<li>视图函数返回一个HttpResponse。</li>
+<li>Django转换HttpResponse为一个适合的HTTP response，以Web page显示出来。</li>
 </ul>
-<p>　　其实做一个Django-powered页面，只需要写视图函数并用 URLconfs把它们和URLs对应起来就ok了。</p>
+<p>其实做一个Django-powered页面，只需要写视图函数并用 URLconfs把它们和URLs对应起来就ok了。</p>
 </the>]]></content>
     </entry>
     
