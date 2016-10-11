@@ -15,18 +15,34 @@
 
 
 
-<meta name="description" content="1、安装node.js+">
+<meta name="description" content="1、编写第一个静态页面　　第一步，创建视图文件，代码如下：
+from django.http import HttpResponse
+def sayHello(request):
+    return HttpResponse(&amp;quot;Hello world！ This is my first trial. [Poll的笔记]&amp;quot;)
+　　第二步，进行URL配置。代码如下：
+from d">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用hexo在github上搭建个人博客">
-<meta property="og:url" content="http://hanxiaoluo.site/2016/09/20/使用hexo在github上搭建个人博客/index.html">
+<meta property="og:title" content="python的Web开发之Django框架应用(二)">
+<meta property="og:url" content="http://hanxiaoluo.site/2016/10/11/python的Web开发之Django框架应用(二)/index.html">
 <meta property="og:site_name" content="韩若熙">
-<meta property="og:description" content="1、安装node.js+">
-<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png">
-<meta property="og:updated_time" content="2016-10-09T12:58:19.000Z">
+<meta property="og:description" content="1、编写第一个静态页面　　第一步，创建视图文件，代码如下：
+from django.http import HttpResponse
+def sayHello(request):
+    return HttpResponse(&amp;quot;Hello world！ This is my first trial. [Poll的笔记]&amp;quot;)
+　　第二步，进行URL配置。代码如下：
+from d">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/django-%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/django-%E9%9D%99%E6%80%81.png">
+<meta property="og:updated_time" content="2016-10-11T13:06:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用hexo在github上搭建个人博客">
-<meta name="twitter:description" content="1、安装node.js+">
-<meta name="twitter:image" content="http://odsh9s4s2.bkt.clouddn.com/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png">
+<meta name="twitter:title" content="python的Web开发之Django框架应用(二)">
+<meta name="twitter:description" content="1、编写第一个静态页面　　第一步，创建视图文件，代码如下：
+from django.http import HttpResponse
+def sayHello(request):
+    return HttpResponse(&amp;quot;Hello world！ This is my first trial. [Poll的笔记]&amp;quot;)
+　　第二步，进行URL配置。代码如下：
+from d">
+<meta name="twitter:image" content="http://odsh9s4s2.bkt.clouddn.com/django-%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -58,7 +74,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>使用hexo在github上搭建个人博客 | 韩若熙</title>
+<title>python的Web开发之Django框架应用(二) | 韩若熙</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -261,11 +277,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-使用hexo在github上搭建个人博客" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-python的Web开发之Django框架应用(二)" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/20/使用hexo在github上搭建个人博客/" class="article-date">
-      <time datetime="2016-09-20T13:39:37.000Z" itemprop="datePublished">2016-09-20</time>
+      <a href="/2016/10/11/python的Web开发之Django框架应用(二)/" class="article-date">
+      <time datetime="2016-10-11T12:50:09.000Z" itemprop="datePublished">2016-10-11</time>
 </a>
 
 
@@ -280,7 +296,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      使用hexo在github上搭建个人博客
+      python的Web开发之Django框架应用(二)
     </h1>
   
 
@@ -291,7 +307,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -301,37 +317,61 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="1、安装node-js"><a href="#1、安装node-js" class="headerlink" title="1、安装node.js"></a>1、安装node.js</h1><p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
-<the rest="" of="" contents="" |="" 余下全文="">
+        <h1 id="1、编写第一个静态页面"><a href="#1、编写第一个静态页面" class="headerlink" title="1、编写第一个静态页面"></a>1、编写第一个静态页面</h1><p>　　第一步，创建视图文件，代码如下：</p>
+<pre><code>from django.http import HttpResponse
+def sayHello(request):
+    return HttpResponse(&quot;Hello world！ This is my first trial. [Poll的笔记]&quot;)
+</code></pre><p>　　第二步，进行URL配置。代码如下：</p>
+<pre><code>from django.conf.urls import url
+from django.contrib import admin
+from sayhello import views
+urlpatterns = [
+    url(r&apos;^sayHello/$&apos;,views.sayHello),
+]
+</code></pre><p>　　第三步，启动内置服务器，浏览器地址栏输入<strong><a href="http://127.0.0.1:8000/sayHello/" target="_blank" rel="external">http://127.0.0.1:8000/sayHello/</a></strong>就能看到如下页面：<br>      <img src="http://odsh9s4s2.bkt.clouddn.com/django-%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png" alt="静态页面"></p>
+<h1 id="２、编写第一个动态页面"><a href="#２、编写第一个动态页面" class="headerlink" title="２、编写第一个动态页面"></a>２、编写第一个动态页面</h1><p>　　第一步，创建视图文件，代码如下：</p>
+<pre><code>import datetime
+from django.http import HttpResponse
+def sayHello(request):
+    s = &apos;Hello World!&apos;
+    current_time = datetime.datetime.now()
+    html = &apos;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt; %s &lt;/h1&gt;&lt;p&gt; %s &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&apos; % (s, current_time)
+    return HttpResponse(html)
+</code></pre><p>   我们逐行分析一下这段代码：</p>
+<p>   首先，我们从django.http模块导入HttpResponse类。</p>
+<p>   接下来，我们定义一个叫做sayHello的视图函数。每个视图函数至少要有一个参数，通常被叫作request。这是一个触发这个视图、包含当前Web请求信息的对象，是类django.http.HttpResponse的一个实例。在这个示例中，我们虽然不用request做任何事情，然而它仍必须是这个视图的第一个参数。注意视图函数的名称并不重要；并不一定非得以某种特定的方式命名才能让Django识别它。 </p>
+<p>   它仅仅返回一个HttpResponse对象，这个对象包含了页面上要显示的内容。</p>
+<p>　　第二步，进行URL配置。代码如下：</p>
+<pre><code>from django.conf.urls import url
+from django.contrib import admin
+from sayhello import views
+urlpatterns = [
+    url(r&apos;^sayHello/$&apos;,views.sayHello),
+]
+</code></pre><p>　　我们逐行分析一下这段代码：</p>
+<p>　　首先，我们从模块中引入了sayHello视图。</p>
+<p>　　接下来，我们为urlpatterns加上一行： (r’^sayHello/$’,views.sayHello), 这行被称作URLpattern，它是一个Python的元组。元组中第一个元素是模式匹配字符串（正则表达式）；第二个元素是那个模式将使用的视图函数。</p>
+<p>　　urlpattern中包含了一个尖号(^)和一个美元符号($)。这些都是正则表达式符号，并且有特定的含义： 上箭头要求表达式对字符串的头部进行匹配，美元符号则要求表达式对字符串的尾部进行匹配。</p>
+<p>　　简单来说，这段代码只是告诉Django，所有指向URL：/sayHello/的请求都应由sayHello这个视图函数来处理。</p>
+<p>　　第三步，启动内置服务器，浏览器地址栏输入<strong><a href="http://127.0.0.1:8000/sayHello/" target="_blank" rel="external">http://127.0.0.1:8000/sayHello/</a></strong>就能看到如下页面：<br>  <img src="http://odsh9s4s2.bkt.clouddn.com/django-%E9%9D%99%E6%80%81.png" alt="动态页面"></p>
+<p> 可以看到页面的内容是我们每次访问页面的时间，是随时更新的。</p>
+<p>总结一下：</p>
+<ul>
+<li><p>进来的请求转入/hello/。</p>
+</li>
+<li><p>jango通过在ROOT_URLCONF配置来决定根URLconf。</p>
+</li>
+<li><p>Django在URLconf中的所有URL模式中，查找第一个匹配/hello/的条目。</p>
+</li>
+<li><p>如果找到匹配，将调用相应的视图函数。</p>
+</li>
+<li><p>视图函数返回一个HttpResponse。</p>
+</li>
+<li><p>Django转换HttpResponse为一个适合的HTTP response，以Web page显示出来。</p>
+</li>
+</ul>
+<p>　　其实做一个Django-powered页面，只需要写视图函数并用 URLconfs把它们和URLs对应起来就ok了。</p>
 
-<p>　　node.js官网地址：<a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a><br>下载最新版的node.js进行逐步安装即可。</p>
-<h1 id="2、安装git"><a href="#2、安装git" class="headerlink" title="2、安装git"></a>2、安装git</h1><p>　　下载git客户端，指定安装目录进行安装。以后所有的git命令都是在git-bash中进行。</p>
-<h1 id="3、申请github账号"><a href="#3、申请github账号" class="headerlink" title="3、申请github账号"></a>3、申请github账号</h1><p>　　github官网地址：<a href="https://github.com/" target="_blank" rel="external">https://github.com/</a><br>输入账号、密码进行注册。</p>
-<p>　　注册完成后，点击“New repository”创建新的仓库，注意个人主页的仓库名要与你的用户名相同。</p>
-<p>　　至于SSH Keys，看你自己了，可以不配置，不配置的话以后每一次对自己的博客有改动提交的时候就要手动输入账号密码，配置后就不需要了。怎麽配置这里就不说了，网上很多教程。</p>
-<h1 id="4、使用npm安装hexo"><a href="#4、使用npm安装hexo" class="headerlink" title="4、使用npm安装hexo"></a>4、使用npm安装hexo</h1><p>　　完成node.js和git的安装后，我们进行hexo的安装。首先创建一个本地文件夹，如myhexo，进入该目录，执行如下命令安装,命令：<strong>sudo npm install -g hexo</strong></p>
-<p>　　完成后，执行如下命令进行初始化,命令：<strong>sudo hexo init</strong></p>
-<p>　　至此hexo的安装工作全部完成，myhexo就是你的博客根目录，所有的博客操作都在里面进行。</p>
-<p>　　生成静态页面至public目录的命令：<strong>sudo hexo generate</strong>(<em>hexo g</em> 也可以)</p>
-<p>将.deploy目录部署到github的命令：<strong>sudo hexo deploy</strong>(<em>hexo d</em> 也可以)</p>
-<p>　　开启预览访问端口的命令：<strong>sudo hexo server</strong>(<em>hexo s </em>也可以)，默认端口为<em>4000</em>，浏览器输入<a href="http://localhost:4000]" target="_blank" rel="external">http://localhost:4000</a>，即可看到我们的博客主页。</p>
-<p>　　配置github，目的是使用自己的github账户访问，比如<strong><em><a href="http://hanxiaoluo.github.io" target="_blank" rel="external">http://hanxiaoluo.github.io</a></em></strong>,<br>   我的博客在myhexo目录中，该目录里面有一个叫做——config.yml的文件，我们需要修改此文件。翻到最后，修改如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy: </div><div class="line"><span class="built_in">type</span>: git </div><div class="line">repo: git@github.com:hanxiaoluo/hanxiaoluo.github.io.git</div><div class="line">branch: master</div></pre></td></tr></table></figure>
-<p>  然后执行以下命令：</p>
-<p>  <strong>sudo npm install hexo-deployer-git –save</strong></p>
-<p>  <strong>sudo hexo deploy</strong></p>
-<p>  部署步骤：<br>  每次部署的步骤，可按以下三部来进行:</p>
-<p>  <strong>sudo hexo clean</strong></p>
-<p>  <strong>sudo hexo g</strong></p>
-<p>  <strong>sudo hexo d</strong> </p>
-<p>  至此，准备工作全部完成了。我们在浏览器输入<strong><em><a href="http://github.com/hanxiaoluo.github.io" target="_blank" rel="external">http://github.com/hanxiaoluo.github.io</a></em></strong><br>即可访问我的博客啦。此时博客的主题为默认主题。我们可以修改博客主题。</p>
-<h1 id="5、绑定自己的域名"><a href="#5、绑定自己的域名" class="headerlink" title="5、绑定自己的域名"></a>5、绑定自己的域名</h1><p>　　要想将博客与我们的域名绑定，首先我们要拥有自己的域名。百度搜索阿里云，进入阿里云官网，申请域名。<strong>这里要注意一些域名是不能在国内备案的，比如我申请的.site域名，就不能在国内备案（其他能备案的域名我也没有备案过，据说比较麻烦）。</strong>所以我把博客部署到了github，当然如果你有境外服务器那更好。</p>
-<p>　　申请好域名，就可以解析啦。添加下面两条记录，注意记录类型和主机记录，记录值填写github的IP地址。</p>
-<p>  <img src="http://odsh9s4s2.bkt.clouddn.com/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png" alt="域名解析"></p>
-<p>  可以通过<strong>ping <em><a href="http://hanxiaoluo.github.io" target="_blank" rel="external">http://hanxiaoluo.github.io</a></em></strong><br>  获得该IP地址。</p>
-<p>　　到这里我们在浏览器输入域名去访问博客，会出现404错误。我们还差一个CNAME文件，这个文件需要我们提交到github仓库。文件的内容就是你的域名，比如我的：<em>www.hanxiaoluo.site</em> 提交完，我们再在浏览器输入域名，就可以直接访问我的博客啦。</p>
-<h1 id="6、总结"><a href="#6、总结" class="headerlink" title="6、总结"></a>6、总结</h1><p>　　到此为止，我们已经完成整个博客在github上的搭建，同时实现了域名绑定。搭建过程中，建议大家多学习git及hexo命令的使用。这些在后面的文章中，我们都会提到。</p>
-</the>
       
     </div>
     
@@ -339,13 +379,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/09/20/使用hexo在github上搭建个人博客/">使用hexo在github上搭建个人博客</a></p>
+        <p><span>本文标题:</span><a href="/2016/10/11/python的Web开发之Django框架应用(二)/">python的Web开发之Django框架应用(二)</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">韩若熙</a></p>
-        <p><span>发布时间:</span>2016-09-20, 21:39:37</p>
-        <p><span>最后更新:</span>2016-10-09, 20:58:19</p>
+        <p><span>发布时间:</span>2016-10-11, 20:50:09</p>
+        <p><span>最后更新:</span>2016-10-11, 21:06:09</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/09/20/使用hexo在github上搭建个人博客/" title="使用hexo在github上搭建个人博客">http://hanxiaoluo.site/2016/09/20/使用hexo在github上搭建个人博客/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://hanxiaoluo.site/2016/09/20/使用hexo在github上搭建个人博客/　　作者: 韩若熙" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/11/python的Web开发之Django框架应用(二)/" title="python的Web开发之Django框架应用(二)">http://hanxiaoluo.site/2016/10/11/python的Web开发之Django框架应用(二)/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hanxiaoluo.site/2016/10/11/python的Web开发之Django框架应用(二)/　　作者: 韩若熙" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -357,16 +397,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/10/08/python图形用户界面之pyqt4的使用/">
-                    python图形用户界面之pyqt的使用
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/09/20/git在qtcreator中的使用/">
-                    git在qtcreator中的使用
+                <a href="/2016/10/08/python的Web开发之Django框架应用(一)/">
+                    python的Web开发之Django框架应用
                 </a>
             </div>
         
@@ -378,7 +412,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、安装node-js"><span class="toc-number">1.</span> <span class="toc-text">1、安装node.js</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、安装git"><span class="toc-number">2.</span> <span class="toc-text">2、安装git</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、申请github账号"><span class="toc-number">3.</span> <span class="toc-text">3、申请github账号</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、使用npm安装hexo"><span class="toc-number">4.</span> <span class="toc-text">4、使用npm安装hexo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、绑定自己的域名"><span class="toc-number">5.</span> <span class="toc-text">5、绑定自己的域名</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6、总结"><span class="toc-number">6.</span> <span class="toc-text">6、总结</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、编写第一个静态页面"><span class="toc-number">1.</span> <span class="toc-text">1、编写第一个静态页面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#２、编写第一个动态页面"><span class="toc-number">2.</span> <span class="toc-text">２、编写第一个动态页面</span></a></li></ol>
         
     </div>
     <style>
@@ -413,7 +447,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"使用hexo在github上搭建个人博客　| 韩若熙　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"python的Web开发之Django框架应用(二)　| 韩若熙　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     </div>
 
@@ -423,7 +457,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2016/09/20/使用hexo在github上搭建个人博客/" data-title="使用hexo在github上搭建个人博客" data-url="http://hanxiaoluo.site/2016/09/20/使用hexo在github上搭建个人博客/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/10/11/python的Web开发之Django框架应用(二)/" data-title="python的Web开发之Django框架应用(二)" data-url="http://hanxiaoluo.site/2016/10/11/python的Web开发之Django框架应用(二)/"></div>
     <script>
         var duoshuoQuery = {short_name:"hanxiaoluo"};
         var loadComment = function(){
@@ -446,15 +480,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/10/08/python图形用户界面之pyqt4的使用/" title="上一篇: python图形用户界面之pyqt的使用">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/09/20/git在qtcreator中的使用/" title="下一篇: git在qtcreator中的使用">
+            <a href="/2016/10/08/python的Web开发之Django框架应用(一)/" title="下一篇: python的Web开发之Django框架应用">
                 <i class="fa fa-angle-right"></i>
             </a>
         
