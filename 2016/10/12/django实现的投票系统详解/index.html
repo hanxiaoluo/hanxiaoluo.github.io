@@ -15,19 +15,33 @@
 
 
 
-<meta name="description" content="1、安装git　　下载git客户端，指定目录进行安装。安装完毕，右键菜单，可以看到Git Bash Here 菜单项。
+<meta name="description" content="1、创建项目(mysite)与应用(polls)　　如何创建项目及应用，在《python的Web开发之Django框架应用(一)》一文中已经讲的很清楚了。在此，不作说明。
+　　创建应用完成后，将应用添加到setting.py配置文件中。在INSTALLED_APPS中追加polls
 +">
 <meta property="og:type" content="article">
-<meta property="og:title" content="代码管理之gitlab的使用">
-<meta property="og:url" content="http://hanxiaoluo.site/2016/09/19/gitlab的使用/index.html">
+<meta property="og:title" content="django实现的投票系统详解">
+<meta property="og:url" content="http://hanxiaoluo.site/2016/10/12/django实现的投票系统详解/index.html">
 <meta property="og:site_name" content="韩若熙">
-<meta property="og:description" content="1、安装git　　下载git客户端，指定目录进行安装。安装完毕，右键菜单，可以看到Git Bash Here 菜单项。
+<meta property="og:description" content="1、创建项目(mysite)与应用(polls)　　如何创建项目及应用，在《python的Web开发之Django框架应用(一)》一文中已经讲的很清楚了。在此，不作说明。
+　　创建应用完成后，将应用添加到setting.py配置文件中。在INSTALLED_APPS中追加polls
 +">
-<meta property="og:updated_time" content="2016-09-20T14:24:34.000Z">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-models.png">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-admin.png">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-views.png">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-polls-urls.png">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-mysite-urls.png">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-index.png">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-detail.png">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-results.png">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-pollsshow.png">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-resultsshow.png">
+<meta property="og:updated_time" content="2016-10-12T13:24:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="代码管理之gitlab的使用">
-<meta name="twitter:description" content="1、安装git　　下载git客户端，指定目录进行安装。安装完毕，右键菜单，可以看到Git Bash Here 菜单项。
+<meta name="twitter:title" content="django实现的投票系统详解">
+<meta name="twitter:description" content="1、创建项目(mysite)与应用(polls)　　如何创建项目及应用，在《python的Web开发之Django框架应用(一)》一文中已经讲的很清楚了。在此，不作说明。
+　　创建应用完成后，将应用添加到setting.py配置文件中。在INSTALLED_APPS中追加polls
 +">
+<meta name="twitter:image" content="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-models.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +73,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>代码管理之gitlab的使用 | 韩若熙</title>
+<title>django实现的投票系统详解 | 韩若熙</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -262,11 +276,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-gitlab的使用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-django实现的投票系统详解" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/19/gitlab的使用/" class="article-date">
-      <time datetime="2016-09-19T13:28:32.000Z" itemprop="datePublished">2016-09-19</time>
+      <a href="/2016/10/12/django实现的投票系统详解/" class="article-date">
+      <time datetime="2016-10-12T12:45:24.000Z" itemprop="datePublished">2016-10-12</time>
 </a>
 
 
@@ -281,7 +295,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      代码管理之gitlab的使用
+      django实现的投票系统详解
     </h1>
   
 
@@ -292,7 +306,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -302,24 +316,35 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="1、安装git"><a href="#1、安装git" class="headerlink" title="1、安装git"></a>1、安装git</h1><p>　　下载git客户端，指定目录进行安装。安装完毕，右键菜单，可以看到Git Bash Here 菜单项。</p>
+        <h1 id="1、创建项目-mysite-与应用-polls"><a href="#1、创建项目-mysite-与应用-polls" class="headerlink" title="1、创建项目(mysite)与应用(polls)"></a>1、创建项目(mysite)与应用(polls)</h1><p>　　如何创建项目及应用，在《python的Web开发之Django框架应用(一)》一文中已经讲的很清楚了。在此，不作说明。</p>
+<p>　　创建应用完成后，将应用添加到setting.py配置文件中。在<strong>INSTALLED_APPS</strong>中追加polls</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<h1 id="2、建立远程分支"><a href="#2、建立远程分支" class="headerlink" title="2、建立远程分支"></a>2、建立远程分支</h1><p>　　输入用户名及密码，进入gitlab，在“你的项目”中可以看到我们要参与的项目。点击项目名称，可以看到项目信息。在页面上方，我们找到“仓库”，点击进入。此时就可以看到整个项目的源码。</p>
-<p>　 点击项目名称右侧的“+”，点击“New branch”，建立我们自己的分支，比如我的为tao.zhang,建立完毕，在项目名称左侧的下拉菜单，可以看到我们的分支，选中tao.zhang分支，可以看到该分支下的源码。</p>
-<p>　　此时tao.zhang分支下的内容与master分支下内容是一样的。</p>
-<h1 id="3、建立本地仓库"><a href="#3、建立本地仓库" class="headerlink" title="3、建立本地仓库"></a>3、建立本地仓库</h1><p>　　在自己的电脑E盘，建立名字为mygitlab的文件夹，进入该文件夹，右键菜单，点击“Git Bash Here”，进入命令行。执行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> http://gitlab服务器IP地址/project.admin/Gemini</div></pre></td></tr></table></figure>
-<p>　　其中gitlab服务器IP地址根据自己的服务器IP地址而定。克隆下来默认为master分支，所以我们在文件夹里面看到的是master分支对应的内容。</p>
-<h1 id="4、建立本地分支"><a href="#4、建立本地分支" class="headerlink" title="4、建立本地分支"></a>4、建立本地分支</h1><p>　　在命令行下输入<strong>cd Gemini</strong>进入Gemini文件夹下，执行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -b tao.zhang origin/tao.zhang</div></pre></td></tr></table></figure>
-<p>我们此时观察本地Gemini文件夹下的内容，对应的才是我们远程分支下的内容。</p>
-<h1 id="5、上传到远程分支"><a href="#5、上传到远程分支" class="headerlink" title="5、上传到远程分支"></a>5、上传到远程分支</h1><p>　　进入命令行执行如下命令：</p>
-<p><strong>git add .</strong>  //其中，git add .表示上传所有的文件，而git add 1.txt表示只上传文件1.txt</p>
-<p><strong>git commit -m “注释”</strong> //其中，双引号之内的内容表示操作注释，方便代码管理。</p>
-<p><strong>git push origin tao.zhang</strong> //该命令表示将内容真正上传到远程分支。</p>
-<p>　　此时在远程分支，我们会看到我们上传的文件。</p>
+<h1 id="２、创建模型-数据库"><a href="#２、创建模型-数据库" class="headerlink" title="２、创建模型(数据库)"></a>２、创建模型(数据库)</h1><p>执行如下命令：<strong>manage.py migrate</strong>，根据我们上一步安装的app应用生成相应的数据库表结构、索引等信息。此时我们用Navicat工具，查看数据库，可以看到一部分表。</p>
+<p>修改polls/models.py文件，添加Question与Choice类。代码如下：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-models.png" alt="模型代码"></p>
+<p>执行数据库表的生成与同步，执行如下命令：</p>
+<p><strong>manage.py makemigrations polls</strong></p>
+<p><strong>manage.py migrate</strong></p>
+<p>此时我们再观察数据库，会发现多了两张表，分别是polls_choice与polls_question表。</p>
+<h1 id="3、后台"><a href="#3、后台" class="headerlink" title="3、后台"></a>3、后台</h1><p>创建新的用户信息，执行如下命令：<strong>manage.py createsuperuser</strong>，输入用户名admin，邮箱地址，密码。</p>
+<p>打开polls/admin.py文件，编写如下内容：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-admin.png" alt="后台代码"></p>
+<p>在浏览器地址栏输入<strong><a href="http://localhost:8000/admin/" target="_blank" rel="external">http://localhost:8000/admin/</a></strong>即可看到登陆页面，输入我们上面建立的用户信息，进入投票系统的后台管理，完成数据的增删改查。</p>
+<h1 id="4、视图"><a href="#4、视图" class="headerlink" title="4、视图"></a>4、视图</h1><p>视图起着承前启后的作用，前是指前端页面，后是指后台数据库。将数据库表中的内容查询出来显示到页面上。</p>
+<p>打开polls/views.py文件，编写如下内容：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-views.png" alt="视图代码"></p>
+<h1 id="5、配置URL"><a href="#5、配置URL" class="headerlink" title="5、配置URL"></a>5、配置URL</h1><p>url是一个请求配置文件，页面中的请求转交给由哪个函数处理，由该文件决定。</p>
+<p>首先配置polls/urls.py(该文件需要创建)<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-polls-urls.png" alt="url"></p>
+<p>接着，编辑mysite/urls.py文件。<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-mysite-urls.png" alt="url"></p>
+<h1 id="6、创建模板-前端"><a href="#6、创建模板-前端" class="headerlink" title="6、创建模板(前端)"></a>6、创建模板(前端)</h1><p>模板就是前端页面，用来将数据显示到web页面上。</p>
+<p>首先创建polls/templates/polls/目录，分别在该目录下创建index.html、detail.html和results.html文件。</p>
+<p>index.html文件内容如下：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-index.png" alt="index代码"></p>
+<p>detail.html文件内容如下：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-detail.png" alt="detail代码"></p>
+<p>results.html文件内容如下：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-results.png" alt="results代码"></p>
+<h1 id="7、功能展示"><a href="#7、功能展示" class="headerlink" title="7、功能展示"></a>7、功能展示</h1><p>浏览器地址栏输入<strong><a href="http://localhost:8000/polls/" target="_blank" rel="external">http://localhost:8000/polls/</a></strong>，效果如下图：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-pollsshow.png" alt="polls代码"></p>
+<p>查看投票结果：<br><strong><a href="http://localhost:8000/polls/1/results/" target="_blank" rel="external">http://localhost:8000/polls/1/results/</a></strong>，效果如下图：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-resultsshow.png" alt="results代码"></p>
+<h1 id="8、参考链接"><a href="#8、参考链接" class="headerlink" title="8、参考链接"></a>8、参考链接</h1><p><strong><a href="http://www.cnblogs.com/fnng/p/4855743.html" target="_blank" rel="external">http://www.cnblogs.com/fnng/p/4855743.html</a></strong></p>
+<p><strong><a href="http://www.cnblogs.com/djangochina/archive/2013/05/30/3108041.html" target="_blank" rel="external">http://www.cnblogs.com/djangochina/archive/2013/05/30/3108041.html</a></strong></p>
+<p><strong><a href="https://docs.djangoproject.com/en/1.8/intro/tutorial03/" target="_blank" rel="external">https://docs.djangoproject.com/en/1.8/intro/tutorial03/</a></strong>该链接是Django的官网。</p>
 </the>
       
     </div>
@@ -328,13 +353,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/09/19/gitlab的使用/">代码管理之gitlab的使用</a></p>
+        <p><span>本文标题:</span><a href="/2016/10/12/django实现的投票系统详解/">django实现的投票系统详解</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">韩若熙</a></p>
-        <p><span>发布时间:</span>2016-09-19, 21:28:32</p>
-        <p><span>最后更新:</span>2016-09-20, 22:24:34</p>
+        <p><span>发布时间:</span>2016-10-12, 20:45:24</p>
+        <p><span>最后更新:</span>2016-10-12, 21:24:33</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/09/19/gitlab的使用/" title="代码管理之gitlab的使用">http://hanxiaoluo.site/2016/09/19/gitlab的使用/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://hanxiaoluo.site/2016/09/19/gitlab的使用/　　作者: 韩若熙" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/12/django实现的投票系统详解/" title="django实现的投票系统详解">http://hanxiaoluo.site/2016/10/12/django实现的投票系统详解/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hanxiaoluo.site/2016/10/12/django实现的投票系统详解/　　作者: 韩若熙" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -346,16 +371,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/09/20/git在qtcreator中的使用/">
-                    git在qtcreator中的使用
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/09/16/hello-world/">
-                    Hello
+                <a href="/2016/10/11/python的Web开发之Django框架应用(二)/">
+                    python的Web开发之Django框架应用(二)
                 </a>
             </div>
         
@@ -367,7 +386,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、安装git"><span class="toc-number">1.</span> <span class="toc-text">1、安装git</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、建立远程分支"><span class="toc-number">2.</span> <span class="toc-text">2、建立远程分支</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、建立本地仓库"><span class="toc-number">3.</span> <span class="toc-text">3、建立本地仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、建立本地分支"><span class="toc-number">4.</span> <span class="toc-text">4、建立本地分支</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、上传到远程分支"><span class="toc-number">5.</span> <span class="toc-text">5、上传到远程分支</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、创建项目-mysite-与应用-polls"><span class="toc-number">1.</span> <span class="toc-text">1、创建项目(mysite)与应用(polls)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#２、创建模型-数据库"><span class="toc-number">2.</span> <span class="toc-text">２、创建模型(数据库)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、后台"><span class="toc-number">3.</span> <span class="toc-text">3、后台</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、视图"><span class="toc-number">4.</span> <span class="toc-text">4、视图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、配置URL"><span class="toc-number">5.</span> <span class="toc-text">5、配置URL</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6、创建模板-前端"><span class="toc-number">6.</span> <span class="toc-text">6、创建模板(前端)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7、功能展示"><span class="toc-number">7.</span> <span class="toc-text">7、功能展示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8、参考链接"><span class="toc-number">8.</span> <span class="toc-text">8、参考链接</span></a></li></ol>
         
     </div>
     <style>
@@ -402,7 +421,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"代码管理之gitlab的使用　| 韩若熙　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"django实现的投票系统详解　| 韩若熙　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     </div>
 
@@ -412,7 +431,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2016/09/19/gitlab的使用/" data-title="代码管理之gitlab的使用" data-url="http://hanxiaoluo.site/2016/09/19/gitlab的使用/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/10/12/django实现的投票系统详解/" data-title="django实现的投票系统详解" data-url="http://hanxiaoluo.site/2016/10/12/django实现的投票系统详解/"></div>
     <script>
         var duoshuoQuery = {short_name:"hanxiaoluo"};
         var loadComment = function(){
@@ -435,15 +454,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/09/20/git在qtcreator中的使用/" title="上一篇: git在qtcreator中的使用">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/09/16/hello-world/" title="下一篇: Hello">
+            <a href="/2016/10/11/python的Web开发之Django框架应用(二)/" title="下一篇: python的Web开发之Django框架应用(二)">
                 <i class="fa fa-angle-right"></i>
             </a>
         
