@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hanxiaoluo.site/"/>
-  <updated>2016-10-12T13:24:33.000Z</updated>
+  <updated>2016-10-13T12:58:32.000Z</updated>
   <id>http://hanxiaoluo.site/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://hanxiaoluo.site/2016/10/12/django%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%8A%95%E7%A5%A8%E7%B3%BB%E7%BB%9F%E8%AF%A6%E8%A7%A3/"/>
     <id>http://hanxiaoluo.site/2016/10/12/django实现的投票系统详解/</id>
     <published>2016-10-12T12:45:24.000Z</published>
-    <updated>2016-10-12T13:24:33.000Z</updated>
+    <updated>2016-10-13T12:58:32.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="1、创建项目-mysite-与应用-polls"><a href="#1、创建项目-mysite-与应用-polls" class="headerlink" title="1、创建项目(mysite)与应用(polls)"></a>1、创建项目(mysite)与应用(polls)</h1><p>　　如何创建项目及应用，在《python的Web开发之Django框架应用(一)》一文中已经讲的很清楚了。在此，不作说明。</p>
 <p>　　创建应用完成后，将应用添加到setting.py配置文件中。在<strong>INSTALLED_APPS</strong>中追加polls</p>
@@ -28,25 +28,188 @@
 <the rest="" of="" contents="" |="" 余下全文="">
 
 <h1 id="２、创建模型-数据库"><a href="#２、创建模型-数据库" class="headerlink" title="２、创建模型(数据库)"></a>２、创建模型(数据库)</h1><p>执行如下命令：<strong>manage.py migrate</strong>，根据我们上一步安装的app应用生成相应的数据库表结构、索引等信息。此时我们用Navicat工具，查看数据库，可以看到一部分表。</p>
-<p>修改polls/models.py文件，添加Question与Choice类。代码如下：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-models.png" alt="模型代码"></p>
-<p>执行数据库表的生成与同步，执行如下命令：</p>
+<p>修改polls/models.py文件，添加Question与Choice类。代码如下：</p>
+<pre><code># -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from django.db import models
+# Create your models here.
+# 问题
+class Question(models.Model):
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField(&apos;date published&apos;)
+    def __unicode__(self):
+        return self.question_text
+# 选择
+class Choice(models.Model):
+    question = models.ForeignKey(Question)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+    def __unicode__(self):
+        return self.choice_text
+</code></pre><p>执行数据库表的生成与同步，执行如下命令：</p>
 <p><strong>manage.py makemigrations polls</strong></p>
 <p><strong>manage.py migrate</strong></p>
 <p>此时我们再观察数据库，会发现多了两张表，分别是polls_choice与polls_question表。</p>
 <h1 id="3、后台"><a href="#3、后台" class="headerlink" title="3、后台"></a>3、后台</h1><p>创建新的用户信息，执行如下命令：<strong>manage.py createsuperuser</strong>，输入用户名admin，邮箱地址，密码。</p>
-<p>打开polls/admin.py文件，编写如下内容：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-admin.png" alt="后台代码"></p>
-<p>在浏览器地址栏输入<strong><a href="http://localhost:8000/admin/" target="_blank" rel="external">http://localhost:8000/admin/</a></strong>即可看到登陆页面，输入我们上面建立的用户信息，进入投票系统的后台管理，完成数据的增删改查。</p>
+<p>打开polls/admin.py文件，编写如下内容：</p>
+<pre><code># -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.contrib import admin
+from .models import Question, Choice
+
+# Register your models here.
+class ChoiceInline(admin.TabularInline):
+    model = Choice
+    extra = 3
+
+class QuestionAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None,               {&apos;fields&apos;: [&apos;question_text&apos;]}),
+        (&apos;Date information&apos;, {&apos;fields&apos;: [&apos;pub_date&apos;], &apos;classes&apos;: [&apos;collapse&apos;]}),
+    ]
+    inlines = [ChoiceInline]
+    list_display = (&apos;question_text&apos;, &apos;pub_date&apos;)
+
+admin.site.register(Choice)
+admin.site.register(Question, QuestionAdmin)
+</code></pre><p>在浏览器地址栏输入<strong><a href="http://localhost:8000/admin/" target="_blank" rel="external">http://localhost:8000/admin/</a></strong>即可看到登陆页面，输入我们上面建立的用户信息，进入投票系统的后台管理，完成数据的增删改查。</p>
 <h1 id="4、视图"><a href="#4、视图" class="headerlink" title="4、视图"></a>4、视图</h1><p>视图起着承前启后的作用，前是指前端页面，后是指后台数据库。将数据库表中的内容查询出来显示到页面上。</p>
-<p>打开polls/views.py文件，编写如下内容：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-views.png" alt="视图代码"></p>
-<h1 id="5、配置URL"><a href="#5、配置URL" class="headerlink" title="5、配置URL"></a>5、配置URL</h1><p>url是一个请求配置文件，页面中的请求转交给由哪个函数处理，由该文件决定。</p>
-<p>首先配置polls/urls.py(该文件需要创建)<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-polls-urls.png" alt="url"></p>
-<p>接着，编辑mysite/urls.py文件。<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-mysite-urls.png" alt="url"></p>
-<h1 id="6、创建模板-前端"><a href="#6、创建模板-前端" class="headerlink" title="6、创建模板(前端)"></a>6、创建模板(前端)</h1><p>模板就是前端页面，用来将数据显示到web页面上。</p>
+<p>打开polls/views.py文件，编写如下内容：</p>
+<pre><code># -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
+from .models import Question, Choice
+
+# Create your views here.
+# 首页展示所有问题
+def index(request):
+    # latest_question_list2 = Question.objects.order_by(&apos;-pub_data&apos;)[:2]
+    latest_question_list = Question.objects.all()
+    context = {&apos;latest_question_list&apos;: latest_question_list}
+    return render(request, &apos;polls/index.html&apos;, context)
+
+
+# 查看所有问题
+def detail(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, &apos;polls/detail.html&apos;, {&apos;question&apos;: question})
+
+
+# 查看投票结果
+def results(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, &apos;polls/results.html&apos;, {&apos;question&apos;: question})
+
+
+# 选择投票
+def vote(request, question_id):
+    p = get_object_or_404(Question, pk=question_id)
+    try:
+        selected_choice = p.choice_set.get(pk=request.POST[&apos;choice&apos;])
+    except (KeyError, Choice.DoesNotExist):
+        # Redisplay the question voting form.
+        return render(request, &apos;polls/detail.html&apos;, {
+            &apos;question&apos;: p,
+            &apos;error_message&apos;: &quot;You didn&apos;t select a choice.&quot;,
+        })
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+        # Always return an HttpResponseRedirect after successfully dealing
+        # with POST data. This prevents data from being posted twice if a
+        # user hits the Back button.
+        return HttpResponseRedirect(reverse(&apos;polls:results&apos;, args=(p.id,)))
+</code></pre><h1 id="5、配置URL"><a href="#5、配置URL" class="headerlink" title="5、配置URL"></a>5、配置URL</h1><p>url是一个请求配置文件，页面中的请求转交给由哪个函数处理，由该文件决定。</p>
+<p>首先配置polls/urls.py(该文件需要创建)</p>
+<pre><code>from django.conf.urls import url
+from . import views
+
+urlpatterns = [
+    # ex : /polls/
+    url(r&apos;^$&apos;, views.index, name=&apos;index&apos;),
+    # ex : /polls/5/
+    url(r&apos;^(?P&lt;question_id&gt;[0-9]+)/$&apos;, views.detail, name=&apos;detail&apos;),
+    # ex : /polls/5/results/
+    url(r&apos;^(?P&lt;question_id&gt;[0-9]+)/results/$&apos;, views.results, name=&apos;results&apos;),
+    # ex : /polls/5/vote
+    url(r&apos;^(?P&lt;question_id&gt;[0-9]+)/vote/$&apos;, views.vote, name=&apos;vote&apos;),
+]
+</code></pre><p>接着，编辑mysite/urls.py文件</p>
+<pre><code>from django.conf.urls import url,include
+from django.contrib import admin
+
+urlpatterns = [
+    # url(r&apos;^admin/&apos;, admin.site.urls),
+    url(r&apos;^polls/&apos;, include(&apos;polls.urls&apos;, namespace=&quot;polls&quot;)),
+    url(r&apos;^admin/&apos;, include(admin.site.urls)),
+]
+</code></pre><h1 id="6、创建模板-前端"><a href="#6、创建模板-前端" class="headerlink" title="6、创建模板(前端)"></a>6、创建模板(前端)</h1><p>模板就是前端页面，用来将数据显示到web页面上。</p>
 <p>首先创建polls/templates/polls/目录，分别在该目录下创建index.html、detail.html和results.html文件。</p>
-<p>index.html文件内容如下：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-index.png" alt="index代码"></p>
-<p>detail.html文件内容如下：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-detail.png" alt="detail代码"></p>
-<p>results.html文件内容如下：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-results.png" alt="results代码"></p>
-<h1 id="7、功能展示"><a href="#7、功能展示" class="headerlink" title="7、功能展示"></a>7、功能展示</h1><p>浏览器地址栏输入<strong><a href="http://localhost:8000/polls/" target="_blank" rel="external">http://localhost:8000/polls/</a></strong>，效果如下图：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-pollsshow.png" alt="polls代码"></p>
+<p>index.html文件内容如下：</p>
+<pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1991/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt; user index &lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+{% if latest_question_list %}
+    	<ul>
+    	{% for question in latest_question_list %}
+        	<li><a href="{% url 'polls:detail' question.id%}">{{ question.question_text }}</a></li>
+    	{% endfor %}
+    	</ul>
+	{% else %}
+    	<p>No polls are available.</p>
+	{% endif %}
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>detail.html文件内容如下：</p>
+<pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1991/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt; user index &lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;{{ question.question_text }}&lt;/h1&gt;
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+&lt;form action=&quot;{% url 'polls:vote' question.id %}&quot; method=&quot;post&quot;&gt;
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    	<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+    	<label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+	{% endfor %}
+&lt;input type=&quot;submit&quot; value=&quot;Vote&quot; /&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>results.html文件内容如下：</p>
+<pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1991/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt; user index &lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;{{ question.question_text }}&lt;/h1&gt;
+
+&lt;ul&gt;
+{% for choice in question.choice_set.all %}
+    	<li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+	{% endfor %}
+&lt;/ul&gt;
+
+&lt;a href=&quot;{% url 'polls:detail' question.id %}&quot;&gt;Vote again?&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h1 id="7、功能展示"><a href="#7、功能展示" class="headerlink" title="7、功能展示"></a>7、功能展示</h1><p>浏览器地址栏输入<strong><a href="http://localhost:8000/polls/" target="_blank" rel="external">http://localhost:8000/polls/</a></strong>，效果如下图：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-pollsshow.png" alt="polls代码"></p>
 <p>查看投票结果：<br><strong><a href="http://localhost:8000/polls/1/results/" target="_blank" rel="external">http://localhost:8000/polls/1/results/</a></strong>，效果如下图：<br><img src="http://odsh9s4s2.bkt.clouddn.com/django-toupiao-resultsshow.png" alt="results代码"></p>
 <h1 id="8、参考链接"><a href="#8、参考链接" class="headerlink" title="8、参考链接"></a>8、参考链接</h1><p><strong><a href="http://www.cnblogs.com/fnng/p/4855743.html" target="_blank" rel="external">http://www.cnblogs.com/fnng/p/4855743.html</a></strong></p>
 <p><strong><a href="http://www.cnblogs.com/djangochina/archive/2013/05/30/3108041.html" target="_blank" rel="external">http://www.cnblogs.com/djangochina/archive/2013/05/30/3108041.html</a></strong></p>
