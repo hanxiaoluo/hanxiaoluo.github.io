@@ -272,19 +272,13 @@ s.close()
 </code></pre><p>　　运行结果：<br><img src="http://odsh9s4s2.bkt.clouddn.com/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png" alt="客户端执行结果"></p>
 <h1 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h1><p>　 python网络编程客户端，我们需要经过如下五步：</p>
 <ul>
-<li><p>创建socket    </p>
-</li>
-<li><p>连接到服务器</p>
-</li>
-<li><p>发送数据</p>
-</li>
-<li><p>接收数据</p>
-</li>
-<li><p>关闭socket
+<li>创建socket    </li>
+<li>连接到服务器</li>
+<li>发送数据</li>
+<li>接收数据</li>
+<li>关闭socket
 　　
-　　</p>
-<p>　　</p>
-</li>
+　　　　</li>
 </ul>
 </the>]]></content>
     </entry>

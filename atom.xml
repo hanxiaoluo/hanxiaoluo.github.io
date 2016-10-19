@@ -256,7 +256,7 @@ def sayHello(request):
     <link href="http://hanxiaoluo.site/2016/10/08/python%E4%B8%AD%E7%9A%84socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%B8%80)/"/>
     <id>http://hanxiaoluo.site/2016/10/08/python中的socket网络编程(一)/</id>
     <published>2016-10-08T15:01:42.000Z</published>
-    <updated>2016-10-19T13:10:20.000Z</updated>
+    <updated>2016-10-19T13:11:23.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="1、网络编程"><a href="#1、网络编程" class="headerlink" title="1、网络编程"></a>1、网络编程</h1><p>　　Socket 是进程间通信的一种方式，它与其他进程间通信的一个主要不同是：它能实现不同主机间的进程间通信，我们网络上各种各样的服务大多都是基于 Socket 来完成通信的，例如我们每天浏览网页、QQ 聊天、收发 email 等等。要解决网络上两台主机之间的进程通信问题，首先要唯一标识该进程，在 TCP/IP 网络协议中，就是通过 (IP地址，协议，端口号) 三元组来标识进程的，解决了进程标识问题，就有了通信的基础了。</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
@@ -326,19 +326,13 @@ s.close()
 </code></pre><p>　　运行结果：<br><img src="http://odsh9s4s2.bkt.clouddn.com/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png" alt="客户端执行结果"></p>
 <h1 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h1><p>　 python网络编程客户端，我们需要经过如下五步：</p>
 <ul>
-<li><p>创建socket    </p>
-</li>
-<li><p>连接到服务器</p>
-</li>
-<li><p>发送数据</p>
-</li>
-<li><p>接收数据</p>
-</li>
-<li><p>关闭socket
+<li>创建socket    </li>
+<li>连接到服务器</li>
+<li>发送数据</li>
+<li>接收数据</li>
+<li>关闭socket
 　　
-　　</p>
-<p>　　</p>
-</li>
+　　　　</li>
 </ul>
 </the>]]></content>
     
@@ -649,9 +643,9 @@ class AnotherWindow(QMainWindow):
     </summary>
     
     
-      <category term="markdown" scheme="http://hanxiaoluo.site/tags/markdown/"/>
-    
       <category term="hexo" scheme="http://hanxiaoluo.site/tags/hexo/"/>
+    
+      <category term="markdown" scheme="http://hanxiaoluo.site/tags/markdown/"/>
     
   </entry>
   
