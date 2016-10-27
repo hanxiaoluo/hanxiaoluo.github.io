@@ -252,125 +252,6 @@ def sayHello(request):
   </entry>
   
   <entry>
-    <title>python中的socket网络编程（二）</title>
-    <link href="http://hanxiaoluo.site/2016/10/08/python%E4%B8%AD%E7%9A%84socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%BA%8C)/"/>
-    <id>http://hanxiaoluo.site/2016/10/08/python中的socket网络编程(二)/</id>
-    <published>2016-10-08T15:01:42.000Z</published>
-    <updated>2016-10-27T15:23:01.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h1><p>　　在python中的socket网络编程（一）一文中，我们介绍了客户端的主要功能。下面我们看下服务端。
-　　</p>
-<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
-<the rest="" of="" contents="" |="" 余下全文="">
-
-<h1 id="2、具体实现"><a href="#2、具体实现" class="headerlink" title="2、具体实现"></a>2、具体实现</h1><p>　　创建socket：</p>
-<p>　　首先要创建 socket，用 Python 中 socket 模块的函数 socket 就可以完成：</p>
-<pre><code>#-*- coding: utf-8 -*-
-import socket
-s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-print &apos;socket Created&apos;　
-</code></pre><p>　　函数 socket.socket 创建一个 socket，返回该 socket 的描述符，将在后面相关函数中使用。该函数带有两个参数如下：</p>
-<ul>
-<li>Address Family：可以选择 AF_INET（用于 Internet 进程间通信） 或者 AF_UNIX（用于同一台机器进程间通信）</li>
-<li>Type：套接字类型，可以是 SOCKET_STREAM（流式套接字，主要用于 TCP 协议）或者SOCKET_DGRAM（数据报套接字，主要用于 UDP 协议）</li>
-</ul>
-<p>　　绑定socket：</p>
-<p>　　函数 bind 可以用来将 socket 绑定到特定的地址和端口上，它需要一个 sockaddr_in 结构作为参数。</p>
-<pre><code># -*- coding: utf-8 -*-
-import socket
-import sys
-HOST = &apos;&apos;   
-PORT = 8888 
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-print &apos;Socket created&apos;
-
-try:
-    s.bind((HOST, PORT))
-except socket.error , msg:
-    print &apos;Bind failed. Error Code : &apos; + str(msg[0]) + &apos; Message &apos; + msg[1]
-    sys.exit()
-
-print &apos;Socket bind complete&apos;
-</code></pre><p>　　监听连接：</p>
-<p>　　函数 listen 可以将 socket 置于监听模式。</p>
-<pre><code>s.listen(10)
-print &apos;Socket now listening&apos;
-</code></pre><p>　　该函数带有一个参数称为 backlog，用来控制连接的个数。如果设为 10，那么有 10 个连接正在等待处理，此时第 11 个请求过来时将会被拒绝。</p>
-<p>　　接收连接，当有客户端向服务器发送连接请求时，服务器会接收连接。</p>
-<pre><code>conn, addr = s.accept()
-print &apos;Connected with &apos; + addr[0] + &apos;:&apos; + str(addr[1])
-</code></pre><p>　　为了处理每个连接，我们需要将处理的程序与主程序的接收连接分开。一种方法可以使用线程来实现，主服务程序接收连接，创建一个线程来处理该连接的通信，然后服务器回到接收其他连接的逻辑上来。完整的服务端代码如下：</p>
-<pre><code>import socket
-import sys
-from thread import *
-
-HOST = &apos;&apos;   
-PORT = 8888 
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-print &apos;Socket created&apos;
-
-try:
-    s.bind((HOST, PORT))
-except socket.error , msg:
-    print &apos;Bind failed. Error Code : &apos; + str(msg[0]) + &apos; Message &apos; + msg[1]
-    sys.exit()    
-print &apos;Socket bind complete&apos;
-
-s.listen(10)
-print &apos;Socket now listening&apos;
-
-def clientthread(conn):
-    conn.send(&apos;Welcome to the server. Type something and hit enter\n&apos;) 
-    while True:
-        data = conn.recv(1024)
-        reply = &apos;OK...&apos; + data
-        if not data: 
-            break     
-        conn.sendall(reply)     
-    conn.close()
-
-while 1:
-    conn, addr = s.accept()
-    print &apos;Connected with &apos; + addr[0] + &apos;:&apos; + str(addr[1])     
-    start_new_thread(clientthread ,(conn,))
-
-s.close()
-</code></pre><p>　　在命令行下运行python server.py,服务端运行结果如下：<br><img src="http://odsh9s4s2.bkt.clouddn.com/server-socket.png" alt="服务端执行结果"></p>
-<h1 id="4、客户端测试"><a href="#4、客户端测试" class="headerlink" title="4、客户端测试"></a>4、客户端测试</h1><p>　　我们使用tcp/udp socket测试工具，模仿客户端。向服务端发送字符串，服务端接收字符串，然后返回。效果如下：<br>　　<img src="http://odsh9s4s2.bkt.clouddn.com/client-socket.png" alt="客户端执行结果">
-　　</p>
-<h1 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h1><p>　 python网络编程服务端，我们需要经过如下五步：</p>
-<ul>
-<li>创建socket    </li>
-<li>绑定到指定的地址及端口</li>
-<li>监听连接</li>
-<li>建立连接</li>
-<li>接收/发送数据</li>
-<li>关闭socket
-　　
-　　　　</li>
-</ul>
-</the>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1、前言&quot;&gt;&lt;a href=&quot;#1、前言&quot; class=&quot;headerlink&quot; title=&quot;1、前言&quot;&gt;&lt;/a&gt;1、前言&lt;/h1&gt;&lt;p&gt;　　在python中的socket网络编程（一）一文中，我们介绍了客户端的主要功能。下面我们看下服务端。
-　　&lt;/p&gt;
-&lt;p&gt;&lt;Excerpt in index | 首页摘要&gt;&lt;br&gt;+
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://hanxiaoluo.site/tags/python/"/>
-    
-      <category term="socket" scheme="http://hanxiaoluo.site/tags/socket/"/>
-    
-      <category term="server" scheme="http://hanxiaoluo.site/tags/server/"/>
-    
-  </entry>
-  
-  <entry>
     <title>python中的socket网络编程（一）</title>
     <link href="http://hanxiaoluo.site/2016/10/08/python%E4%B8%AD%E7%9A%84socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%B8%80)/"/>
     <id>http://hanxiaoluo.site/2016/10/08/python中的socket网络编程(一)/</id>
@@ -472,43 +353,6 @@ s.close()
   </entry>
   
   <entry>
-    <title>python的Web开发之Django框架应用(一)</title>
-    <link href="http://hanxiaoluo.site/2016/10/08/python%E7%9A%84Web%E5%BC%80%E5%8F%91%E4%B9%8BDjango%E6%A1%86%E6%9E%B6%E5%BA%94%E7%94%A8(%E4%B8%80)/"/>
-    <id>http://hanxiaoluo.site/2016/10/08/python的Web开发之Django框架应用(一)/</id>
-    <published>2016-10-08T15:01:42.000Z</published>
-    <updated>2016-10-11T13:17:01.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1、安装python"><a href="#1、安装python" class="headerlink" title="1、安装python"></a>1、安装python</h1><p>　　在官网下载python进行安装，在此不做说明。</p>
-<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
-<the rest="" of="" contents="" |="" 余下全文="">
-
-<h1 id="2、安装Django"><a href="#2、安装Django" class="headerlink" title="2、安装Django"></a>2、安装Django</h1><p>　　下载 Django 压缩包，解压并和Python安装目录放在同一个根目录，进入 Django 目录，执行<strong>python setup.py install</strong>，然后开始安装，Django将要被安装到Python的Lib下site-packages。<br>　　安装的过程中可能会出现“ImportError: No module named setuptools”的错误提示，这是新手很常遇见的错误提示。不用担心，这是因为Windows环境下Python默认是没有安装setuptools这个模块的。<br>　　现在<strong><a href="http://pypi.python.org/pypi/setuptools" target="_blank" rel="external">http://pypi.python.org/pypi/setuptools</a></strong>上面貌似没有提供exe下载了，取而代之的是一个自动化下载安装的脚本<strong><a href="https://bootstrap.pypa.io/ez_setup.py" target="_blank" rel="external">https://bootstrap.pypa.io/ez_setup.py</a></strong>，下载该脚本后运行<strong>python ez_setup.py</strong>即可。脚本会自动判断python的版本，自动下载，安装。
-　　</p>
-<h1 id="3、配置环境变量"><a href="#3、配置环境变量" class="headerlink" title="3、配置环境变量"></a>3、配置环境变量</h1><p>　　将这几个目录添加到系统环境变量中： D:\Python27\Lib\site-packages\Django-1.11-py2.7.egg\django\bin;D:\Python27\Scripts。 添加完成后就可以正常使用Django了。输入以下命令进行检查，验证是否安装成功。如果输出正确的版本号，则说明安装成功。<br>    python<br>    import django<br>    django.get_version()</p>
-<h1 id="4、创建web项目"><a href="#4、创建web项目" class="headerlink" title="4、创建web项目"></a>4、创建web项目</h1><p>　　在我们的python目录下，通过命令行创建项目。比如我的目录F://mypython，在命令行输入<strong>django-admin.py startproject mydjangopro</strong>创建项目。
-　　</p>
-<h1 id="5、生成Django应用"><a href="#5、生成Django应用" class="headerlink" title="5、生成Django应用"></a>5、生成Django应用</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py startapp sayhello</strong>生成django应用。
-　　</p>
-<h1 id="6、运行web服务器"><a href="#6、运行web服务器" class="headerlink" title="6、运行web服务器"></a>6、运行web服务器</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py runserver</strong>启动内置服务器。<strong>注意：虽然 django 自带的这个 web 服务器对于开发很方便，但是，千万不要在正式的应用布署环境中使用它。 在同一时间，该服务器只能可靠地处理一次单个请求，并且没有进行任何类型的安全审计。</strong></p>
-<h1 id="7、浏览器访问"><a href="#7、浏览器访问" class="headerlink" title="7、浏览器访问"></a>7、浏览器访问</h1><p>　　现在用网页浏览器访问，地址栏输入<strong><a href="http://127.0.0.1:8000/" target="_blank" rel="external">http://127.0.0.1:8000/</a></strong>，连接此web服务器，可以显示django项目的初始化页面。如下图所示：<br>　　<img src="http://odsh9s4s2.bkt.clouddn.com/django%E6%AC%A2%E8%BF%8E%E7%95%8C%E9%9D%A2.png" alt="django欢迎界面"></p>
-<p>　　</p>
-</the>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1、安装python&quot;&gt;&lt;a href=&quot;#1、安装python&quot; class=&quot;headerlink&quot; title=&quot;1、安装python&quot;&gt;&lt;/a&gt;1、安装python&lt;/h1&gt;&lt;p&gt;　　在官网下载python进行安装，在此不做说明。&lt;/p&gt;
-&lt;p&gt;&lt;Excerpt in index | 首页摘要&gt;&lt;br&gt;+
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://hanxiaoluo.site/tags/python/"/>
-    
-      <category term="Django" scheme="http://hanxiaoluo.site/tags/Django/"/>
-    
-  </entry>
-  
-  <entry>
     <title>python图形用户界面之pyqt的使用</title>
     <link href="http://hanxiaoluo.site/2016/10/08/python%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E4%B9%8Bpyqt4%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/</id>
@@ -590,6 +434,162 @@ class AnotherWindow(QMainWindow):
       <category term="python" scheme="http://hanxiaoluo.site/tags/python/"/>
     
       <category term="pyqt" scheme="http://hanxiaoluo.site/tags/pyqt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python中的socket网络编程（二）</title>
+    <link href="http://hanxiaoluo.site/2016/10/08/python%E4%B8%AD%E7%9A%84socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%BA%8C)/"/>
+    <id>http://hanxiaoluo.site/2016/10/08/python中的socket网络编程(二)/</id>
+    <published>2016-10-08T15:01:42.000Z</published>
+    <updated>2016-10-27T15:34:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h1><p>　　在python中的socket网络编程（一）一文中，我们介绍了客户端的主要功能。下面我们看下服务端。
+　　</p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h1 id="2、具体实现"><a href="#2、具体实现" class="headerlink" title="2、具体实现"></a>2、具体实现</h1><p>　　创建socket：</p>
+<p>　　首先要创建 socket，用 Python 中 socket 模块的函数 socket 就可以完成：</p>
+<pre><code>#-*- coding: utf-8 -*-
+import socket
+s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+print &apos;socket Created&apos;　
+</code></pre><p>　　函数 socket.socket 创建一个 socket，返回该 socket 的描述符，将在后面相关函数中使用。该函数带有两个参数如下：</p>
+<ul>
+<li>Address Family：可以选择 AF_INET（用于 Internet 进程间通信） 或者 AF_UNIX（用于同一台机器进程间通信）</li>
+<li>Type：套接字类型，可以是 SOCKET_STREAM（流式套接字，主要用于 TCP 协议）或者SOCKET_DGRAM（数据报套接字，主要用于 UDP 协议）</li>
+</ul>
+<p>　　绑定socket：</p>
+<p>　　函数 bind 可以用来将 socket 绑定到特定的地址和端口上，它需要一个 sockaddr_in 结构作为参数。</p>
+<pre><code># -*- coding: utf-8 -*-
+import socket
+import sys
+HOST = &apos;&apos;   
+PORT = 8888 
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print &apos;Socket created&apos;
+
+try:
+    s.bind((HOST, PORT))
+except socket.error , msg:
+    print &apos;Bind failed. Error Code : &apos; + str(msg[0]) + &apos; Message &apos; + msg[1]
+    sys.exit()
+
+print &apos;Socket bind complete&apos;
+</code></pre><p>　　监听连接：</p>
+<p>　　函数 listen 可以将 socket 置于监听模式。</p>
+<pre><code>s.listen(10)
+print &apos;Socket now listening&apos;
+</code></pre><p>　　该函数带有一个参数称为 backlog，用来控制连接的个数。如果设为 10，那么有 10 个连接正在等待处理，此时第 11 个请求过来时将会被拒绝。</p>
+<p>　　接收连接，当有客户端向服务器发送连接请求时，服务器会接收连接。</p>
+<pre><code>conn, addr = s.accept()
+print &apos;Connected with &apos; + addr[0] + &apos;:&apos; + str(addr[1])
+</code></pre><p>　　为了处理每个连接，我们需要将处理的程序与主程序的接收连接分开。一种方法可以使用线程来实现，主服务程序接收连接，创建一个线程来处理该连接的通信，然后服务器回到接收其他连接的逻辑上来。完整的服务端代码如下：</p>
+<pre><code>import socket
+import sys
+from thread import *
+
+HOST = &apos;&apos;   
+PORT = 8888 
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print &apos;Socket created&apos;
+
+try:
+    s.bind((HOST, PORT))
+except socket.error , msg:
+    print &apos;Bind failed. Error Code : &apos; + str(msg[0]) + &apos; Message &apos; + msg[1]
+    sys.exit()    
+print &apos;Socket bind complete&apos;
+
+s.listen(10)
+print &apos;Socket now listening&apos;
+
+def clientthread(conn):
+    conn.send(&apos;Welcome to the server. Type something and hit enter\n&apos;) 
+    while True:
+        data = conn.recv(1024)
+        reply = &apos;OK...&apos; + data
+        if not data: 
+            break     
+        conn.sendall(reply)     
+    conn.close()
+
+while 1:
+    conn, addr = s.accept()
+    print &apos;Connected with &apos; + addr[0] + &apos;:&apos; + str(addr[1])     
+    start_new_thread(clientthread ,(conn,))
+
+s.close()
+</code></pre><p>　　在命令行下运行python server.py,服务端运行结果如下：<br><img src="http://odsh9s4s2.bkt.clouddn.com/server-socket.png" alt="服务端执行结果"></p>
+<h1 id="3、客户端测试"><a href="#3、客户端测试" class="headerlink" title="3、客户端测试"></a>3、客户端测试</h1><p>　　我们使用tcp/udp socket测试工具，模仿客户端。向服务端发送字符串，服务端接收字符串，然后返回。效果如下：<br>　　<img src="http://odsh9s4s2.bkt.clouddn.com/client-socket.png" alt="客户端执行结果">
+　　</p>
+<h1 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h1><p>　 python网络编程服务端，我们需要经过如下五步：</p>
+<ul>
+<li>创建socket    </li>
+<li>绑定到指定的地址及端口</li>
+<li>监听连接</li>
+<li>建立连接</li>
+<li>接收/发送数据</li>
+<li>关闭socket
+　　
+　　　　</li>
+</ul>
+</the>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1、前言&quot;&gt;&lt;a href=&quot;#1、前言&quot; class=&quot;headerlink&quot; title=&quot;1、前言&quot;&gt;&lt;/a&gt;1、前言&lt;/h1&gt;&lt;p&gt;　　在python中的socket网络编程（一）一文中，我们介绍了客户端的主要功能。下面我们看下服务端。
+　　&lt;/p&gt;
+&lt;p&gt;&lt;Excerpt in index | 首页摘要&gt;&lt;br&gt;+
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://hanxiaoluo.site/tags/python/"/>
+    
+      <category term="socket" scheme="http://hanxiaoluo.site/tags/socket/"/>
+    
+      <category term="server" scheme="http://hanxiaoluo.site/tags/server/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python的Web开发之Django框架应用(一)</title>
+    <link href="http://hanxiaoluo.site/2016/10/08/python%E7%9A%84Web%E5%BC%80%E5%8F%91%E4%B9%8BDjango%E6%A1%86%E6%9E%B6%E5%BA%94%E7%94%A8(%E4%B8%80)/"/>
+    <id>http://hanxiaoluo.site/2016/10/08/python的Web开发之Django框架应用(一)/</id>
+    <published>2016-10-08T15:01:42.000Z</published>
+    <updated>2016-10-11T13:17:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1、安装python"><a href="#1、安装python" class="headerlink" title="1、安装python"></a>1、安装python</h1><p>　　在官网下载python进行安装，在此不做说明。</p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h1 id="2、安装Django"><a href="#2、安装Django" class="headerlink" title="2、安装Django"></a>2、安装Django</h1><p>　　下载 Django 压缩包，解压并和Python安装目录放在同一个根目录，进入 Django 目录，执行<strong>python setup.py install</strong>，然后开始安装，Django将要被安装到Python的Lib下site-packages。<br>　　安装的过程中可能会出现“ImportError: No module named setuptools”的错误提示，这是新手很常遇见的错误提示。不用担心，这是因为Windows环境下Python默认是没有安装setuptools这个模块的。<br>　　现在<strong><a href="http://pypi.python.org/pypi/setuptools" target="_blank" rel="external">http://pypi.python.org/pypi/setuptools</a></strong>上面貌似没有提供exe下载了，取而代之的是一个自动化下载安装的脚本<strong><a href="https://bootstrap.pypa.io/ez_setup.py" target="_blank" rel="external">https://bootstrap.pypa.io/ez_setup.py</a></strong>，下载该脚本后运行<strong>python ez_setup.py</strong>即可。脚本会自动判断python的版本，自动下载，安装。
+　　</p>
+<h1 id="3、配置环境变量"><a href="#3、配置环境变量" class="headerlink" title="3、配置环境变量"></a>3、配置环境变量</h1><p>　　将这几个目录添加到系统环境变量中： D:\Python27\Lib\site-packages\Django-1.11-py2.7.egg\django\bin;D:\Python27\Scripts。 添加完成后就可以正常使用Django了。输入以下命令进行检查，验证是否安装成功。如果输出正确的版本号，则说明安装成功。<br>    python<br>    import django<br>    django.get_version()</p>
+<h1 id="4、创建web项目"><a href="#4、创建web项目" class="headerlink" title="4、创建web项目"></a>4、创建web项目</h1><p>　　在我们的python目录下，通过命令行创建项目。比如我的目录F://mypython，在命令行输入<strong>django-admin.py startproject mydjangopro</strong>创建项目。
+　　</p>
+<h1 id="5、生成Django应用"><a href="#5、生成Django应用" class="headerlink" title="5、生成Django应用"></a>5、生成Django应用</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py startapp sayhello</strong>生成django应用。
+　　</p>
+<h1 id="6、运行web服务器"><a href="#6、运行web服务器" class="headerlink" title="6、运行web服务器"></a>6、运行web服务器</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py runserver</strong>启动内置服务器。<strong>注意：虽然 django 自带的这个 web 服务器对于开发很方便，但是，千万不要在正式的应用布署环境中使用它。 在同一时间，该服务器只能可靠地处理一次单个请求，并且没有进行任何类型的安全审计。</strong></p>
+<h1 id="7、浏览器访问"><a href="#7、浏览器访问" class="headerlink" title="7、浏览器访问"></a>7、浏览器访问</h1><p>　　现在用网页浏览器访问，地址栏输入<strong><a href="http://127.0.0.1:8000/" target="_blank" rel="external">http://127.0.0.1:8000/</a></strong>，连接此web服务器，可以显示django项目的初始化页面。如下图所示：<br>　　<img src="http://odsh9s4s2.bkt.clouddn.com/django%E6%AC%A2%E8%BF%8E%E7%95%8C%E9%9D%A2.png" alt="django欢迎界面"></p>
+<p>　　</p>
+</the>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1、安装python&quot;&gt;&lt;a href=&quot;#1、安装python&quot; class=&quot;headerlink&quot; title=&quot;1、安装python&quot;&gt;&lt;/a&gt;1、安装python&lt;/h1&gt;&lt;p&gt;　　在官网下载python进行安装，在此不做说明。&lt;/p&gt;
+&lt;p&gt;&lt;Excerpt in index | 首页摘要&gt;&lt;br&gt;+
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://hanxiaoluo.site/tags/python/"/>
+    
+      <category term="Django" scheme="http://hanxiaoluo.site/tags/Django/"/>
     
   </entry>
   
@@ -727,9 +727,9 @@ class AnotherWindow(QMainWindow):
     </summary>
     
     
-      <category term="markdown" scheme="http://hanxiaoluo.site/tags/markdown/"/>
-    
       <category term="gitlab" scheme="http://hanxiaoluo.site/tags/gitlab/"/>
+    
+      <category term="markdown" scheme="http://hanxiaoluo.site/tags/markdown/"/>
     
   </entry>
   
@@ -762,9 +762,9 @@ class AnotherWindow(QMainWindow):
     </summary>
     
     
-      <category term="hexo" scheme="http://hanxiaoluo.site/tags/hexo/"/>
-    
       <category term="markdown" scheme="http://hanxiaoluo.site/tags/markdown/"/>
+    
+      <category term="hexo" scheme="http://hanxiaoluo.site/tags/hexo/"/>
     
   </entry>
   
