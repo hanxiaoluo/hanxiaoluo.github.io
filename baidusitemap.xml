@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>http://hanxiaoluo.site/2016/10/08/python%E4%B8%AD%E7%9A%84socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%B8%80)/</loc>
+    <lastmod>2016-10-29T07:14:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>python中的socket网络编程（一）</title>
+        <pubTime>2016-10-08T15:01:42.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>socket</tag>
+         
+        <tag>client</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://hanxiaoluo.site/2016/10/29/python%E5%AE%9E%E7%8E%B0%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AE%A4%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
     <lastmod>2016-10-29T06:54:44.000Z</lastmod>
     <data>
@@ -33,27 +54,6 @@
         <tag>socket</tag>
          
         <tag>server</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://hanxiaoluo.site/2016/10/08/python%E4%B8%AD%E7%9A%84socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%B8%80)/</loc>
-    <lastmod>2016-10-19T13:11:23.000Z</lastmod>
-    <data>
-        <display>
-        <title>python中的socket网络编程（一）</title>
-        <pubTime>2016-10-08T15:01:42.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-        <tag>socket</tag>
-         
-        <tag>client</tag>
          
          
            
@@ -165,9 +165,9 @@
         <title>代码管理之gitlab的使用</title>
         <pubTime>2016-09-19T13:28:32.000Z</pubTime>
         
-        <tag>markdown</tag>
-         
         <tag>gitlab</tag>
+         
+        <tag>markdown</tag>
          
          
            
@@ -203,9 +203,9 @@
         <title>Hello</title>
         <pubTime>2016-09-16T09:12:45.000Z</pubTime>
         
-        <tag>hexo</tag>
-         
         <tag>markdown</tag>
+         
+        <tag>hexo</tag>
          
          
            

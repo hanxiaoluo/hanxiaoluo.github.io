@@ -21,12 +21,12 @@
 <meta property="og:url" content="http://hanxiaoluo.site/2016/10/08/python中的socket网络编程(一)/index.html">
 <meta property="og:site_name" content="韩若熙">
 <meta property="og:description" content="1、网络编程　　Socket 是进程间通信的一种方式，它与其他进程间通信的一个主要不同是：它能实现不同主机间的进程间通信，我们网络上各种各样的服务大多都是基于 Socket 来完成通信的，例如我们每天浏览网页、QQ 聊天、收发 email 等等。要解决网络上两台主机之间的进程通信问题，首先要唯一标识该进程，在 TCP/IP 网络协议中，就是通过 (IP地址，协议，端口号) 三元组来标识进程的，解决">
-<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png">
-<meta property="og:updated_time" content="2016-10-19T13:11:23.000Z">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/client-return.png">
+<meta property="og:updated_time" content="2016-10-29T07:14:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python中的socket网络编程（一）">
 <meta name="twitter:description" content="1、网络编程　　Socket 是进程间通信的一种方式，它与其他进程间通信的一个主要不同是：它能实现不同主机间的进程间通信，我们网络上各种各样的服务大多都是基于 Socket 来完成通信的，例如我们每天浏览网页、QQ 聊天、收发 email 等等。要解决网络上两台主机之间的进程通信问题，首先要唯一标识该进程，在 TCP/IP 网络协议中，就是通过 (IP地址，协议，端口号) 三元组来标识进程的，解决">
-<meta name="twitter:image" content="http://odsh9s4s2.bkt.clouddn.com/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png">
+<meta name="twitter:image" content="http://odsh9s4s2.bkt.clouddn.com/client-return.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -305,7 +305,7 @@
 <p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<p>　　TCP 是一种面向连接的传输层协议，TCP Socket 是基于一种 Client-Server 的编程模型，服务端监听客户端的连接请求，一旦建立连接即可以进行传输数据。那么对 TCP Socket 编程的介绍也分为客户端和服务端：</p>
+<p>　　TCP 是一种面向连接的传输层协议，TCP Socket 是基于一种 Client-Server 的编程模型，服务端监听客户端的连接请求，一旦建立连接即可以进行传输数据。那么对 TCP Socket 编程的介绍也分为客户端和服务端。下面我们看下客户端的实现。</p>
 <h1 id="2、具体实现"><a href="#2、具体实现" class="headerlink" title="2、具体实现"></a>2、具体实现</h1><p>　　创建socket：</p>
 <p>　　首先要创建 socket，用 Python 中 socket 模块的函数 socket 就可以完成：</p>
 <pre><code>#-*- coding: utf-8 -*-
@@ -366,7 +366,7 @@ print reply
 <p>　　当我们不想再次请求服务器数据时，可以将该 socket 关闭，结束这次通信。</p>
 <pre><code>#关闭套接字
 s.close()
-</code></pre><p>　　运行结果：<br><img src="http://odsh9s4s2.bkt.clouddn.com/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png" alt="客户端执行结果"></p>
+</code></pre><p>　　运行结果：<br>　　<br><img src="http://odsh9s4s2.bkt.clouddn.com/client-return.png" alt="客户端执行结果"></p>
 <h1 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h1><p>　 python网络编程客户端，我们需要经过如下五步：</p>
 <ul>
 <li>创建socket    </li>
@@ -388,7 +388,7 @@ s.close()
         <p><span>本文标题:</span><a href="/2016/10/08/python中的socket网络编程(一)/">python中的socket网络编程（一）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">韩若熙</a></p>
         <p><span>发布时间:</span>2016-10-08, 23:01:42</p>
-        <p><span>最后更新:</span>2016-10-19, 21:11:23</p>
+        <p><span>最后更新:</span>2016-10-29, 15:14:17</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/10/08/python中的socket网络编程(一)/" title="python中的socket网络编程（一）">http://hanxiaoluo.site/2016/10/08/python中的socket网络编程(一)/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hanxiaoluo.site/2016/10/08/python中的socket网络编程(一)/　　作者: 韩若熙" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -404,15 +404,15 @@ s.close()
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/10/08/python中的socket网络编程(二)/">
-                    python中的socket网络编程（二）
+                <a href="/2016/10/08/python的Web开发之Django框架应用(一)/">
+                    python的Web开发之Django框架应用(一)
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/10/08/python图形用户界面之pyqt4的使用/">
-                    python图形用户界面之pyqt的使用
+                <a href="/2016/10/08/python中的socket网络编程(二)/">
+                    python中的socket网络编程（二）
                 </a>
             </div>
         
@@ -492,7 +492,7 @@ s.close()
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/10/08/python中的socket网络编程(二)/" title="上一篇: python中的socket网络编程（二）">
+            <a href="/2016/10/08/python的Web开发之Django框架应用(一)/" title="上一篇: python的Web开发之Django框架应用(一)">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -500,13 +500,13 @@ s.close()
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/10/08/python图形用户界面之pyqt4的使用/" title="下一篇: python图形用户界面之pyqt的使用">
+            <a href="/2016/10/08/python中的socket网络编程(二)/" title="下一篇: python中的socket网络编程（二）">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/29/python实现的聊天室（一）/">python实现的聊天室(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/12/django实现的投票系统详解/">django实现的投票系统详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/11/python的Web开发之Django框架应用(二)/">python的Web开发之Django框架应用(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/python的Web开发之Django框架应用(一)/">python的Web开发之Django框架应用(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/python中的socket网络编程(二)/">python中的socket网络编程（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/python中的socket网络编程(一)/">python中的socket网络编程（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/python图形用户界面之pyqt4的使用/">python图形用户界面之pyqt的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/20/使用hexo在github上搭建个人博客/">使用hexo在github上搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/20/git在qtcreator中的使用/">git在qtcreator中的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/gitlab的使用/">代码管理之gitlab的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/hello-world/">Hello</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/29/python实现的聊天室（一）/">python实现的聊天室(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/12/django实现的投票系统详解/">django实现的投票系统详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/11/python的Web开发之Django框架应用(二)/">python的Web开发之Django框架应用(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/python的Web开发之Django框架应用(一)/">python的Web开发之Django框架应用(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/python中的socket网络编程(一)/">python中的socket网络编程（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/python中的socket网络编程(二)/">python中的socket网络编程（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/python图形用户界面之pyqt4的使用/">python图形用户界面之pyqt的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/20/使用hexo在github上搭建个人博客/">使用hexo在github上搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/20/git在qtcreator中的使用/">git在qtcreator中的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/gitlab的使用/">代码管理之gitlab的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/hello-world/">Hello</a></li></ul>
 
 
 
