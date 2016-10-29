@@ -124,7 +124,6 @@ if __name__==&apos;__main__&apos;:
     main()  
 </code></pre><h1 id="5、运行效果"><a href="#5、运行效果" class="headerlink" title="5、运行效果"></a>5、运行效果</h1><p>　　运行时先启动服务端，再运行客户端。客户端运行后，命令行输入昵称，服务端会打印客户端IP及port信息，表明成功进入聊天室。当客户端关闭，表明该用户退出聊天室，服务器会转发该用户退出消息到各个客户端。　<br>    <img src="http://odsh9s4s2.bkt.clouddn.com/mychatserver.png" alt="服务器页面"><br>    <img src="http://odsh9s4s2.bkt.clouddn.com/mychatclientA.png" alt="客户端页面"><br>    <img src="http://odsh9s4s2.bkt.clouddn.com/mychatclientB.png" alt="客户端页面"></p>
 <h1 id="6、参考链接"><a href="#6、参考链接" class="headerlink" title="6、参考链接"></a>6、参考链接</h1><p><strong><a href="http://www.cnblogs.com/hazir/p/python_chat_room.html" target="_blank" rel="external">http://www.cnblogs.com/hazir/p/python_chat_room.html</a></strong></p>
-<p><strong><a href="http://blog.csdn.net/dk_zhe/article/details/37820965" target="_blank" rel="external">http://blog.csdn.net/dk_zhe/article/details/37820965</a></strong></p>
 </the>]]></content>
     </entry>
     
@@ -327,84 +326,22 @@ urlpatterns = [
     </entry>
     
     <entry>
-      <title><![CDATA[python中的socket网络编程（一）]]></title>
-      <url>http://hanxiaoluo.site/2016/10/08/python%E4%B8%AD%E7%9A%84socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%B8%80)/</url>
-      <content type="html"><![CDATA[<h1 id="1、网络编程"><a href="#1、网络编程" class="headerlink" title="1、网络编程"></a>1、网络编程</h1><p>　　Socket 是进程间通信的一种方式，它与其他进程间通信的一个主要不同是：它能实现不同主机间的进程间通信，我们网络上各种各样的服务大多都是基于 Socket 来完成通信的，例如我们每天浏览网页、QQ 聊天、收发 email 等等。要解决网络上两台主机之间的进程通信问题，首先要唯一标识该进程，在 TCP/IP 网络协议中，就是通过 (IP地址，协议，端口号) 三元组来标识进程的，解决了进程标识问题，就有了通信的基础了。</p>
+      <title><![CDATA[python的Web开发之Django框架应用(一)]]></title>
+      <url>http://hanxiaoluo.site/2016/10/08/python%E7%9A%84Web%E5%BC%80%E5%8F%91%E4%B9%8BDjango%E6%A1%86%E6%9E%B6%E5%BA%94%E7%94%A8(%E4%B8%80)/</url>
+      <content type="html"><![CDATA[<h1 id="1、安装python"><a href="#1、安装python" class="headerlink" title="1、安装python"></a>1、安装python</h1><p>　　在官网下载python进行安装，在此不做说明。</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<p>　　TCP 是一种面向连接的传输层协议，TCP Socket 是基于一种 Client-Server 的编程模型，服务端监听客户端的连接请求，一旦建立连接即可以进行传输数据。那么对 TCP Socket 编程的介绍也分为客户端和服务端：</p>
-<h1 id="2、具体实现"><a href="#2、具体实现" class="headerlink" title="2、具体实现"></a>2、具体实现</h1><p>　　创建socket：</p>
-<p>　　首先要创建 socket，用 Python 中 socket 模块的函数 socket 就可以完成：</p>
-<pre><code>#-*- coding: utf-8 -*-
-import socket
-s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-print &apos;socket Created&apos;　
-</code></pre><p>　　函数 socket.socket 创建一个 socket，返回该 socket 的描述符，将在后面相关函数中使用。该函数带有两个参数如下：</p>
-<ul>
-<li>Address Family：可以选择 AF_INET（用于 Internet 进程间通信） 或者 AF_UNIX（用于同一台机器进程间通信）</li>
-<li>Type：套接字类型，可以是 SOCKET_STREAM（流式套接字，主要用于 TCP 协议）或者SOCKET_DGRAM（数据报套接字，主要用于 UDP 协议）</li>
-</ul>
-<p>　　错误处理：</p>
-<p>　　如果创建 socket 函数失败，会抛出一个 socket.error 的异常，需要捕获。</p>
-<pre><code># -*- coding: utf-8 -*-
-import socket
-import sys
-#创建套接字,创建失败时会抛出一个 socket.error 的异常，需要捕获
-try:
-    s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-except socket.error,msg:
-    print &apos;Failed to create socket. Error code: &apos;+ str(msg[0]) + &apos; ,Error     message : &apos; + msg[1]
-    sys.exit();
-print &apos;socket Created&apos;
-</code></pre><p>　　连接服务器：</p>
-<p>　　socket 使用 (IP地址，协议，端口号) 来标识一个进程，那么我们要想和服务器进行通信，就需要知道它的 IP地址以及端口号。</p>
-<p>　　Python 提供了一个简单的函数 socket.gethostbyname 来获得远程主机的 IP 地址：</p>
-<pre><code>#获取服务器IP地址
-host = &apos;www.baidu.com&apos;
-port = 80
-try:
-    remote_ip = socket.gethostbyname( host )
-except socket.gaierror:
-    #could not resolve
-    print &apos;Hostname could not be resolved. Exiting&apos;
-    sys.exit()  
-print &apos;Ip address of &apos; + host + &apos; is &apos; + remote_ip
-</code></pre><p>　　使用连接函数 connect 连接到该 IP 的某个特定的端口上了，下面例子连接到 80 端口上（是 HTTP 服务的默认端口）：</p>
-<pre><code>#连接服务器
-s.connect((remote_ip , port))
-print &apos;Socket Connected to &apos; + host + &apos; on ip &apos; + remote_ip
-</code></pre><p>　　发送数据：</p>
-<p>　　例如发送字符串GET / HTTP/1.1\r\n\r\n，这是一个 HTTP 请求网页内容的命令。</p>
-<pre><code>#发送数据
-message = &quot;GET / HTTP/1.1\r\n\r\n&quot;
-try :
-    #Set the whole string
-    s.sendall(message)
-except socket.error:
-    #Send failed
-    print &apos;Send failed&apos;
-    sys.exit()
-print &apos;Message send successfully&apos;
-</code></pre><p>　　接收数据：</p>
-<pre><code>#接受服务器反馈的数据
-reply = s.recv(4096)
-print reply
-</code></pre><p>　　关闭socket：</p>
-<p>　　当我们不想再次请求服务器数据时，可以将该 socket 关闭，结束这次通信。</p>
-<pre><code>#关闭套接字
-s.close()
-</code></pre><p>　　运行结果：<br><img src="http://odsh9s4s2.bkt.clouddn.com/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png" alt="客户端执行结果"></p>
-<h1 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h1><p>　 python网络编程客户端，我们需要经过如下五步：</p>
-<ul>
-<li>创建socket    </li>
-<li>连接到服务器</li>
-<li>发送数据</li>
-<li>接收数据</li>
-<li>关闭socket
-　　
-　　　　</li>
-</ul>
+<h1 id="2、安装Django"><a href="#2、安装Django" class="headerlink" title="2、安装Django"></a>2、安装Django</h1><p>　　下载 Django 压缩包，解压并和Python安装目录放在同一个根目录，进入 Django 目录，执行<strong>python setup.py install</strong>，然后开始安装，Django将要被安装到Python的Lib下site-packages。<br>　　安装的过程中可能会出现“ImportError: No module named setuptools”的错误提示，这是新手很常遇见的错误提示。不用担心，这是因为Windows环境下Python默认是没有安装setuptools这个模块的。<br>　　现在<strong><a href="http://pypi.python.org/pypi/setuptools" target="_blank" rel="external">http://pypi.python.org/pypi/setuptools</a></strong>上面貌似没有提供exe下载了，取而代之的是一个自动化下载安装的脚本<strong><a href="https://bootstrap.pypa.io/ez_setup.py" target="_blank" rel="external">https://bootstrap.pypa.io/ez_setup.py</a></strong>，下载该脚本后运行<strong>python ez_setup.py</strong>即可。脚本会自动判断python的版本，自动下载，安装。
+　　</p>
+<h1 id="3、配置环境变量"><a href="#3、配置环境变量" class="headerlink" title="3、配置环境变量"></a>3、配置环境变量</h1><p>　　将这几个目录添加到系统环境变量中： D:\Python27\Lib\site-packages\Django-1.11-py2.7.egg\django\bin;D:\Python27\Scripts。 添加完成后就可以正常使用Django了。输入以下命令进行检查，验证是否安装成功。如果输出正确的版本号，则说明安装成功。<br>    python<br>    import django<br>    django.get_version()</p>
+<h1 id="4、创建web项目"><a href="#4、创建web项目" class="headerlink" title="4、创建web项目"></a>4、创建web项目</h1><p>　　在我们的python目录下，通过命令行创建项目。比如我的目录F://mypython，在命令行输入<strong>django-admin.py startproject mydjangopro</strong>创建项目。
+　　</p>
+<h1 id="5、生成Django应用"><a href="#5、生成Django应用" class="headerlink" title="5、生成Django应用"></a>5、生成Django应用</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py startapp sayhello</strong>生成django应用。
+　　</p>
+<h1 id="6、运行web服务器"><a href="#6、运行web服务器" class="headerlink" title="6、运行web服务器"></a>6、运行web服务器</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py runserver</strong>启动内置服务器。<strong>注意：虽然 django 自带的这个 web 服务器对于开发很方便，但是，千万不要在正式的应用布署环境中使用它。 在同一时间，该服务器只能可靠地处理一次单个请求，并且没有进行任何类型的安全审计。</strong></p>
+<h1 id="7、浏览器访问"><a href="#7、浏览器访问" class="headerlink" title="7、浏览器访问"></a>7、浏览器访问</h1><p>　　现在用网页浏览器访问，地址栏输入<strong><a href="http://127.0.0.1:8000/" target="_blank" rel="external">http://127.0.0.1:8000/</a></strong>，连接此web服务器，可以显示django项目的初始化页面。如下图所示：<br>　　<img src="http://odsh9s4s2.bkt.clouddn.com/django%E6%AC%A2%E8%BF%8E%E7%95%8C%E9%9D%A2.png" alt="django欢迎界面"></p>
+<p>　　</p>
 </the>]]></content>
     </entry>
     
@@ -508,6 +445,88 @@ s.close()
     </entry>
     
     <entry>
+      <title><![CDATA[python中的socket网络编程（一）]]></title>
+      <url>http://hanxiaoluo.site/2016/10/08/python%E4%B8%AD%E7%9A%84socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%B8%80)/</url>
+      <content type="html"><![CDATA[<h1 id="1、网络编程"><a href="#1、网络编程" class="headerlink" title="1、网络编程"></a>1、网络编程</h1><p>　　Socket 是进程间通信的一种方式，它与其他进程间通信的一个主要不同是：它能实现不同主机间的进程间通信，我们网络上各种各样的服务大多都是基于 Socket 来完成通信的，例如我们每天浏览网页、QQ 聊天、收发 email 等等。要解决网络上两台主机之间的进程通信问题，首先要唯一标识该进程，在 TCP/IP 网络协议中，就是通过 (IP地址，协议，端口号) 三元组来标识进程的，解决了进程标识问题，就有了通信的基础了。</p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<p>　　TCP 是一种面向连接的传输层协议，TCP Socket 是基于一种 Client-Server 的编程模型，服务端监听客户端的连接请求，一旦建立连接即可以进行传输数据。那么对 TCP Socket 编程的介绍也分为客户端和服务端：</p>
+<h1 id="2、具体实现"><a href="#2、具体实现" class="headerlink" title="2、具体实现"></a>2、具体实现</h1><p>　　创建socket：</p>
+<p>　　首先要创建 socket，用 Python 中 socket 模块的函数 socket 就可以完成：</p>
+<pre><code>#-*- coding: utf-8 -*-
+import socket
+s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+print &apos;socket Created&apos;　
+</code></pre><p>　　函数 socket.socket 创建一个 socket，返回该 socket 的描述符，将在后面相关函数中使用。该函数带有两个参数如下：</p>
+<ul>
+<li>Address Family：可以选择 AF_INET（用于 Internet 进程间通信） 或者 AF_UNIX（用于同一台机器进程间通信）</li>
+<li>Type：套接字类型，可以是 SOCKET_STREAM（流式套接字，主要用于 TCP 协议）或者SOCKET_DGRAM（数据报套接字，主要用于 UDP 协议）</li>
+</ul>
+<p>　　错误处理：</p>
+<p>　　如果创建 socket 函数失败，会抛出一个 socket.error 的异常，需要捕获。</p>
+<pre><code># -*- coding: utf-8 -*-
+import socket
+import sys
+#创建套接字,创建失败时会抛出一个 socket.error 的异常，需要捕获
+try:
+    s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+except socket.error,msg:
+    print &apos;Failed to create socket. Error code: &apos;+ str(msg[0]) + &apos; ,Error     message : &apos; + msg[1]
+    sys.exit();
+print &apos;socket Created&apos;
+</code></pre><p>　　连接服务器：</p>
+<p>　　socket 使用 (IP地址，协议，端口号) 来标识一个进程，那么我们要想和服务器进行通信，就需要知道它的 IP地址以及端口号。</p>
+<p>　　Python 提供了一个简单的函数 socket.gethostbyname 来获得远程主机的 IP 地址：</p>
+<pre><code>#获取服务器IP地址
+host = &apos;www.baidu.com&apos;
+port = 80
+try:
+    remote_ip = socket.gethostbyname( host )
+except socket.gaierror:
+    #could not resolve
+    print &apos;Hostname could not be resolved. Exiting&apos;
+    sys.exit()  
+print &apos;Ip address of &apos; + host + &apos; is &apos; + remote_ip
+</code></pre><p>　　使用连接函数 connect 连接到该 IP 的某个特定的端口上了，下面例子连接到 80 端口上（是 HTTP 服务的默认端口）：</p>
+<pre><code>#连接服务器
+s.connect((remote_ip , port))
+print &apos;Socket Connected to &apos; + host + &apos; on ip &apos; + remote_ip
+</code></pre><p>　　发送数据：</p>
+<p>　　例如发送字符串GET / HTTP/1.1\r\n\r\n，这是一个 HTTP 请求网页内容的命令。</p>
+<pre><code>#发送数据
+message = &quot;GET / HTTP/1.1\r\n\r\n&quot;
+try :
+    #Set the whole string
+    s.sendall(message)
+except socket.error:
+    #Send failed
+    print &apos;Send failed&apos;
+    sys.exit()
+print &apos;Message send successfully&apos;
+</code></pre><p>　　接收数据：</p>
+<pre><code>#接受服务器反馈的数据
+reply = s.recv(4096)
+print reply
+</code></pre><p>　　关闭socket：</p>
+<p>　　当我们不想再次请求服务器数据时，可以将该 socket 关闭，结束这次通信。</p>
+<pre><code>#关闭套接字
+s.close()
+</code></pre><p>　　运行结果：<br><img src="http://odsh9s4s2.bkt.clouddn.com/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png" alt="客户端执行结果"></p>
+<h1 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h1><p>　 python网络编程客户端，我们需要经过如下五步：</p>
+<ul>
+<li>创建socket    </li>
+<li>连接到服务器</li>
+<li>发送数据</li>
+<li>接收数据</li>
+<li>关闭socket
+　　
+　　　　</li>
+</ul>
+</the>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[python图形用户界面之pyqt的使用]]></title>
       <url>http://hanxiaoluo.site/2016/10/08/python%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E4%B9%8Bpyqt4%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
       <content type="html"><![CDATA[<h1 id="1、安装pyqt（事先必须先完成python的安装）"><a href="#1、安装pyqt（事先必须先完成python的安装）" class="headerlink" title="1、安装pyqt（事先必须先完成python的安装）"></a>1、安装pyqt（事先必须先完成python的安装）</h1><p>　　我们可以在如下网址： <a href="http://www.riverbankcomputing.co.uk/software/pyqt/download" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/pyqt/download</a><br>这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。</p>
@@ -572,26 +591,6 @@ class AnotherWindow(QMainWindow):
 <p>　　（3）利用PyCharm运行。点击”File”菜单，选择“New Project”建立“Pure Python”工程，选择工程目录及python.exe目录。在工程下新建”Python File”，分别创建pyqt.py文件及anotherWindow.py文件。运行工程后即可看到代码实现的窗体。</p>
 <h1 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h1><p>　　python拥有多种图形界面编程，因为我自己平时用qt比较多，所以选择了pyqt。查看pyqt中的qt帮助文档，发现与qt的帮助文档基本相同，没必要把时间浪费到API上。
 　　</p>
-</the>]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[python的Web开发之Django框架应用(一)]]></title>
-      <url>http://hanxiaoluo.site/2016/10/08/python%E7%9A%84Web%E5%BC%80%E5%8F%91%E4%B9%8BDjango%E6%A1%86%E6%9E%B6%E5%BA%94%E7%94%A8(%E4%B8%80)/</url>
-      <content type="html"><![CDATA[<h1 id="1、安装python"><a href="#1、安装python" class="headerlink" title="1、安装python"></a>1、安装python</h1><p>　　在官网下载python进行安装，在此不做说明。</p>
-<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
-<the rest="" of="" contents="" |="" 余下全文="">
-
-<h1 id="2、安装Django"><a href="#2、安装Django" class="headerlink" title="2、安装Django"></a>2、安装Django</h1><p>　　下载 Django 压缩包，解压并和Python安装目录放在同一个根目录，进入 Django 目录，执行<strong>python setup.py install</strong>，然后开始安装，Django将要被安装到Python的Lib下site-packages。<br>　　安装的过程中可能会出现“ImportError: No module named setuptools”的错误提示，这是新手很常遇见的错误提示。不用担心，这是因为Windows环境下Python默认是没有安装setuptools这个模块的。<br>　　现在<strong><a href="http://pypi.python.org/pypi/setuptools" target="_blank" rel="external">http://pypi.python.org/pypi/setuptools</a></strong>上面貌似没有提供exe下载了，取而代之的是一个自动化下载安装的脚本<strong><a href="https://bootstrap.pypa.io/ez_setup.py" target="_blank" rel="external">https://bootstrap.pypa.io/ez_setup.py</a></strong>，下载该脚本后运行<strong>python ez_setup.py</strong>即可。脚本会自动判断python的版本，自动下载，安装。
-　　</p>
-<h1 id="3、配置环境变量"><a href="#3、配置环境变量" class="headerlink" title="3、配置环境变量"></a>3、配置环境变量</h1><p>　　将这几个目录添加到系统环境变量中： D:\Python27\Lib\site-packages\Django-1.11-py2.7.egg\django\bin;D:\Python27\Scripts。 添加完成后就可以正常使用Django了。输入以下命令进行检查，验证是否安装成功。如果输出正确的版本号，则说明安装成功。<br>    python<br>    import django<br>    django.get_version()</p>
-<h1 id="4、创建web项目"><a href="#4、创建web项目" class="headerlink" title="4、创建web项目"></a>4、创建web项目</h1><p>　　在我们的python目录下，通过命令行创建项目。比如我的目录F://mypython，在命令行输入<strong>django-admin.py startproject mydjangopro</strong>创建项目。
-　　</p>
-<h1 id="5、生成Django应用"><a href="#5、生成Django应用" class="headerlink" title="5、生成Django应用"></a>5、生成Django应用</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py startapp sayhello</strong>生成django应用。
-　　</p>
-<h1 id="6、运行web服务器"><a href="#6、运行web服务器" class="headerlink" title="6、运行web服务器"></a>6、运行web服务器</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py runserver</strong>启动内置服务器。<strong>注意：虽然 django 自带的这个 web 服务器对于开发很方便，但是，千万不要在正式的应用布署环境中使用它。 在同一时间，该服务器只能可靠地处理一次单个请求，并且没有进行任何类型的安全审计。</strong></p>
-<h1 id="7、浏览器访问"><a href="#7、浏览器访问" class="headerlink" title="7、浏览器访问"></a>7、浏览器访问</h1><p>　　现在用网页浏览器访问，地址栏输入<strong><a href="http://127.0.0.1:8000/" target="_blank" rel="external">http://127.0.0.1:8000/</a></strong>，连接此web服务器，可以显示django项目的初始化页面。如下图所示：<br>　　<img src="http://odsh9s4s2.bkt.clouddn.com/django%E6%AC%A2%E8%BF%8E%E7%95%8C%E9%9D%A2.png" alt="django欢迎界面"></p>
-<p>　　</p>
 </the>]]></content>
     </entry>
     
