@@ -15,19 +15,26 @@
 
 
 
-<meta name="description" content="1、安装git　　下载git客户端，指定目录进行安装。安装完毕，右键菜单，可以看到Git Bash Here 菜单项。
+<meta name="description" content="1、前言　　我们学习了简单的Python TCP Socket 编程，通过分别写服务端和客户端的代码了解基本的 Python Socket 编程模型。本文再通过一个例子来加强一下对 Socket 编程的理解。
+　　
 +">
 <meta property="og:type" content="article">
-<meta property="og:title" content="代码管理之gitlab的使用">
-<meta property="og:url" content="http://hanxiaoluo.site/2016/09/19/gitlab的使用/index.html">
+<meta property="og:title" content="python实现的聊天室(一)">
+<meta property="og:url" content="http://hanxiaoluo.site/2016/10/29/python实现的聊天室（一）/index.html">
 <meta property="og:site_name" content="韩若熙">
-<meta property="og:description" content="1、安装git　　下载git客户端，指定目录进行安装。安装完毕，右键菜单，可以看到Git Bash Here 菜单项。
+<meta property="og:description" content="1、前言　　我们学习了简单的Python TCP Socket 编程，通过分别写服务端和客户端的代码了解基本的 Python Socket 编程模型。本文再通过一个例子来加强一下对 Socket 编程的理解。
+　　
 +">
-<meta property="og:updated_time" content="2016-09-20T14:24:34.000Z">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/mychatserver.png">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/mychatclientA.png">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/mychatclientB.png">
+<meta property="og:updated_time" content="2016-10-29T06:52:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="代码管理之gitlab的使用">
-<meta name="twitter:description" content="1、安装git　　下载git客户端，指定目录进行安装。安装完毕，右键菜单，可以看到Git Bash Here 菜单项。
+<meta name="twitter:title" content="python实现的聊天室(一)">
+<meta name="twitter:description" content="1、前言　　我们学习了简单的Python TCP Socket 编程，通过分别写服务端和客户端的代码了解基本的 Python Socket 编程模型。本文再通过一个例子来加强一下对 Socket 编程的理解。
+　　
 +">
+<meta name="twitter:image" content="http://odsh9s4s2.bkt.clouddn.com/mychatserver.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +66,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>代码管理之gitlab的使用 | 韩若熙</title>
+<title>python实现的聊天室(一) | 韩若熙</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -262,11 +269,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-gitlab的使用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-python实现的聊天室（一）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/19/gitlab的使用/" class="article-date">
-      <time datetime="2016-09-19T13:28:32.000Z" itemprop="datePublished">2016-09-19</time>
+      <a href="/2016/10/29/python实现的聊天室（一）/" class="article-date">
+      <time datetime="2016-10-29T06:35:32.000Z" itemprop="datePublished">2016-10-29</time>
 </a>
 
 
@@ -281,7 +288,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      代码管理之gitlab的使用
+      python实现的聊天室(一)
     </h1>
   
 
@@ -292,7 +299,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -302,24 +309,125 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="1、安装git"><a href="#1、安装git" class="headerlink" title="1、安装git"></a>1、安装git</h1><p>　　下载git客户端，指定目录进行安装。安装完毕，右键菜单，可以看到Git Bash Here 菜单项。</p>
+        <h1 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h1><p>　　我们学习了简单的Python TCP Socket 编程，通过分别写服务端和客户端的代码了解基本的 Python Socket 编程模型。本文再通过一个例子来加强一下对 Socket 编程的理解。
+　　</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<h1 id="2、建立远程分支"><a href="#2、建立远程分支" class="headerlink" title="2、建立远程分支"></a>2、建立远程分支</h1><p>　　输入用户名及密码，进入gitlab，在“你的项目”中可以看到我们要参与的项目。点击项目名称，可以看到项目信息。在页面上方，我们找到“仓库”，点击进入。此时就可以看到整个项目的源码。</p>
-<p>　 点击项目名称右侧的“+”，点击“New branch”，建立我们自己的分支，比如我的为tao.zhang,建立完毕，在项目名称左侧的下拉菜单，可以看到我们的分支，选中tao.zhang分支，可以看到该分支下的源码。</p>
-<p>　　此时tao.zhang分支下的内容与master分支下内容是一样的。</p>
-<h1 id="3、建立本地仓库"><a href="#3、建立本地仓库" class="headerlink" title="3、建立本地仓库"></a>3、建立本地仓库</h1><p>　　在自己的电脑E盘，建立名字为mygitlab的文件夹，进入该文件夹，右键菜单，点击“Git Bash Here”，进入命令行。执行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> http://gitlab服务器IP地址/project.admin/Gemini</div></pre></td></tr></table></figure>
-<p>　　其中gitlab服务器IP地址根据自己的服务器IP地址而定。克隆下来默认为master分支，所以我们在文件夹里面看到的是master分支对应的内容。</p>
-<h1 id="4、建立本地分支"><a href="#4、建立本地分支" class="headerlink" title="4、建立本地分支"></a>4、建立本地分支</h1><p>　　在命令行下输入<strong>cd Gemini</strong>进入Gemini文件夹下，执行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -b tao.zhang origin/tao.zhang</div></pre></td></tr></table></figure>
-<p>我们此时观察本地Gemini文件夹下的内容，对应的才是我们远程分支下的内容。</p>
-<h1 id="5、上传到远程分支"><a href="#5、上传到远程分支" class="headerlink" title="5、上传到远程分支"></a>5、上传到远程分支</h1><p>　　进入命令行执行如下命令：</p>
-<p><strong>git add .</strong>  //其中，git add .表示上传所有的文件，而git add 1.txt表示只上传文件1.txt</p>
-<p><strong>git commit -m “注释”</strong> //其中，双引号之内的内容表示操作注释，方便代码管理。</p>
-<p><strong>git push origin tao.zhang</strong> //该命令表示将内容真正上传到远程分支。</p>
-<p>　　此时在远程分支，我们会看到我们上传的文件。</p>
+<p>　　首先要学习一下 Python 中实现异步 I/O 的一个函数 —— select。与前面文章使用多线程来并行处理多路 socket I/O相比，这里介绍的select 方法允许你响应不同 socket 的多个事件以及其它不同事件。例如你可以让 select 在某个 socket 有数据到达时，或者当某个 socket 可以写数据时，又或者是当某个 socket 发生错误时通知你，好处是你可以同时响应很多 socket 的多个事件。<br>　　Python 中使用 list 来表示我们监控的文件描述符，当有事件到达时，返回的也是文件描述符的 list，表示这些文件有事件到达。select 方法的三个参数都是 list 类型，分别代表读事件、写事件、错误事件，同样方法返回值也是三个 list，包含的是哪些事件（读、写、异常）满足了。</p>
+<h1 id="2、需求分析"><a href="#2、需求分析" class="headerlink" title="2、需求分析"></a>2、需求分析</h1><p>　　我们要实现的是简单的聊天室的例子，就是允许多个人同时一起聊天，每个人发送的消息所有人都能接收到，类似于 QQ 群的功能，而不是点对点的 QQ 好友之间的聊天。</p>
+<p>　　我们要实现的分为两部分：</p>
+<ul>
+<li>服务器：负责与用户建立 Socket 连接，并将某个用户发送的消息广播到所有在线的用户。</li>
+<li>用户聊天客户端，可以输入聊天的内容并发送，同时可以显示其他用户的消息记录。</li>
+</ul>
+<h1 id="3、服务端实现"><a href="#3、服务端实现" class="headerlink" title="3、服务端实现"></a>3、服务端实现</h1><pre><code>import socket,select,thread;  
+host=socket.gethostname()  
+port=5963  
+addr=(host,port)      
+inputs=[]  
+fd_name={}  
+def who_in_room(w):  
+    name_list=[]  
+    for k in w:  
+        name_list.append(w[k])           
+    return name_list  
+def conn():  
+    print &apos;runing&apos;  
+    ss=socket.socket()  
+    ss.bind(addr)  
+    ss.listen(5)  
+    return ss  
+def new_coming(ss):  
+    client,add=ss.accept()  
+    print &apos;welcome %s %s&apos; % (client,add)  
+    wel=&apos;&apos;&apos;&apos;&apos;welcome into the talking room . 
+    please decide your name.....&apos;&apos;&apos;  
+    try:  
+        client.send(wel)  
+        name=client.recv(1024)  
+        inputs.append(client)  
+        fd_name[client]=name            
+        nameList=&quot;Some people in talking room, these are %s&quot; % (who_in_room(fd_name))  
+        client.send(nameList)            
+    except Exception,e:  
+        print e        
+def server_run():    
+    ss=conn()  
+    inputs.append(ss)        
+    while True:  
+        r,w,e=select.select(inputs,[],[])  
+        for temp in r:  
+            if temp is ss:  
+                new_coming(ss)  
+            else:  
+                disconnect=False  
+                try:  
+                    data= temp.recv(1024)  
+                    data=fd_name[temp]+&apos; say : &apos;+data  
+                except socket.error:  
+                    data=fd_name[temp]+&apos; leave the room&apos;  
+                    disconnect=True                        
+                if disconnect:  
+                    inputs.remove(temp)  
+                    print data  
+                    for other in inputs:  
+                        if other!=ss and other!=temp:  
+                            try:  
+                                other.send(data)  
+                            except Exception,e:  
+                                print e                      
+                    del fd_name[temp]                        
+                else:  
+                    print data                        
+                    for other in inputs:  
+                        if other!=ss and other!=temp:  
+                            try:  
+                                other.send(data)  
+                            except Exception,e:  
+                                print e       
+if __name__==&apos;__main__&apos;:  
+    server_run()  
+</code></pre><h1 id="4、客户端实现"><a href="#4、客户端实现" class="headerlink" title="4、客户端实现"></a>4、客户端实现</h1><pre><code>import socket,select,threading,sys;    
+host=socket.gethostname()    
+addr=(host,5963)   
+def conn():  
+    s=socket.socket()  
+    s.connect(addr)  
+    return s  
+def lis(s):  
+    my=[s]  
+    while True:  
+        r,w,e=select.select(my,[],[])  
+        if s in r:  
+            try:  
+                print s.recv(1024)  
+            except socket.error:  
+                print &apos;socket is error&apos;  
+                exit()             
+def talk(s):  
+    while True:  
+        try:  
+            info=raw_input()  
+        except Exception,e:  
+            print &apos;can\&apos;t input&apos;  
+            exit()  
+        try:  
+            s.send(info)  
+        except Exception,e:  
+            print e  
+            exit()          
+def main():  
+    ss=conn()  
+    t=threading.Thread(target=lis,args=(ss,))  
+    t.start()  
+    t1=threading.Thread(target=talk,args=(ss,))  
+    t1.start()  
+if __name__==&apos;__main__&apos;:  
+    main()  
+</code></pre><h1 id="5、运行效果"><a href="#5、运行效果" class="headerlink" title="5、运行效果"></a>5、运行效果</h1><p>　　运行时先启动服务端，再运行客户端。客户端运行后，命令行输入昵称，服务端会打印客户端IP及port信息，表明成功进入聊天室。当客户端关闭，表明该用户退出聊天室，服务器会转发该用户退出消息到各个客户端。　<br>    <img src="http://odsh9s4s2.bkt.clouddn.com/mychatserver.png" alt="服务器页面"><br>    <img src="http://odsh9s4s2.bkt.clouddn.com/mychatclientA.png" alt="客户端页面"><br>    <img src="http://odsh9s4s2.bkt.clouddn.com/mychatclientB.png" alt="客户端页面"></p>
+<h1 id="6、参考链接"><a href="#6、参考链接" class="headerlink" title="6、参考链接"></a>6、参考链接</h1><p><strong><a href="http://www.cnblogs.com/hazir/p/python_chat_room.html" target="_blank" rel="external">http://www.cnblogs.com/hazir/p/python_chat_room.html</a></strong></p>
+<p><strong><a href="http://blog.csdn.net/dk_zhe/article/details/37820965" target="_blank" rel="external">http://blog.csdn.net/dk_zhe/article/details/37820965</a></strong></p>
 </the>
       
     </div>
@@ -328,13 +436,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/09/19/gitlab的使用/">代码管理之gitlab的使用</a></p>
+        <p><span>本文标题:</span><a href="/2016/10/29/python实现的聊天室（一）/">python实现的聊天室(一)</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">韩若熙</a></p>
-        <p><span>发布时间:</span>2016-09-19, 21:28:32</p>
-        <p><span>最后更新:</span>2016-09-20, 22:24:34</p>
+        <p><span>发布时间:</span>2016-10-29, 14:35:32</p>
+        <p><span>最后更新:</span>2016-10-29, 14:52:28</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/09/19/gitlab的使用/" title="代码管理之gitlab的使用">http://hanxiaoluo.site/2016/09/19/gitlab的使用/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://hanxiaoluo.site/2016/09/19/gitlab的使用/　　作者: 韩若熙" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/29/python实现的聊天室（一）/" title="python实现的聊天室(一)">http://hanxiaoluo.site/2016/10/29/python实现的聊天室（一）/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hanxiaoluo.site/2016/10/29/python实现的聊天室（一）/　　作者: 韩若熙" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -346,16 +454,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/09/20/git在qtcreator中的使用/">
-                    git在qtcreator中的使用
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/09/16/hello-world/">
-                    Hello
+                <a href="/2016/10/12/django实现的投票系统详解/">
+                    django实现的投票系统详解
                 </a>
             </div>
         
@@ -367,7 +469,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、安装git"><span class="toc-number">1.</span> <span class="toc-text">1、安装git</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、建立远程分支"><span class="toc-number">2.</span> <span class="toc-text">2、建立远程分支</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、建立本地仓库"><span class="toc-number">3.</span> <span class="toc-text">3、建立本地仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、建立本地分支"><span class="toc-number">4.</span> <span class="toc-text">4、建立本地分支</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、上传到远程分支"><span class="toc-number">5.</span> <span class="toc-text">5、上传到远程分支</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、前言"><span class="toc-number">1.</span> <span class="toc-text">1、前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、需求分析"><span class="toc-number">2.</span> <span class="toc-text">2、需求分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、服务端实现"><span class="toc-number">3.</span> <span class="toc-text">3、服务端实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、客户端实现"><span class="toc-number">4.</span> <span class="toc-text">4、客户端实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、运行效果"><span class="toc-number">5.</span> <span class="toc-text">5、运行效果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6、参考链接"><span class="toc-number">6.</span> <span class="toc-text">6、参考链接</span></a></li></ol>
         
     </div>
     <style>
@@ -402,7 +504,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"代码管理之gitlab的使用　| 韩若熙　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"python实现的聊天室(一)　| 韩若熙　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     </div>
 
@@ -412,7 +514,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2016/09/19/gitlab的使用/" data-title="代码管理之gitlab的使用" data-url="http://hanxiaoluo.site/2016/09/19/gitlab的使用/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/10/29/python实现的聊天室（一）/" data-title="python实现的聊天室(一)" data-url="http://hanxiaoluo.site/2016/10/29/python实现的聊天室（一）/"></div>
     <script>
         var duoshuoQuery = {short_name:"hanxiaoluo"};
         var loadComment = function(){
@@ -435,15 +537,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/09/20/git在qtcreator中的使用/" title="上一篇: git在qtcreator中的使用">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/09/16/hello-world/" title="下一篇: Hello">
+            <a href="/2016/10/12/django实现的投票系统详解/" title="下一篇: django实现的投票系统详解">
                 <i class="fa fa-angle-right"></i>
             </a>
         

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hanxiaoluo.site/"/>
-  <updated>2016-10-13T13:20:56.000Z</updated>
+  <updated>2016-10-29T06:52:28.000Z</updated>
   <id>http://hanxiaoluo.site/</id>
   
   <author>
@@ -14,6 +14,147 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python实现的聊天室(一)</title>
+    <link href="http://hanxiaoluo.site/2016/10/29/python%E5%AE%9E%E7%8E%B0%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AE%A4%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://hanxiaoluo.site/2016/10/29/python实现的聊天室（一）/</id>
+    <published>2016-10-29T06:35:32.000Z</published>
+    <updated>2016-10-29T06:52:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h1><p>　　我们学习了简单的Python TCP Socket 编程，通过分别写服务端和客户端的代码了解基本的 Python Socket 编程模型。本文再通过一个例子来加强一下对 Socket 编程的理解。
+　　</p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<p>　　首先要学习一下 Python 中实现异步 I/O 的一个函数 —— select。与前面文章使用多线程来并行处理多路 socket I/O相比，这里介绍的select 方法允许你响应不同 socket 的多个事件以及其它不同事件。例如你可以让 select 在某个 socket 有数据到达时，或者当某个 socket 可以写数据时，又或者是当某个 socket 发生错误时通知你，好处是你可以同时响应很多 socket 的多个事件。<br>　　Python 中使用 list 来表示我们监控的文件描述符，当有事件到达时，返回的也是文件描述符的 list，表示这些文件有事件到达。select 方法的三个参数都是 list 类型，分别代表读事件、写事件、错误事件，同样方法返回值也是三个 list，包含的是哪些事件（读、写、异常）满足了。</p>
+<h1 id="2、需求分析"><a href="#2、需求分析" class="headerlink" title="2、需求分析"></a>2、需求分析</h1><p>　　我们要实现的是简单的聊天室的例子，就是允许多个人同时一起聊天，每个人发送的消息所有人都能接收到，类似于 QQ 群的功能，而不是点对点的 QQ 好友之间的聊天。</p>
+<p>　　我们要实现的分为两部分：</p>
+<ul>
+<li>服务器：负责与用户建立 Socket 连接，并将某个用户发送的消息广播到所有在线的用户。</li>
+<li>用户聊天客户端，可以输入聊天的内容并发送，同时可以显示其他用户的消息记录。</li>
+</ul>
+<h1 id="3、服务端实现"><a href="#3、服务端实现" class="headerlink" title="3、服务端实现"></a>3、服务端实现</h1><pre><code>import socket,select,thread;  
+host=socket.gethostname()  
+port=5963  
+addr=(host,port)      
+inputs=[]  
+fd_name={}  
+def who_in_room(w):  
+    name_list=[]  
+    for k in w:  
+        name_list.append(w[k])           
+    return name_list  
+def conn():  
+    print &apos;runing&apos;  
+    ss=socket.socket()  
+    ss.bind(addr)  
+    ss.listen(5)  
+    return ss  
+def new_coming(ss):  
+    client,add=ss.accept()  
+    print &apos;welcome %s %s&apos; % (client,add)  
+    wel=&apos;&apos;&apos;&apos;&apos;welcome into the talking room . 
+    please decide your name.....&apos;&apos;&apos;  
+    try:  
+        client.send(wel)  
+        name=client.recv(1024)  
+        inputs.append(client)  
+        fd_name[client]=name            
+        nameList=&quot;Some people in talking room, these are %s&quot; % (who_in_room(fd_name))  
+        client.send(nameList)            
+    except Exception,e:  
+        print e        
+def server_run():    
+    ss=conn()  
+    inputs.append(ss)        
+    while True:  
+        r,w,e=select.select(inputs,[],[])  
+        for temp in r:  
+            if temp is ss:  
+                new_coming(ss)  
+            else:  
+                disconnect=False  
+                try:  
+                    data= temp.recv(1024)  
+                    data=fd_name[temp]+&apos; say : &apos;+data  
+                except socket.error:  
+                    data=fd_name[temp]+&apos; leave the room&apos;  
+                    disconnect=True                        
+                if disconnect:  
+                    inputs.remove(temp)  
+                    print data  
+                    for other in inputs:  
+                        if other!=ss and other!=temp:  
+                            try:  
+                                other.send(data)  
+                            except Exception,e:  
+                                print e                      
+                    del fd_name[temp]                        
+                else:  
+                    print data                        
+                    for other in inputs:  
+                        if other!=ss and other!=temp:  
+                            try:  
+                                other.send(data)  
+                            except Exception,e:  
+                                print e       
+if __name__==&apos;__main__&apos;:  
+    server_run()  
+</code></pre><h1 id="4、客户端实现"><a href="#4、客户端实现" class="headerlink" title="4、客户端实现"></a>4、客户端实现</h1><pre><code>import socket,select,threading,sys;    
+host=socket.gethostname()    
+addr=(host,5963)   
+def conn():  
+    s=socket.socket()  
+    s.connect(addr)  
+    return s  
+def lis(s):  
+    my=[s]  
+    while True:  
+        r,w,e=select.select(my,[],[])  
+        if s in r:  
+            try:  
+                print s.recv(1024)  
+            except socket.error:  
+                print &apos;socket is error&apos;  
+                exit()             
+def talk(s):  
+    while True:  
+        try:  
+            info=raw_input()  
+        except Exception,e:  
+            print &apos;can\&apos;t input&apos;  
+            exit()  
+        try:  
+            s.send(info)  
+        except Exception,e:  
+            print e  
+            exit()          
+def main():  
+    ss=conn()  
+    t=threading.Thread(target=lis,args=(ss,))  
+    t.start()  
+    t1=threading.Thread(target=talk,args=(ss,))  
+    t1.start()  
+if __name__==&apos;__main__&apos;:  
+    main()  
+</code></pre><h1 id="5、运行效果"><a href="#5、运行效果" class="headerlink" title="5、运行效果"></a>5、运行效果</h1><p>　　运行时先启动服务端，再运行客户端。客户端运行后，命令行输入昵称，服务端会打印客户端IP及port信息，表明成功进入聊天室。当客户端关闭，表明该用户退出聊天室，服务器会转发该用户退出消息到各个客户端。　<br>    <img src="http://odsh9s4s2.bkt.clouddn.com/mychatserver.png" alt="服务器页面"><br>    <img src="http://odsh9s4s2.bkt.clouddn.com/mychatclientA.png" alt="客户端页面"><br>    <img src="http://odsh9s4s2.bkt.clouddn.com/mychatclientB.png" alt="客户端页面"></p>
+<h1 id="6、参考链接"><a href="#6、参考链接" class="headerlink" title="6、参考链接"></a>6、参考链接</h1><p><strong><a href="http://www.cnblogs.com/hazir/p/python_chat_room.html" target="_blank" rel="external">http://www.cnblogs.com/hazir/p/python_chat_room.html</a></strong></p>
+<p><strong><a href="http://blog.csdn.net/dk_zhe/article/details/37820965" target="_blank" rel="external">http://blog.csdn.net/dk_zhe/article/details/37820965</a></strong></p>
+</the>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1、前言&quot;&gt;&lt;a href=&quot;#1、前言&quot; class=&quot;headerlink&quot; title=&quot;1、前言&quot;&gt;&lt;/a&gt;1、前言&lt;/h1&gt;&lt;p&gt;　　我们学习了简单的Python TCP Socket 编程，通过分别写服务端和客户端的代码了解基本的 Python Socket 编程模型。本文再通过一个例子来加强一下对 Socket 编程的理解。
+　　&lt;/p&gt;
+&lt;p&gt;&lt;Excerpt in index | 首页摘要&gt;&lt;br&gt;+
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://hanxiaoluo.site/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>django实现的投票系统详解</title>
@@ -353,91 +494,6 @@ s.close()
   </entry>
   
   <entry>
-    <title>python图形用户界面之pyqt的使用</title>
-    <link href="http://hanxiaoluo.site/2016/10/08/python%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E4%B9%8Bpyqt4%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/</id>
-    <published>2016-10-08T15:01:42.000Z</published>
-    <updated>2016-10-09T14:12:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1、安装pyqt（事先必须先完成python的安装）"><a href="#1、安装pyqt（事先必须先完成python的安装）" class="headerlink" title="1、安装pyqt（事先必须先完成python的安装）"></a>1、安装pyqt（事先必须先完成python的安装）</h1><p>　　我们可以在如下网址： <a href="http://www.riverbankcomputing.co.uk/software/pyqt/download" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/pyqt/download</a><br>这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。</p>
-<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
-<the rest="" of="" contents="" |="" 余下全文="">
-
-<p>　　对于windows系统来说，只需要下载exe格式的文件即可。在这个exe格式的文件中，已经包含了如下模块：</p>
-<ul>
-<li>pyqt</li>
-<li>Qt</li>
-<li>Qt Designer</li>
-<li>Qt Linguist</li>
-<li>Qt Assistant</li>
-<li>pyuic4(转换由设计师生成的.ui文件到.py)</li>
-<li>pylupdate4</li>
-<li>lrelease</li>
-<li>pyrcc4</li>
-<li>QScintilla(C++编辑器类Scintilla在QT环境下的移植版本)</li>
-</ul>
-<p>　一路点击next进行安装，直到路径选择界面，如下图所示。</p>
-<p>  <img src="http://odsh9s4s2.bkt.clouddn.com/pyqt%E5%AE%89%E8%A3%85.png" alt="配置git路径"><br>　一定要注意，<strong>这里的路径指的是python的安装路径</strong>，填写正确路径，点击“Install”按钮进行安装即可。</p>
-<h1 id="2、命令测试"><a href="#2、命令测试" class="headerlink" title="2、命令测试"></a>2、命令测试</h1><p>　　进入python自带的GUI工具-IDLE，输入import PyQt4，如果没有提示错误，则安装正确。</p>
-<h1 id="3、代码实例"><a href="#3、代码实例" class="headerlink" title="3、代码实例"></a>3、代码实例</h1><p>创建文件pyqt.py内容如下：</p>
-<pre><code># -*- coding: utf-8 -*-　　　　　
-from PyQt4.QtGui import (QMainWindow, QPushButton, QApplication, 
-                                 QVBoxLayout, QWidget)
-from PyQt4.QtCore import (Qt, QObject, SIGNAL)
-import anotherWindow
-import sys
-class OneWindow(QMainWindow):
-    def __init__(self):
-        super(OneWindow, self).__init__()
-        self.setGeometry(100, 100, 600, 400)
-        vLayout = QVBoxLayout()
-        self.button = QPushButton(&quot;OK&quot;)
-        vLayout.addWidget(self.button)
-        widget = QWidget()
-        widget.setLayout(vLayout)
-        self.setCentralWidget(widget)
-        QObject.connect(self.button,SIGNAL(&quot;clicked()&quot;) , self.anotherWindow)        
-    def anotherWindow(self):
-        print &apos;OK&apos;
-        self.another = anotherWindow.AnotherWindow()
-        self.another.show()                          
-if __name__ == &apos;__main__&apos;:
-    app = QApplication(sys.argv)
-    w = OneWindow()
-    w.show()     
-    app.exec_()
-</code></pre><p>创建文件anotherWindow.py内容如下：</p>
-<pre><code># -*- coding: utf-8 -*-
-from PyQt4.QtGui import (QMainWindow)
-class AnotherWindow(QMainWindow):
-    def __init__(self):
-        super(AnotherWindow, self).__init__()
-        self.resize(400, 300)
-        self.setWindowTitle(&quot;this is another window&quot;)
-</code></pre><p>　　两个文件主要实现通过点击按钮完成多界面切换。</p>
-<h1 id="4、运行实例"><a href="#4、运行实例" class="headerlink" title="4、运行实例"></a>4、运行实例</h1><p>　　运行代码实例有多种方式，在此列举几种我自己常用方式。</p>
-<p>　　（1）dos命令行运行。进入pyqt.py文件所在目录，比如我的目录F:\mypython,运行命令python pyqt.py即看到代码实现的窗体。</p>
-<p>　　（2）python自带IDLE运行。打开IDLE环境，点击“File”菜单，选择”Open”菜单项，打开pyqt.py文件。此时会弹出另外一个窗体。点击“Run”菜单，选择“Run Module”菜单项，即可看到代码实现的窗体。</p>
-<p>　　（3）利用PyCharm运行。点击”File”菜单，选择“New Project”建立“Pure Python”工程，选择工程目录及python.exe目录。在工程下新建”Python File”，分别创建pyqt.py文件及anotherWindow.py文件。运行工程后即可看到代码实现的窗体。</p>
-<h1 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h1><p>　　python拥有多种图形界面编程，因为我自己平时用qt比较多，所以选择了pyqt。查看pyqt中的qt帮助文档，发现与qt的帮助文档基本相同，没必要把时间浪费到API上。
-　　</p>
-</the>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1、安装pyqt（事先必须先完成python的安装）&quot;&gt;&lt;a href=&quot;#1、安装pyqt（事先必须先完成python的安装）&quot; class=&quot;headerlink&quot; title=&quot;1、安装pyqt（事先必须先完成python的安装）&quot;&gt;&lt;/a&gt;1、安装pyqt（事先必须先完成python的安装）&lt;/h1&gt;&lt;p&gt;　　我们可以在如下网址： &lt;a href=&quot;http://www.riverbankcomputing.co.uk/software/pyqt/download&quot;&gt;http://www.riverbankcomputing.co.uk/software/pyqt/download&lt;/a&gt;&lt;br&gt;这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。&lt;/p&gt;
-&lt;p&gt;&lt;Excerpt in index | 首页摘要&gt;&lt;br&gt;+
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://hanxiaoluo.site/tags/python/"/>
-    
-      <category term="pyqt" scheme="http://hanxiaoluo.site/tags/pyqt/"/>
-    
-  </entry>
-  
-  <entry>
     <title>python中的socket网络编程（二）</title>
     <link href="http://hanxiaoluo.site/2016/10/08/python%E4%B8%AD%E7%9A%84socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%BA%8C)/"/>
     <id>http://hanxiaoluo.site/2016/10/08/python中的socket网络编程(二)/</id>
@@ -553,6 +609,91 @@ s.close()
       <category term="socket" scheme="http://hanxiaoluo.site/tags/socket/"/>
     
       <category term="server" scheme="http://hanxiaoluo.site/tags/server/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python图形用户界面之pyqt的使用</title>
+    <link href="http://hanxiaoluo.site/2016/10/08/python%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E4%B9%8Bpyqt4%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/</id>
+    <published>2016-10-08T15:01:42.000Z</published>
+    <updated>2016-10-09T14:12:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1、安装pyqt（事先必须先完成python的安装）"><a href="#1、安装pyqt（事先必须先完成python的安装）" class="headerlink" title="1、安装pyqt（事先必须先完成python的安装）"></a>1、安装pyqt（事先必须先完成python的安装）</h1><p>　　我们可以在如下网址： <a href="http://www.riverbankcomputing.co.uk/software/pyqt/download" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/pyqt/download</a><br>这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。</p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<p>　　对于windows系统来说，只需要下载exe格式的文件即可。在这个exe格式的文件中，已经包含了如下模块：</p>
+<ul>
+<li>pyqt</li>
+<li>Qt</li>
+<li>Qt Designer</li>
+<li>Qt Linguist</li>
+<li>Qt Assistant</li>
+<li>pyuic4(转换由设计师生成的.ui文件到.py)</li>
+<li>pylupdate4</li>
+<li>lrelease</li>
+<li>pyrcc4</li>
+<li>QScintilla(C++编辑器类Scintilla在QT环境下的移植版本)</li>
+</ul>
+<p>　一路点击next进行安装，直到路径选择界面，如下图所示。</p>
+<p>  <img src="http://odsh9s4s2.bkt.clouddn.com/pyqt%E5%AE%89%E8%A3%85.png" alt="配置git路径"><br>　一定要注意，<strong>这里的路径指的是python的安装路径</strong>，填写正确路径，点击“Install”按钮进行安装即可。</p>
+<h1 id="2、命令测试"><a href="#2、命令测试" class="headerlink" title="2、命令测试"></a>2、命令测试</h1><p>　　进入python自带的GUI工具-IDLE，输入import PyQt4，如果没有提示错误，则安装正确。</p>
+<h1 id="3、代码实例"><a href="#3、代码实例" class="headerlink" title="3、代码实例"></a>3、代码实例</h1><p>创建文件pyqt.py内容如下：</p>
+<pre><code># -*- coding: utf-8 -*-　　　　　
+from PyQt4.QtGui import (QMainWindow, QPushButton, QApplication, 
+                                 QVBoxLayout, QWidget)
+from PyQt4.QtCore import (Qt, QObject, SIGNAL)
+import anotherWindow
+import sys
+class OneWindow(QMainWindow):
+    def __init__(self):
+        super(OneWindow, self).__init__()
+        self.setGeometry(100, 100, 600, 400)
+        vLayout = QVBoxLayout()
+        self.button = QPushButton(&quot;OK&quot;)
+        vLayout.addWidget(self.button)
+        widget = QWidget()
+        widget.setLayout(vLayout)
+        self.setCentralWidget(widget)
+        QObject.connect(self.button,SIGNAL(&quot;clicked()&quot;) , self.anotherWindow)        
+    def anotherWindow(self):
+        print &apos;OK&apos;
+        self.another = anotherWindow.AnotherWindow()
+        self.another.show()                          
+if __name__ == &apos;__main__&apos;:
+    app = QApplication(sys.argv)
+    w = OneWindow()
+    w.show()     
+    app.exec_()
+</code></pre><p>创建文件anotherWindow.py内容如下：</p>
+<pre><code># -*- coding: utf-8 -*-
+from PyQt4.QtGui import (QMainWindow)
+class AnotherWindow(QMainWindow):
+    def __init__(self):
+        super(AnotherWindow, self).__init__()
+        self.resize(400, 300)
+        self.setWindowTitle(&quot;this is another window&quot;)
+</code></pre><p>　　两个文件主要实现通过点击按钮完成多界面切换。</p>
+<h1 id="4、运行实例"><a href="#4、运行实例" class="headerlink" title="4、运行实例"></a>4、运行实例</h1><p>　　运行代码实例有多种方式，在此列举几种我自己常用方式。</p>
+<p>　　（1）dos命令行运行。进入pyqt.py文件所在目录，比如我的目录F:\mypython,运行命令python pyqt.py即看到代码实现的窗体。</p>
+<p>　　（2）python自带IDLE运行。打开IDLE环境，点击“File”菜单，选择”Open”菜单项，打开pyqt.py文件。此时会弹出另外一个窗体。点击“Run”菜单，选择“Run Module”菜单项，即可看到代码实现的窗体。</p>
+<p>　　（3）利用PyCharm运行。点击”File”菜单，选择“New Project”建立“Pure Python”工程，选择工程目录及python.exe目录。在工程下新建”Python File”，分别创建pyqt.py文件及anotherWindow.py文件。运行工程后即可看到代码实现的窗体。</p>
+<h1 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h1><p>　　python拥有多种图形界面编程，因为我自己平时用qt比较多，所以选择了pyqt。查看pyqt中的qt帮助文档，发现与qt的帮助文档基本相同，没必要把时间浪费到API上。
+　　</p>
+</the>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1、安装pyqt（事先必须先完成python的安装）&quot;&gt;&lt;a href=&quot;#1、安装pyqt（事先必须先完成python的安装）&quot; class=&quot;headerlink&quot; title=&quot;1、安装pyqt（事先必须先完成python的安装）&quot;&gt;&lt;/a&gt;1、安装pyqt（事先必须先完成python的安装）&lt;/h1&gt;&lt;p&gt;　　我们可以在如下网址： &lt;a href=&quot;http://www.riverbankcomputing.co.uk/software/pyqt/download&quot;&gt;http://www.riverbankcomputing.co.uk/software/pyqt/download&lt;/a&gt;&lt;br&gt;这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。&lt;/p&gt;
+&lt;p&gt;&lt;Excerpt in index | 首页摘要&gt;&lt;br&gt;+
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://hanxiaoluo.site/tags/python/"/>
+    
+      <category term="pyqt" scheme="http://hanxiaoluo.site/tags/pyqt/"/>
     
   </entry>
   
