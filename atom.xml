@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hanxiaoluo.site/"/>
-  <updated>2016-10-29T06:54:44.000Z</updated>
+  <updated>2016-11-02T13:21:09.000Z</updated>
   <id>http://hanxiaoluo.site/</id>
   
   <author>
@@ -14,6 +14,235 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python实现的聊天室（二）</title>
+    <link href="http://hanxiaoluo.site/2016/11/02/python%E5%AE%9E%E7%8E%B0%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AE%A4%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://hanxiaoluo.site/2016/11/02/python实现的聊天室（二）/</id>
+    <published>2016-11-02T12:43:57.000Z</published>
+    <updated>2016-11-02T13:21:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h1><p>　　我在python实现的聊天室（一）一文中实现了一个没有界面的聊天室，所有操作都在CMD命令行下进行，用户体验比较差。所以在这一篇文章中，主要实现一个有界面的聊天室。</p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h1 id="2、需求分析"><a href="#2、需求分析" class="headerlink" title="2、需求分析"></a>2、需求分析</h1><p>　　我们要实现的分为两部分：</p>
+<ul>
+<li>服务器：负责与用户建立 Socket 连接，并将某个用户发送的消息广播到所有在线的用户。显示用户进入/退出聊天室信息。</li>
+<li>客户端：可以输入聊天的内容并发送，同时可以显示其他用户的消息记录。</li>
+</ul>
+<h1 id="3、服务端实现"><a href="#3、服务端实现" class="headerlink" title="3、服务端实现"></a>3、服务端实现</h1><pre><code># -*- coding: gbk -*-  
+from PyQt4.QtGui import *  
+from PyQt4.QtCore import *  
+import sys  
+from PyQt4.QtNetwork import *  
+import locale      
+#QTextCodec.setCodecForTr(QTextCodec.codecForName(&quot;utf8&quot;))      
+class TcpClientSocket(QTcpSocket):  
+    def __init__(self,parent=None):  
+        super(TcpClientSocket,self).__init__(parent)  
+        self.connect(self,SIGNAL(&quot;readyRead()&quot;),self.dataReceive)  
+        self.connect(self,SIGNAL(&quot;disconnected()&quot;),self.slotDisconnected)  
+        self.length = 0  
+        self.msglist = QByteArray()            
+    def dataReceive(self):  
+        while self.bytesAvailable() &gt; 0:  
+            length = self.bytesAvailable()  
+            msg = self.read(length)  
+            self.emit(SIGNAL(&quot;updateClients(QString,int)&quot;),msg,length)                            
+    def slotDisconnected(self):  
+        pass                
+class Server(QTcpServer):  
+    def __init__(self,parent=None,port=0):  
+        super(Server,self).__init__(parent)  
+        self.listen(QHostAddress.Any,port)  
+        self.tcpClientSocketList = []            
+    def incomingConnection(self,socketDescriptor):  
+        tcpClientSocket = TcpClientSocket(self)  
+                    self.connect(tcpClientSocket,SIGNAL(&quot;updateClients(QString,int)&quot;),self.updateClients)  
+                                self.connect(tcpClientSocket,SIGNAL(&quot;disconnetcted(int)&quot;),self.slotDisconnected)  
+        tcpClientSocket.setSocketDescriptor(socketDescriptor)  
+        self.tcpClientSocketList.append(tcpClientSocket)        
+    def updateClients(self,msg,length):  
+        self.emit(SIGNAL(&quot;updateServer(QString,int)&quot;),msg,length)  
+        for i in xrange(len(self.tcpClientSocketList)):  
+            item = self.tcpClientSocketList[i]
+            length_msg = item.writeData(msg)            
+            #length_msg = item.writeData(msg.toUtf8())  
+            #if length_msg != msg.toUtf8().length():  
+            #    continue                            
+    def slotDisconnected(self,descriptor):  
+        for i in xrange(len(self.tcpClientSocketList)):  
+            item = self.tcpClientSocketList[i]  
+            if item.socketDescriptor() == descriptor:  
+                self.tcpClientSocketList.remove[i]  
+                return  
+        return    
+class TcpServer(QDialog):  
+    def __init__(self,parent=None,f=None):  
+        super(TcpServer,self).__init__(parent)  
+        self.setWindowTitle(&quot;服务端&quot;)  
+        vbMain = QVBoxLayout(self)  
+        self.ListWidgetContent = QListWidget(self)  
+        vbMain.addWidget(self.ListWidgetContent)                
+        hb = QHBoxLayout()  
+        LabelPort = QLabel(self)  
+        LabelPort.setText(self.tr(&quot;Port:&quot;))  
+        hb.addWidget(LabelPort)                
+        LineEditPort = QLineEdit(self)  
+        hb.addWidget(LineEditPort)                
+        vbMain.addLayout(hb)                
+        self.PushButtonCreate = QPushButton(self)  
+        self.PushButtonCreate.setText(self.tr(&quot;创建聊天室&quot;))  
+        vbMain.addWidget(self.PushButtonCreate)  
+                      self.connect(self.PushButtonCreate,SIGNAL(&quot;clicked()&quot;),self.slotCreateServer)  
+        self.port  = 8010  
+        LineEditPort.setText(QString.number(self.port))            
+    def slotCreateServer(self):  
+        server = Server(self,self.port)  
+        self.connect(server,SIGNAL(&quot;updateServer(QString,int)&quot;),self.updateServer)  
+        self.PushButtonCreate.setEnabled(False)            
+    def updateServer(self,msg,length):  
+        #self.ListWidgetContent.addItem(msg.fromUtf8(msg))  
+        self.ListWidgetContent.addItem(msg)                                      
+if __name__ == &apos;__main__&apos;:             
+    app=QApplication(sys.argv)    
+    mycode = locale.getpreferredencoding()
+    code = QTextCodec.codecForName(mycode)
+    QTextCodec.setCodecForLocale(code)
+    QTextCodec.setCodecForTr(code)
+    QTextCodec.setCodecForCStrings(code)        
+    dialog=TcpServer()  
+    dialog.show()  
+    app.exec_()  
+</code></pre><h1 id="4、客户端实现"><a href="#4、客户端实现" class="headerlink" title="4、客户端实现"></a>4、客户端实现</h1><pre><code># -*- coding: gbk -*-  
+from PyQt4.QtGui import *  
+from PyQt4.QtCore import *  
+import sys  
+from PyQt4.QtNetwork import *  
+import locale  
+#QTextCodec.setCodecForTr(QTextCodec.codecForName(&quot;utf8&quot;))        
+class TcpClient(QDialog):  
+    def __init__(self,parent=None):  
+        super(TcpClient,self).__init__(parent)  
+        self.setWindowTitle(self.tr(&quot;客户端&quot;))                  
+        self.status = False   
+        self.serverIP = QHostAddress()  
+        self.port = 8010  
+        self.msglist = QByteArray()                
+        vbMain = QVBoxLayout(self)  
+        self.ListWidgetContent = QListWidget(self)  
+        vbMain.addWidget(self.ListWidgetContent)                
+        hb = QHBoxLayout()  
+        self.LineEditMessage = QLineEdit(self)  
+        hb.addWidget(self.LineEditMessage)  
+        self.PushButtonSend = QPushButton(self)  
+        self.PushButtonSend.setText(self.tr(&quot;发送&quot;))  
+        self.PushButtonSend.setEnabled(False)  
+        hb.addWidget(self.PushButtonSend)  
+        self.connect(self.PushButtonSend,SIGNAL(&quot;clicked()&quot;),self.slotSend)                
+        hb1 = QHBoxLayout()  
+        LabelName = QLabel(self)  
+        LabelName.setText(self.tr(&quot;用户名:&quot;))  
+        self.LineEditUser = QLineEdit(self)  
+        hb1.addWidget(LabelName)  
+        hb1.addWidget(self.LineEditUser)                
+        hb2 = QHBoxLayout()  
+        LabelServerIP = QLabel(self)  
+        LabelServerIP.setText(self.tr(&quot;服务器地址:&quot;))  
+        self.LineEditIP = QLineEdit(self)  
+        hb2.addWidget(LabelServerIP)  
+        hb2.addWidget(self.LineEditIP)                 
+        hb3 = QHBoxLayout()  
+        LabelPort = QLabel(self)  
+        LabelPort.setText(self.tr(&quot;端口:&quot;))               
+        self.LineEditPort = QLineEdit(self)  
+        hb3.addWidget(LabelPort)  
+        hb3.addWidget(self.LineEditPort)                 
+        vbMain.addLayout(hb)  
+        vbMain.addLayout(hb1)  
+        vbMain.addLayout(hb2)  
+        vbMain.addLayout(hb3)                
+        self.PushButtonLeave = QPushButton(self)  
+        self.PushButtonLeave.setText(self.tr(&quot;进入聊天室&quot;))  
+        vbMain.addWidget(self.PushButtonLeave)                
+        self.connect(self.PushButtonLeave,SIGNAL(&quot;clicked()&quot;),self.slotEnter)                
+    def slotSend(self):  
+        msg = self.userName + &quot;:&quot; + self.LineEditMessage.text(        
+        #length = self.tcpSocket.writeData(msg.toUtf8())
+        length = self.tcpSocket.writeData(msg)        
+        self.LineEditMessage.clear()   
+        #if length != msg.toUtf8().length():  
+        #    return                  
+    def slotEnter(self):  
+        if not self.status:  
+            ip = self.LineEditIP.text()  
+            if not self.serverIP.setAddress(ip):  
+                QMessageBox.information(self,self.tr(&quot;error&quot;),self.tr(&quot;server ip address error!&quot;))  
+                return  
+            if self.LineEditUser.text() == &quot;&quot;:  
+                QMessageBox.information(self,self.tr(&quot;error&quot;),self.tr(&quot;User Name error!&quot;))  
+                return  
+            self.userName = self.LineEditUser.text()  
+            self.tcpSocket = QTcpSocket(self)  
+            self.connect(self.tcpSocket,SIGNAL(&quot;connected()&quot;),self.slotConnected)  
+            self.connect(self.tcpSocket,SIGNAL(&quot;disconnected()&quot;),self.slotDisconnected)  
+            self.connect(self.tcpSocket,SIGNAL(&quot;readyRead()&quot;),self.dataReceived)              
+            self.tcpSocket.connectToHost(self.serverIP.toString(),8010)  
+            self.status = True  
+        else:  
+            msg = self.userName + &quot;:&quot; + self.tr(&quot;离开聊天室&quot;) 
+            length = self.tcpSocket.writeData(msg)            
+            #length = self.tcpSocket.writeData(msg.toUtf8())             
+            #if length != msg.toUtf8().length():  
+            #    return                
+            self.tcpSocket.disconnectFromHost()  
+            self.status = False            
+    def slotConnected(self):  
+        self.PushButtonSend.setEnabled(True)  
+        self.PushButtonLeave.setText(self.tr(&quot;离开聊天室&quot;))                
+        msg = self.userName + &quot;:&quot; + self.tr(&quot;进入聊天室&quot;)  
+        #length = self.tcpSocket.writeData(msg.toUtf8())
+        length = self.tcpSocket.writeData(msg)        
+        #if length != msg.toUtf8().length():  
+        #    return            
+    def slotDisconnected(self):  
+        self.PushButtonSend.setEnabled(False)  
+        self.PushButtonLeave.setText(self.tr(&quot;进入聊天室&quot;))  
+    def dataReceived(self):  
+        while self.tcpSocket.bytesAvailable() &gt; 0:  
+            length = self.tcpSocket.bytesAvailable()  
+            msg = QString(self.tcpSocket.read(length))  
+            #msg = msg.fromUtf8(msg)  
+            #self.ListWidgetContent.addItem(msg.fromUtf8(msg))
+            self.ListWidgetContent.addItem(msg)                                
+if __name__ == &apos;__main__&apos;:  
+    app=QApplication(sys.argv)     
+    mycode = locale.getpreferredencoding()
+    code = QTextCodec.codecForName(mycode)
+    QTextCodec.setCodecForLocale(code)
+    QTextCodec.setCodecForTr(code)
+    QTextCodec.setCodecForCStrings(code)        
+    dialog=TcpClient()  
+    dialog.show()  
+    app.exec_()  
+</code></pre><h1 id="5、运行效果"><a href="#5、运行效果" class="headerlink" title="5、运行效果"></a>5、运行效果</h1><p>　　运行时先启动服务端，再运行客户端。服务器启动后创建聊天室。客户端运行后，输入昵称、服务器的IP及port信息，进入聊天室。此时服务端会提示用户进入聊天室。当客户端关闭，表明该用户退出聊天室，服务器会转发该用户退出消息到各个客户端。<br><img src="http://odsh9s4s2.bkt.clouddn.com/mypyqtchatserver.png" alt="服务端"><br><img src="http://odsh9s4s2.bkt.clouddn.com/mypyqtchatclientA.png" alt="客户端A"><br><img src="http://odsh9s4s2.bkt.clouddn.com/mypyqtchatclientB.png" alt="客户端B"></p>
+<h1 id="6、参考链接"><a href="#6、参考链接" class="headerlink" title="6、参考链接"></a>6、参考链接</h1><p>因为代码中用到了汉字，所以涉及到编码问题。希望该链接能帮助到你。<br><a href="http://blog.csdn.net/uselym/article/details/51867056" target="_blank" rel="external">http://blog.csdn.net/uselym/article/details/51867056</a></p>
+</the>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1、前言&quot;&gt;&lt;a href=&quot;#1、前言&quot; class=&quot;headerlink&quot; title=&quot;1、前言&quot;&gt;&lt;/a&gt;1、前言&lt;/h1&gt;&lt;p&gt;　　我在python实现的聊天室（一）一文中实现了一个没有界面的聊天室，所有操作都在CMD命令行下进行，用户体验比较差。所以在这一篇文章中，主要实现一个有界面的聊天室。&lt;/p&gt;
+&lt;p&gt;&lt;Excerpt in index | 首页摘要&gt;&lt;br&gt;+
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://hanxiaoluo.site/tags/python/"/>
+    
+      <category term="pyqt" scheme="http://hanxiaoluo.site/tags/pyqt/"/>
+    
+  </entry>
   
   <entry>
     <title>python实现的聊天室(一)</title>
@@ -392,6 +621,91 @@ def sayHello(request):
   </entry>
   
   <entry>
+    <title>python图形用户界面之pyqt的使用</title>
+    <link href="http://hanxiaoluo.site/2016/10/08/python%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E4%B9%8Bpyqt4%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/</id>
+    <published>2016-10-08T15:01:42.000Z</published>
+    <updated>2016-10-09T14:12:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1、安装pyqt（事先必须先完成python的安装）"><a href="#1、安装pyqt（事先必须先完成python的安装）" class="headerlink" title="1、安装pyqt（事先必须先完成python的安装）"></a>1、安装pyqt（事先必须先完成python的安装）</h1><p>　　我们可以在如下网址： <a href="http://www.riverbankcomputing.co.uk/software/pyqt/download" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/pyqt/download</a><br>这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。</p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<p>　　对于windows系统来说，只需要下载exe格式的文件即可。在这个exe格式的文件中，已经包含了如下模块：</p>
+<ul>
+<li>pyqt</li>
+<li>Qt</li>
+<li>Qt Designer</li>
+<li>Qt Linguist</li>
+<li>Qt Assistant</li>
+<li>pyuic4(转换由设计师生成的.ui文件到.py)</li>
+<li>pylupdate4</li>
+<li>lrelease</li>
+<li>pyrcc4</li>
+<li>QScintilla(C++编辑器类Scintilla在QT环境下的移植版本)</li>
+</ul>
+<p>　一路点击next进行安装，直到路径选择界面，如下图所示。</p>
+<p>  <img src="http://odsh9s4s2.bkt.clouddn.com/pyqt%E5%AE%89%E8%A3%85.png" alt="配置git路径"><br>　一定要注意，<strong>这里的路径指的是python的安装路径</strong>，填写正确路径，点击“Install”按钮进行安装即可。</p>
+<h1 id="2、命令测试"><a href="#2、命令测试" class="headerlink" title="2、命令测试"></a>2、命令测试</h1><p>　　进入python自带的GUI工具-IDLE，输入import PyQt4，如果没有提示错误，则安装正确。</p>
+<h1 id="3、代码实例"><a href="#3、代码实例" class="headerlink" title="3、代码实例"></a>3、代码实例</h1><p>创建文件pyqt.py内容如下：</p>
+<pre><code># -*- coding: utf-8 -*-　　　　　
+from PyQt4.QtGui import (QMainWindow, QPushButton, QApplication, 
+                                 QVBoxLayout, QWidget)
+from PyQt4.QtCore import (Qt, QObject, SIGNAL)
+import anotherWindow
+import sys
+class OneWindow(QMainWindow):
+    def __init__(self):
+        super(OneWindow, self).__init__()
+        self.setGeometry(100, 100, 600, 400)
+        vLayout = QVBoxLayout()
+        self.button = QPushButton(&quot;OK&quot;)
+        vLayout.addWidget(self.button)
+        widget = QWidget()
+        widget.setLayout(vLayout)
+        self.setCentralWidget(widget)
+        QObject.connect(self.button,SIGNAL(&quot;clicked()&quot;) , self.anotherWindow)        
+    def anotherWindow(self):
+        print &apos;OK&apos;
+        self.another = anotherWindow.AnotherWindow()
+        self.another.show()                          
+if __name__ == &apos;__main__&apos;:
+    app = QApplication(sys.argv)
+    w = OneWindow()
+    w.show()     
+    app.exec_()
+</code></pre><p>创建文件anotherWindow.py内容如下：</p>
+<pre><code># -*- coding: utf-8 -*-
+from PyQt4.QtGui import (QMainWindow)
+class AnotherWindow(QMainWindow):
+    def __init__(self):
+        super(AnotherWindow, self).__init__()
+        self.resize(400, 300)
+        self.setWindowTitle(&quot;this is another window&quot;)
+</code></pre><p>　　两个文件主要实现通过点击按钮完成多界面切换。</p>
+<h1 id="4、运行实例"><a href="#4、运行实例" class="headerlink" title="4、运行实例"></a>4、运行实例</h1><p>　　运行代码实例有多种方式，在此列举几种我自己常用方式。</p>
+<p>　　（1）dos命令行运行。进入pyqt.py文件所在目录，比如我的目录F:\mypython,运行命令python pyqt.py即看到代码实现的窗体。</p>
+<p>　　（2）python自带IDLE运行。打开IDLE环境，点击“File”菜单，选择”Open”菜单项，打开pyqt.py文件。此时会弹出另外一个窗体。点击“Run”菜单，选择“Run Module”菜单项，即可看到代码实现的窗体。</p>
+<p>　　（3）利用PyCharm运行。点击”File”菜单，选择“New Project”建立“Pure Python”工程，选择工程目录及python.exe目录。在工程下新建”Python File”，分别创建pyqt.py文件及anotherWindow.py文件。运行工程后即可看到代码实现的窗体。</p>
+<h1 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h1><p>　　python拥有多种图形界面编程，因为我自己平时用qt比较多，所以选择了pyqt。查看pyqt中的qt帮助文档，发现与qt的帮助文档基本相同，没必要把时间浪费到API上。
+　　</p>
+</the>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1、安装pyqt（事先必须先完成python的安装）&quot;&gt;&lt;a href=&quot;#1、安装pyqt（事先必须先完成python的安装）&quot; class=&quot;headerlink&quot; title=&quot;1、安装pyqt（事先必须先完成python的安装）&quot;&gt;&lt;/a&gt;1、安装pyqt（事先必须先完成python的安装）&lt;/h1&gt;&lt;p&gt;　　我们可以在如下网址： &lt;a href=&quot;http://www.riverbankcomputing.co.uk/software/pyqt/download&quot;&gt;http://www.riverbankcomputing.co.uk/software/pyqt/download&lt;/a&gt;&lt;br&gt;这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。&lt;/p&gt;
+&lt;p&gt;&lt;Excerpt in index | 首页摘要&gt;&lt;br&gt;+
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://hanxiaoluo.site/tags/python/"/>
+    
+      <category term="pyqt" scheme="http://hanxiaoluo.site/tags/pyqt/"/>
+    
+  </entry>
+  
+  <entry>
     <title>python的Web开发之Django框架应用(一)</title>
     <link href="http://hanxiaoluo.site/2016/10/08/python%E7%9A%84Web%E5%BC%80%E5%8F%91%E4%B9%8BDjango%E6%A1%86%E6%9E%B6%E5%BA%94%E7%94%A8(%E4%B8%80)/"/>
     <id>http://hanxiaoluo.site/2016/10/08/python的Web开发之Django框架应用(一)/</id>
@@ -649,91 +963,6 @@ s.close()
   </entry>
   
   <entry>
-    <title>python图形用户界面之pyqt的使用</title>
-    <link href="http://hanxiaoluo.site/2016/10/08/python%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E4%B9%8Bpyqt4%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/</id>
-    <published>2016-10-08T15:01:42.000Z</published>
-    <updated>2016-10-09T14:12:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1、安装pyqt（事先必须先完成python的安装）"><a href="#1、安装pyqt（事先必须先完成python的安装）" class="headerlink" title="1、安装pyqt（事先必须先完成python的安装）"></a>1、安装pyqt（事先必须先完成python的安装）</h1><p>　　我们可以在如下网址： <a href="http://www.riverbankcomputing.co.uk/software/pyqt/download" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/pyqt/download</a><br>这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。</p>
-<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
-<the rest="" of="" contents="" |="" 余下全文="">
-
-<p>　　对于windows系统来说，只需要下载exe格式的文件即可。在这个exe格式的文件中，已经包含了如下模块：</p>
-<ul>
-<li>pyqt</li>
-<li>Qt</li>
-<li>Qt Designer</li>
-<li>Qt Linguist</li>
-<li>Qt Assistant</li>
-<li>pyuic4(转换由设计师生成的.ui文件到.py)</li>
-<li>pylupdate4</li>
-<li>lrelease</li>
-<li>pyrcc4</li>
-<li>QScintilla(C++编辑器类Scintilla在QT环境下的移植版本)</li>
-</ul>
-<p>　一路点击next进行安装，直到路径选择界面，如下图所示。</p>
-<p>  <img src="http://odsh9s4s2.bkt.clouddn.com/pyqt%E5%AE%89%E8%A3%85.png" alt="配置git路径"><br>　一定要注意，<strong>这里的路径指的是python的安装路径</strong>，填写正确路径，点击“Install”按钮进行安装即可。</p>
-<h1 id="2、命令测试"><a href="#2、命令测试" class="headerlink" title="2、命令测试"></a>2、命令测试</h1><p>　　进入python自带的GUI工具-IDLE，输入import PyQt4，如果没有提示错误，则安装正确。</p>
-<h1 id="3、代码实例"><a href="#3、代码实例" class="headerlink" title="3、代码实例"></a>3、代码实例</h1><p>创建文件pyqt.py内容如下：</p>
-<pre><code># -*- coding: utf-8 -*-　　　　　
-from PyQt4.QtGui import (QMainWindow, QPushButton, QApplication, 
-                                 QVBoxLayout, QWidget)
-from PyQt4.QtCore import (Qt, QObject, SIGNAL)
-import anotherWindow
-import sys
-class OneWindow(QMainWindow):
-    def __init__(self):
-        super(OneWindow, self).__init__()
-        self.setGeometry(100, 100, 600, 400)
-        vLayout = QVBoxLayout()
-        self.button = QPushButton(&quot;OK&quot;)
-        vLayout.addWidget(self.button)
-        widget = QWidget()
-        widget.setLayout(vLayout)
-        self.setCentralWidget(widget)
-        QObject.connect(self.button,SIGNAL(&quot;clicked()&quot;) , self.anotherWindow)        
-    def anotherWindow(self):
-        print &apos;OK&apos;
-        self.another = anotherWindow.AnotherWindow()
-        self.another.show()                          
-if __name__ == &apos;__main__&apos;:
-    app = QApplication(sys.argv)
-    w = OneWindow()
-    w.show()     
-    app.exec_()
-</code></pre><p>创建文件anotherWindow.py内容如下：</p>
-<pre><code># -*- coding: utf-8 -*-
-from PyQt4.QtGui import (QMainWindow)
-class AnotherWindow(QMainWindow):
-    def __init__(self):
-        super(AnotherWindow, self).__init__()
-        self.resize(400, 300)
-        self.setWindowTitle(&quot;this is another window&quot;)
-</code></pre><p>　　两个文件主要实现通过点击按钮完成多界面切换。</p>
-<h1 id="4、运行实例"><a href="#4、运行实例" class="headerlink" title="4、运行实例"></a>4、运行实例</h1><p>　　运行代码实例有多种方式，在此列举几种我自己常用方式。</p>
-<p>　　（1）dos命令行运行。进入pyqt.py文件所在目录，比如我的目录F:\mypython,运行命令python pyqt.py即看到代码实现的窗体。</p>
-<p>　　（2）python自带IDLE运行。打开IDLE环境，点击“File”菜单，选择”Open”菜单项，打开pyqt.py文件。此时会弹出另外一个窗体。点击“Run”菜单，选择“Run Module”菜单项，即可看到代码实现的窗体。</p>
-<p>　　（3）利用PyCharm运行。点击”File”菜单，选择“New Project”建立“Pure Python”工程，选择工程目录及python.exe目录。在工程下新建”Python File”，分别创建pyqt.py文件及anotherWindow.py文件。运行工程后即可看到代码实现的窗体。</p>
-<h1 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h1><p>　　python拥有多种图形界面编程，因为我自己平时用qt比较多，所以选择了pyqt。查看pyqt中的qt帮助文档，发现与qt的帮助文档基本相同，没必要把时间浪费到API上。
-　　</p>
-</the>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1、安装pyqt（事先必须先完成python的安装）&quot;&gt;&lt;a href=&quot;#1、安装pyqt（事先必须先完成python的安装）&quot; class=&quot;headerlink&quot; title=&quot;1、安装pyqt（事先必须先完成python的安装）&quot;&gt;&lt;/a&gt;1、安装pyqt（事先必须先完成python的安装）&lt;/h1&gt;&lt;p&gt;　　我们可以在如下网址： &lt;a href=&quot;http://www.riverbankcomputing.co.uk/software/pyqt/download&quot;&gt;http://www.riverbankcomputing.co.uk/software/pyqt/download&lt;/a&gt;&lt;br&gt;这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。&lt;/p&gt;
-&lt;p&gt;&lt;Excerpt in index | 首页摘要&gt;&lt;br&gt;+
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://hanxiaoluo.site/tags/python/"/>
-    
-      <category term="pyqt" scheme="http://hanxiaoluo.site/tags/pyqt/"/>
-    
-  </entry>
-  
-  <entry>
     <title>使用hexo在github上搭建个人博客</title>
     <link href="http://hanxiaoluo.site/2016/09/20/%E4%BD%BF%E7%94%A8hexo%E5%9C%A8github%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
     <id>http://hanxiaoluo.site/2016/09/20/使用hexo在github上搭建个人博客/</id>
@@ -902,9 +1131,9 @@ class AnotherWindow(QMainWindow):
     </summary>
     
     
-      <category term="markdown" scheme="http://hanxiaoluo.site/tags/markdown/"/>
-    
       <category term="hexo" scheme="http://hanxiaoluo.site/tags/hexo/"/>
+    
+      <category term="markdown" scheme="http://hanxiaoluo.site/tags/markdown/"/>
     
   </entry>
   

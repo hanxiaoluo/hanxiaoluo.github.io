@@ -15,31 +15,23 @@
 
 
 
-<meta name="description" content="1、编写第一个静态页面　　第一步，创建视图文件，代码如下：
-from django.http import HttpResponse
-def sayHello(request):
-    return HttpResponse(&amp;quot;Hello world！ This is my first trial. [Poll的笔记]&amp;quot;)
+<meta name="description" content="1、前言　　我在python实现的聊天室（一）一文中实现了一个没有界面的聊天室，所有操作都在CMD命令行下进行，用户体验比较差。所以在这一篇文章中，主要实现一个有界面的聊天室。
 +">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python的Web开发之Django框架应用(二)">
-<meta property="og:url" content="http://hanxiaoluo.site/2016/10/11/python的Web开发之Django框架应用(二)/index.html">
+<meta property="og:title" content="python实现的聊天室（二）">
+<meta property="og:url" content="http://hanxiaoluo.site/2016/11/02/python实现的聊天室（二）/index.html">
 <meta property="og:site_name" content="韩若熙">
-<meta property="og:description" content="1、编写第一个静态页面　　第一步，创建视图文件，代码如下：
-from django.http import HttpResponse
-def sayHello(request):
-    return HttpResponse(&amp;quot;Hello world！ This is my first trial. [Poll的笔记]&amp;quot;)
+<meta property="og:description" content="1、前言　　我在python实现的聊天室（一）一文中实现了一个没有界面的聊天室，所有操作都在CMD命令行下进行，用户体验比较差。所以在这一篇文章中，主要实现一个有界面的聊天室。
 +">
-<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/django-%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png">
-<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/django-%E9%9D%99%E6%80%81.png">
-<meta property="og:updated_time" content="2016-10-11T13:22:48.000Z">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/mypyqtchatserver.png">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/mypyqtchatclientA.png">
+<meta property="og:image" content="http://odsh9s4s2.bkt.clouddn.com/mypyqtchatclientB.png">
+<meta property="og:updated_time" content="2016-11-02T13:21:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python的Web开发之Django框架应用(二)">
-<meta name="twitter:description" content="1、编写第一个静态页面　　第一步，创建视图文件，代码如下：
-from django.http import HttpResponse
-def sayHello(request):
-    return HttpResponse(&amp;quot;Hello world！ This is my first trial. [Poll的笔记]&amp;quot;)
+<meta name="twitter:title" content="python实现的聊天室（二）">
+<meta name="twitter:description" content="1、前言　　我在python实现的聊天室（一）一文中实现了一个没有界面的聊天室，所有操作都在CMD命令行下进行，用户体验比较差。所以在这一篇文章中，主要实现一个有界面的聊天室。
 +">
-<meta name="twitter:image" content="http://odsh9s4s2.bkt.clouddn.com/django-%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png">
+<meta name="twitter:image" content="http://odsh9s4s2.bkt.clouddn.com/mypyqtchatserver.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -71,7 +63,7 @@ def sayHello(request):
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>python的Web开发之Django框架应用(二) | 韩若熙</title>
+<title>python实现的聊天室（二） | 韩若熙</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -274,11 +266,11 @@ def sayHello(request):
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-python的Web开发之Django框架应用(二)" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-python实现的聊天室（二）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/10/11/python的Web开发之Django框架应用(二)/" class="article-date">
-      <time datetime="2016-10-11T12:50:09.000Z" itemprop="datePublished">2016-10-11</time>
+      <a href="/2016/11/02/python实现的聊天室（二）/" class="article-date">
+      <time datetime="2016-11-02T12:43:57.000Z" itemprop="datePublished">2016-11-02</time>
 </a>
 
 
@@ -293,7 +285,7 @@ def sayHello(request):
         
   
     <h1 class="article-title" itemprop="name">
-      python的Web开发之Django框架应用(二)
+      python实现的聊天室（二）
     </h1>
   
 
@@ -304,7 +296,7 @@ def sayHello(request):
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyqt/">pyqt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -314,57 +306,212 @@ def sayHello(request):
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="1、编写第一个静态页面"><a href="#1、编写第一个静态页面" class="headerlink" title="1、编写第一个静态页面"></a>1、编写第一个静态页面</h1><p>　　第一步，创建视图文件，代码如下：</p>
-<pre><code>from django.http import HttpResponse
-def sayHello(request):
-    return HttpResponse(&quot;Hello world！ This is my first trial. [Poll的笔记]&quot;)
-</code></pre><p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
+        <h1 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h1><p>　　我在python实现的聊天室（一）一文中实现了一个没有界面的聊天室，所有操作都在CMD命令行下进行，用户体验比较差。所以在这一篇文章中，主要实现一个有界面的聊天室。</p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<p>　　第二步，进行URL配置。代码如下：</p>
-<pre><code>from django.conf.urls import url
-from django.contrib import admin
-from sayhello import views
-urlpatterns = [
-    url(r&apos;^sayHello/$&apos;,views.sayHello),
-]
-</code></pre><p>　　第三步，启动内置服务器，浏览器地址栏输入<strong><a href="http://127.0.0.1:8000/sayHello/" target="_blank" rel="external">http://127.0.0.1:8000/sayHello/</a></strong>就能看到如下页面：<br>      <img src="http://odsh9s4s2.bkt.clouddn.com/django-%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png" alt="静态页面"></p>
-<h1 id="２、编写第一个动态页面"><a href="#２、编写第一个动态页面" class="headerlink" title="２、编写第一个动态页面"></a>２、编写第一个动态页面</h1><p>　　第一步，创建视图文件，代码如下：</p>
-<pre><code>import datetime
-from django.http import HttpResponse
-def sayHello(request):
-    s = &apos;Hello World!&apos;
-    current_time = datetime.datetime.now()
-    html = &apos;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt; %s &lt;/h1&gt;&lt;p&gt; %s &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&apos; % (s, current_time)
-    return HttpResponse(html)
-</code></pre><p>   我们逐行分析一下这段代码：</p>
-<p>   首先，我们从django.http模块导入HttpResponse类。</p>
-<p>   接下来，我们定义一个叫做sayHello的视图函数。每个视图函数至少要有一个参数，通常被叫作request。这是一个触发这个视图、包含当前Web请求信息的对象，是类django.http.HttpResponse的一个实例。在这个示例中，我们虽然不用request做任何事情，然而它仍必须是这个视图的第一个参数。注意视图函数的名称并不重要；并不一定非得以某种特定的方式命名才能让Django识别它。 </p>
-<p>   它仅仅返回一个HttpResponse对象，这个对象包含了页面上要显示的内容。</p>
-<p>　　第二步，进行URL配置。代码如下：</p>
-<pre><code>from django.conf.urls import url
-from django.contrib import admin
-from sayhello import views
-urlpatterns = [
-    url(r&apos;^sayHello/$&apos;,views.sayHello),
-]
-</code></pre><p>　　我们逐行分析一下这段代码：</p>
-<p>　　首先，我们从模块中引入了sayHello视图。</p>
-<p>　　接下来，我们为urlpatterns加上一行： (r’^sayHello/$’,views.sayHello), 这行被称作URLpattern，它是一个Python的元组。元组中第一个元素是模式匹配字符串（正则表达式）；第二个元素是那个模式将使用的视图函数。</p>
-<p>　　urlpattern中包含了一个尖号(^)和一个美元符号($)。这些都是正则表达式符号，并且有特定的含义： 上箭头要求表达式对字符串的头部进行匹配，美元符号则要求表达式对字符串的尾部进行匹配。</p>
-<p>　　简单来说，这段代码只是告诉Django，所有指向URL：/sayHello/的请求都应由sayHello这个视图函数来处理。</p>
-<p>　　第三步，启动内置服务器，浏览器地址栏输入<strong><a href="http://127.0.0.1:8000/sayHello/" target="_blank" rel="external">http://127.0.0.1:8000/sayHello/</a></strong>就能看到如下页面：<br>  <img src="http://odsh9s4s2.bkt.clouddn.com/django-%E9%9D%99%E6%80%81.png" alt="动态页面"></p>
-<p> 可以看到页面的内容是我们每次访问页面的时间，是随时更新的。</p>
-<p>总结一下：</p>
+<h1 id="2、需求分析"><a href="#2、需求分析" class="headerlink" title="2、需求分析"></a>2、需求分析</h1><p>　　我们要实现的分为两部分：</p>
 <ul>
-<li>进来的请求转入/hello/。</li>
-<li>jango通过在ROOT_URLCONF配置来决定根URLconf。</li>
-<li>Django在URLconf中的所有URL模式中，查找第一个匹配/hello/的条目。</li>
-<li>如果找到匹配，将调用相应的视图函数。</li>
-<li>视图函数返回一个HttpResponse。</li>
-<li>Django转换HttpResponse为一个适合的HTTP response，以Web page显示出来。</li>
+<li>服务器：负责与用户建立 Socket 连接，并将某个用户发送的消息广播到所有在线的用户。显示用户进入/退出聊天室信息。</li>
+<li>客户端：可以输入聊天的内容并发送，同时可以显示其他用户的消息记录。</li>
 </ul>
-<p>其实做一个Django-powered页面，只需要写视图函数并用 URLconfs把它们和URLs对应起来就ok了。</p>
+<h1 id="3、服务端实现"><a href="#3、服务端实现" class="headerlink" title="3、服务端实现"></a>3、服务端实现</h1><pre><code># -*- coding: gbk -*-  
+from PyQt4.QtGui import *  
+from PyQt4.QtCore import *  
+import sys  
+from PyQt4.QtNetwork import *  
+import locale      
+#QTextCodec.setCodecForTr(QTextCodec.codecForName(&quot;utf8&quot;))      
+class TcpClientSocket(QTcpSocket):  
+    def __init__(self,parent=None):  
+        super(TcpClientSocket,self).__init__(parent)  
+        self.connect(self,SIGNAL(&quot;readyRead()&quot;),self.dataReceive)  
+        self.connect(self,SIGNAL(&quot;disconnected()&quot;),self.slotDisconnected)  
+        self.length = 0  
+        self.msglist = QByteArray()            
+    def dataReceive(self):  
+        while self.bytesAvailable() &gt; 0:  
+            length = self.bytesAvailable()  
+            msg = self.read(length)  
+            self.emit(SIGNAL(&quot;updateClients(QString,int)&quot;),msg,length)                            
+    def slotDisconnected(self):  
+        pass                
+class Server(QTcpServer):  
+    def __init__(self,parent=None,port=0):  
+        super(Server,self).__init__(parent)  
+        self.listen(QHostAddress.Any,port)  
+        self.tcpClientSocketList = []            
+    def incomingConnection(self,socketDescriptor):  
+        tcpClientSocket = TcpClientSocket(self)  
+                    self.connect(tcpClientSocket,SIGNAL(&quot;updateClients(QString,int)&quot;),self.updateClients)  
+                                self.connect(tcpClientSocket,SIGNAL(&quot;disconnetcted(int)&quot;),self.slotDisconnected)  
+        tcpClientSocket.setSocketDescriptor(socketDescriptor)  
+        self.tcpClientSocketList.append(tcpClientSocket)        
+    def updateClients(self,msg,length):  
+        self.emit(SIGNAL(&quot;updateServer(QString,int)&quot;),msg,length)  
+        for i in xrange(len(self.tcpClientSocketList)):  
+            item = self.tcpClientSocketList[i]
+            length_msg = item.writeData(msg)            
+            #length_msg = item.writeData(msg.toUtf8())  
+            #if length_msg != msg.toUtf8().length():  
+            #    continue                            
+    def slotDisconnected(self,descriptor):  
+        for i in xrange(len(self.tcpClientSocketList)):  
+            item = self.tcpClientSocketList[i]  
+            if item.socketDescriptor() == descriptor:  
+                self.tcpClientSocketList.remove[i]  
+                return  
+        return    
+class TcpServer(QDialog):  
+    def __init__(self,parent=None,f=None):  
+        super(TcpServer,self).__init__(parent)  
+        self.setWindowTitle(&quot;服务端&quot;)  
+        vbMain = QVBoxLayout(self)  
+        self.ListWidgetContent = QListWidget(self)  
+        vbMain.addWidget(self.ListWidgetContent)                
+        hb = QHBoxLayout()  
+        LabelPort = QLabel(self)  
+        LabelPort.setText(self.tr(&quot;Port:&quot;))  
+        hb.addWidget(LabelPort)                
+        LineEditPort = QLineEdit(self)  
+        hb.addWidget(LineEditPort)                
+        vbMain.addLayout(hb)                
+        self.PushButtonCreate = QPushButton(self)  
+        self.PushButtonCreate.setText(self.tr(&quot;创建聊天室&quot;))  
+        vbMain.addWidget(self.PushButtonCreate)  
+                      self.connect(self.PushButtonCreate,SIGNAL(&quot;clicked()&quot;),self.slotCreateServer)  
+        self.port  = 8010  
+        LineEditPort.setText(QString.number(self.port))            
+    def slotCreateServer(self):  
+        server = Server(self,self.port)  
+        self.connect(server,SIGNAL(&quot;updateServer(QString,int)&quot;),self.updateServer)  
+        self.PushButtonCreate.setEnabled(False)            
+    def updateServer(self,msg,length):  
+        #self.ListWidgetContent.addItem(msg.fromUtf8(msg))  
+        self.ListWidgetContent.addItem(msg)                                      
+if __name__ == &apos;__main__&apos;:             
+    app=QApplication(sys.argv)    
+    mycode = locale.getpreferredencoding()
+    code = QTextCodec.codecForName(mycode)
+    QTextCodec.setCodecForLocale(code)
+    QTextCodec.setCodecForTr(code)
+    QTextCodec.setCodecForCStrings(code)        
+    dialog=TcpServer()  
+    dialog.show()  
+    app.exec_()  
+</code></pre><h1 id="4、客户端实现"><a href="#4、客户端实现" class="headerlink" title="4、客户端实现"></a>4、客户端实现</h1><pre><code># -*- coding: gbk -*-  
+from PyQt4.QtGui import *  
+from PyQt4.QtCore import *  
+import sys  
+from PyQt4.QtNetwork import *  
+import locale  
+#QTextCodec.setCodecForTr(QTextCodec.codecForName(&quot;utf8&quot;))        
+class TcpClient(QDialog):  
+    def __init__(self,parent=None):  
+        super(TcpClient,self).__init__(parent)  
+        self.setWindowTitle(self.tr(&quot;客户端&quot;))                  
+        self.status = False   
+        self.serverIP = QHostAddress()  
+        self.port = 8010  
+        self.msglist = QByteArray()                
+        vbMain = QVBoxLayout(self)  
+        self.ListWidgetContent = QListWidget(self)  
+        vbMain.addWidget(self.ListWidgetContent)                
+        hb = QHBoxLayout()  
+        self.LineEditMessage = QLineEdit(self)  
+        hb.addWidget(self.LineEditMessage)  
+        self.PushButtonSend = QPushButton(self)  
+        self.PushButtonSend.setText(self.tr(&quot;发送&quot;))  
+        self.PushButtonSend.setEnabled(False)  
+        hb.addWidget(self.PushButtonSend)  
+        self.connect(self.PushButtonSend,SIGNAL(&quot;clicked()&quot;),self.slotSend)                
+        hb1 = QHBoxLayout()  
+        LabelName = QLabel(self)  
+        LabelName.setText(self.tr(&quot;用户名:&quot;))  
+        self.LineEditUser = QLineEdit(self)  
+        hb1.addWidget(LabelName)  
+        hb1.addWidget(self.LineEditUser)                
+        hb2 = QHBoxLayout()  
+        LabelServerIP = QLabel(self)  
+        LabelServerIP.setText(self.tr(&quot;服务器地址:&quot;))  
+        self.LineEditIP = QLineEdit(self)  
+        hb2.addWidget(LabelServerIP)  
+        hb2.addWidget(self.LineEditIP)                 
+        hb3 = QHBoxLayout()  
+        LabelPort = QLabel(self)  
+        LabelPort.setText(self.tr(&quot;端口:&quot;))               
+        self.LineEditPort = QLineEdit(self)  
+        hb3.addWidget(LabelPort)  
+        hb3.addWidget(self.LineEditPort)                 
+        vbMain.addLayout(hb)  
+        vbMain.addLayout(hb1)  
+        vbMain.addLayout(hb2)  
+        vbMain.addLayout(hb3)                
+        self.PushButtonLeave = QPushButton(self)  
+        self.PushButtonLeave.setText(self.tr(&quot;进入聊天室&quot;))  
+        vbMain.addWidget(self.PushButtonLeave)                
+        self.connect(self.PushButtonLeave,SIGNAL(&quot;clicked()&quot;),self.slotEnter)                
+    def slotSend(self):  
+        msg = self.userName + &quot;:&quot; + self.LineEditMessage.text(        
+        #length = self.tcpSocket.writeData(msg.toUtf8())
+        length = self.tcpSocket.writeData(msg)        
+        self.LineEditMessage.clear()   
+        #if length != msg.toUtf8().length():  
+        #    return                  
+    def slotEnter(self):  
+        if not self.status:  
+            ip = self.LineEditIP.text()  
+            if not self.serverIP.setAddress(ip):  
+                QMessageBox.information(self,self.tr(&quot;error&quot;),self.tr(&quot;server ip address error!&quot;))  
+                return  
+            if self.LineEditUser.text() == &quot;&quot;:  
+                QMessageBox.information(self,self.tr(&quot;error&quot;),self.tr(&quot;User Name error!&quot;))  
+                return  
+            self.userName = self.LineEditUser.text()  
+            self.tcpSocket = QTcpSocket(self)  
+            self.connect(self.tcpSocket,SIGNAL(&quot;connected()&quot;),self.slotConnected)  
+            self.connect(self.tcpSocket,SIGNAL(&quot;disconnected()&quot;),self.slotDisconnected)  
+            self.connect(self.tcpSocket,SIGNAL(&quot;readyRead()&quot;),self.dataReceived)              
+            self.tcpSocket.connectToHost(self.serverIP.toString(),8010)  
+            self.status = True  
+        else:  
+            msg = self.userName + &quot;:&quot; + self.tr(&quot;离开聊天室&quot;) 
+            length = self.tcpSocket.writeData(msg)            
+            #length = self.tcpSocket.writeData(msg.toUtf8())             
+            #if length != msg.toUtf8().length():  
+            #    return                
+            self.tcpSocket.disconnectFromHost()  
+            self.status = False            
+    def slotConnected(self):  
+        self.PushButtonSend.setEnabled(True)  
+        self.PushButtonLeave.setText(self.tr(&quot;离开聊天室&quot;))                
+        msg = self.userName + &quot;:&quot; + self.tr(&quot;进入聊天室&quot;)  
+        #length = self.tcpSocket.writeData(msg.toUtf8())
+        length = self.tcpSocket.writeData(msg)        
+        #if length != msg.toUtf8().length():  
+        #    return            
+    def slotDisconnected(self):  
+        self.PushButtonSend.setEnabled(False)  
+        self.PushButtonLeave.setText(self.tr(&quot;进入聊天室&quot;))  
+    def dataReceived(self):  
+        while self.tcpSocket.bytesAvailable() &gt; 0:  
+            length = self.tcpSocket.bytesAvailable()  
+            msg = QString(self.tcpSocket.read(length))  
+            #msg = msg.fromUtf8(msg)  
+            #self.ListWidgetContent.addItem(msg.fromUtf8(msg))
+            self.ListWidgetContent.addItem(msg)                                
+if __name__ == &apos;__main__&apos;:  
+    app=QApplication(sys.argv)     
+    mycode = locale.getpreferredencoding()
+    code = QTextCodec.codecForName(mycode)
+    QTextCodec.setCodecForLocale(code)
+    QTextCodec.setCodecForTr(code)
+    QTextCodec.setCodecForCStrings(code)        
+    dialog=TcpClient()  
+    dialog.show()  
+    app.exec_()  
+</code></pre><h1 id="5、运行效果"><a href="#5、运行效果" class="headerlink" title="5、运行效果"></a>5、运行效果</h1><p>　　运行时先启动服务端，再运行客户端。服务器启动后创建聊天室。客户端运行后，输入昵称、服务器的IP及port信息，进入聊天室。此时服务端会提示用户进入聊天室。当客户端关闭，表明该用户退出聊天室，服务器会转发该用户退出消息到各个客户端。<br><img src="http://odsh9s4s2.bkt.clouddn.com/mypyqtchatserver.png" alt="服务端"><br><img src="http://odsh9s4s2.bkt.clouddn.com/mypyqtchatclientA.png" alt="客户端A"><br><img src="http://odsh9s4s2.bkt.clouddn.com/mypyqtchatclientB.png" alt="客户端B"></p>
+<h1 id="6、参考链接"><a href="#6、参考链接" class="headerlink" title="6、参考链接"></a>6、参考链接</h1><p>因为代码中用到了汉字，所以涉及到编码问题。希望该链接能帮助到你。<br><a href="http://blog.csdn.net/uselym/article/details/51867056" target="_blank" rel="external">http://blog.csdn.net/uselym/article/details/51867056</a></p>
 </the>
       
     </div>
@@ -373,13 +520,13 @@ urlpatterns = [
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/10/11/python的Web开发之Django框架应用(二)/">python的Web开发之Django框架应用(二)</a></p>
+        <p><span>本文标题:</span><a href="/2016/11/02/python实现的聊天室（二）/">python实现的聊天室（二）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">韩若熙</a></p>
-        <p><span>发布时间:</span>2016-10-11, 20:50:09</p>
-        <p><span>最后更新:</span>2016-10-11, 21:22:48</p>
+        <p><span>发布时间:</span>2016-11-02, 20:43:57</p>
+        <p><span>最后更新:</span>2016-11-02, 21:21:09</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/10/11/python的Web开发之Django框架应用(二)/" title="python的Web开发之Django框架应用(二)">http://hanxiaoluo.site/2016/10/11/python的Web开发之Django框架应用(二)/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://hanxiaoluo.site/2016/10/11/python的Web开发之Django框架应用(二)/　　作者: 韩若熙" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/11/02/python实现的聊天室（二）/" title="python实现的聊天室（二）">http://hanxiaoluo.site/2016/11/02/python实现的聊天室（二）/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hanxiaoluo.site/2016/11/02/python实现的聊天室（二）/　　作者: 韩若熙" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -391,16 +538,10 @@ urlpatterns = [
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/10/12/django实现的投票系统详解/">
-                    django实现的投票系统详解
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/10/08/python图形用户界面之pyqt4的使用/">
-                    python图形用户界面之pyqt的使用
+                <a href="/2016/10/29/python实现的聊天室（一）/">
+                    python实现的聊天室(一)
                 </a>
             </div>
         
@@ -412,7 +553,7 @@ urlpatterns = [
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、编写第一个静态页面"><span class="toc-number">1.</span> <span class="toc-text">1、编写第一个静态页面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#２、编写第一个动态页面"><span class="toc-number">2.</span> <span class="toc-text">２、编写第一个动态页面</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、前言"><span class="toc-number">1.</span> <span class="toc-text">1、前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、需求分析"><span class="toc-number">2.</span> <span class="toc-text">2、需求分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、服务端实现"><span class="toc-number">3.</span> <span class="toc-text">3、服务端实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、客户端实现"><span class="toc-number">4.</span> <span class="toc-text">4、客户端实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、运行效果"><span class="toc-number">5.</span> <span class="toc-text">5、运行效果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6、参考链接"><span class="toc-number">6.</span> <span class="toc-text">6、参考链接</span></a></li></ol>
         
     </div>
     <style>
@@ -447,7 +588,7 @@ urlpatterns = [
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"python的Web开发之Django框架应用(二)　| 韩若熙　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"python实现的聊天室（二）　| 韩若熙　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     </div>
 
@@ -457,7 +598,7 @@ urlpatterns = [
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2016/10/11/python的Web开发之Django框架应用(二)/" data-title="python的Web开发之Django框架应用(二)" data-url="http://hanxiaoluo.site/2016/10/11/python的Web开发之Django框架应用(二)/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/11/02/python实现的聊天室（二）/" data-title="python实现的聊天室（二）" data-url="http://hanxiaoluo.site/2016/11/02/python实现的聊天室（二）/"></div>
     <script>
         var duoshuoQuery = {short_name:"hanxiaoluo"};
         var loadComment = function(){
@@ -480,15 +621,13 @@ urlpatterns = [
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/10/12/django实现的投票系统详解/" title="上一篇: django实现的投票系统详解">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/10/08/python图形用户界面之pyqt4的使用/" title="下一篇: python图形用户界面之pyqt的使用">
+            <a href="/2016/10/29/python实现的聊天室（一）/" title="下一篇: python实现的聊天室(一)">
                 <i class="fa fa-angle-right"></i>
             </a>
         
