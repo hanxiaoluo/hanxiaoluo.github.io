@@ -4,6 +4,21 @@
 
     
   <url>
+    <loc>http://hanxiaoluo.site/2018/11/11/markdown%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</loc>
+    <lastmod>2018-11-11T08:07:50.290Z</lastmod>
+    <data>
+        <display>
+        <title></title>
+        <pubTime>2018-11-11T08:07:50.290Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://hanxiaoluo.site/2016/11/02/python%E5%AE%9E%E7%8E%B0%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AE%A4%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
     <lastmod>2016-11-02T13:21:09.000Z</lastmod>
     <data>
@@ -222,9 +237,9 @@
         <title>Hello</title>
         <pubTime>2016-09-16T09:12:45.000Z</pubTime>
         
-        <tag>hexo</tag>
-         
         <tag>markdown</tag>
+         
+        <tag>hexo</tag>
          
          
            
