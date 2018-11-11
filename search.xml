@@ -4,6 +4,18 @@
   
     
     <entry>
+      <title><![CDATA[如何使用hexo发布博客到gitHub]]></title>
+      <url>http://hanxiaoluo.site/2018/11/11/%E4%BD%BF%E7%94%A8hexo%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0%E5%88%B0github.io/</url>
+      <content type="html"><![CDATA[<h1 id="1、编写md文件"><a href="#1、编写md文件" class="headerlink" title="1、编写md文件"></a>1、编写md文件</h1><p>按照markdown语法编写md文件，我win系统下使用的是miu，对应mac系统下的mou，预览效果基本一致。</p>
+<h1 id="2、拷贝md文件到hexo特定目录下"><a href="#2、拷贝md文件到hexo特定目录下" class="headerlink" title="2、拷贝md文件到hexo特定目录下"></a>2、拷贝md文件到hexo特定目录下</h1><p>将md文件拷贝到myhexo/source/_posts目录下</p>
+<h1 id="3、执行hexo命令"><a href="#3、执行hexo命令" class="headerlink" title="3、执行hexo命令"></a>3、执行hexo命令</h1><ul>
+<li>执行命令 hexo g(重新生成资源文件)</li>
+<li>执行命令 hexo d (发布文章到github.io)</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[markdown的基本语法]]></title>
       <url>http://hanxiaoluo.site/2018/11/11/markdown%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</url>
       <content type="html"><![CDATA[<h1 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h1><p>markdown是一种纯文本格式的标记语言。</p>
@@ -610,13 +622,13 @@ urlpatterns = [
     </entry>
     
     <entry>
-      <title><![CDATA[python中的socket网络编程（一）]]></title>
-      <url>http://hanxiaoluo.site/2016/10/08/python%E4%B8%AD%E7%9A%84socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%B8%80)/</url>
-      <content type="html"><![CDATA[<h1 id="1、网络编程"><a href="#1、网络编程" class="headerlink" title="1、网络编程"></a>1、网络编程</h1><p>　　Socket 是进程间通信的一种方式，它与其他进程间通信的一个主要不同是：它能实现不同主机间的进程间通信，我们网络上各种各样的服务大多都是基于 Socket 来完成通信的，例如我们每天浏览网页、QQ 聊天、收发 email 等等。要解决网络上两台主机之间的进程通信问题，首先要唯一标识该进程，在 TCP/IP 网络协议中，就是通过 (IP地址，协议，端口号) 三元组来标识进程的，解决了进程标识问题，就有了通信的基础了。</p>
+      <title><![CDATA[python中的socket网络编程（二）]]></title>
+      <url>http://hanxiaoluo.site/2016/10/08/python%E4%B8%AD%E7%9A%84socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%BA%8C)/</url>
+      <content type="html"><![CDATA[<h1 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h1><p>　　在python中的socket网络编程（一）一文中，我们介绍了客户端的主要功能。下面我们看下服务端。
+　　</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<p>　　TCP 是一种面向连接的传输层协议，TCP Socket 是基于一种 Client-Server 的编程模型，服务端监听客户端的连接请求，一旦建立连接即可以进行传输数据。那么对 TCP Socket 编程的介绍也分为客户端和服务端。下面我们看下客户端的实现。</p>
 <h1 id="2、具体实现"><a href="#2、具体实现" class="headerlink" title="2、具体实现"></a>2、具体实现</h1><p>　　创建socket：</p>
 <p>　　首先要创建 socket，用 Python 中 socket 模块的函数 socket 就可以完成：</p>
 <pre><code>#-*- coding: utf-8 -*-
@@ -628,62 +640,79 @@ print &apos;socket Created&apos;　
 <li>Address Family：可以选择 AF_INET（用于 Internet 进程间通信） 或者 AF_UNIX（用于同一台机器进程间通信）</li>
 <li>Type：套接字类型，可以是 SOCKET_STREAM（流式套接字，主要用于 TCP 协议）或者SOCKET_DGRAM（数据报套接字，主要用于 UDP 协议）</li>
 </ul>
-<p>　　错误处理：</p>
-<p>　　如果创建 socket 函数失败，会抛出一个 socket.error 的异常，需要捕获。</p>
+<p>　　绑定socket：</p>
+<p>　　函数 bind 可以用来将 socket 绑定到特定的地址和端口上，它需要一个 sockaddr_in 结构作为参数。</p>
 <pre><code># -*- coding: utf-8 -*-
 import socket
 import sys
-#创建套接字,创建失败时会抛出一个 socket.error 的异常，需要捕获
+HOST = &apos;&apos;   
+PORT = 8888 
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print &apos;Socket created&apos;
+
 try:
-    s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-except socket.error,msg:
-    print &apos;Failed to create socket. Error code: &apos;+ str(msg[0]) + &apos; ,Error     message : &apos; + msg[1]
-    sys.exit();
-print &apos;socket Created&apos;
-</code></pre><p>　　连接服务器：</p>
-<p>　　socket 使用 (IP地址，协议，端口号) 来标识一个进程，那么我们要想和服务器进行通信，就需要知道它的 IP地址以及端口号。</p>
-<p>　　Python 提供了一个简单的函数 socket.gethostbyname 来获得远程主机的 IP 地址：</p>
-<pre><code>#获取服务器IP地址
-host = &apos;www.baidu.com&apos;
-port = 80
-try:
-    remote_ip = socket.gethostbyname( host )
-except socket.gaierror:
-    #could not resolve
-    print &apos;Hostname could not be resolved. Exiting&apos;
-    sys.exit()  
-print &apos;Ip address of &apos; + host + &apos; is &apos; + remote_ip
-</code></pre><p>　　使用连接函数 connect 连接到该 IP 的某个特定的端口上了，下面例子连接到 80 端口上（是 HTTP 服务的默认端口）：</p>
-<pre><code>#连接服务器
-s.connect((remote_ip , port))
-print &apos;Socket Connected to &apos; + host + &apos; on ip &apos; + remote_ip
-</code></pre><p>　　发送数据：</p>
-<p>　　例如发送字符串GET / HTTP/1.1\r\n\r\n，这是一个 HTTP 请求网页内容的命令。</p>
-<pre><code>#发送数据
-message = &quot;GET / HTTP/1.1\r\n\r\n&quot;
-try :
-    #Set the whole string
-    s.sendall(message)
-except socket.error:
-    #Send failed
-    print &apos;Send failed&apos;
+    s.bind((HOST, PORT))
+except socket.error , msg:
+    print &apos;Bind failed. Error Code : &apos; + str(msg[0]) + &apos; Message &apos; + msg[1]
     sys.exit()
-print &apos;Message send successfully&apos;
-</code></pre><p>　　接收数据：</p>
-<pre><code>#接受服务器反馈的数据
-reply = s.recv(4096)
-print reply
-</code></pre><p>　　关闭socket：</p>
-<p>　　当我们不想再次请求服务器数据时，可以将该 socket 关闭，结束这次通信。</p>
-<pre><code>#关闭套接字
+
+print &apos;Socket bind complete&apos;
+</code></pre><p>　　监听连接：</p>
+<p>　　函数 listen 可以将 socket 置于监听模式。</p>
+<pre><code>s.listen(10)
+print &apos;Socket now listening&apos;
+</code></pre><p>　　该函数带有一个参数称为 backlog，用来控制连接的个数。如果设为 10，那么有 10 个连接正在等待处理，此时第 11 个请求过来时将会被拒绝。</p>
+<p>　　接收连接，当有客户端向服务器发送连接请求时，服务器会接收连接。</p>
+<pre><code>conn, addr = s.accept()
+print &apos;Connected with &apos; + addr[0] + &apos;:&apos; + str(addr[1])
+</code></pre><p>　　为了处理每个连接，我们需要将处理的程序与主程序的接收连接分开。一种方法可以使用线程来实现，主服务程序接收连接，创建一个线程来处理该连接的通信，然后服务器回到接收其他连接的逻辑上来。完整的服务端代码如下：</p>
+<pre><code>import socket
+import sys
+from thread import *
+
+HOST = &apos;&apos;   
+PORT = 8888 
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print &apos;Socket created&apos;
+
+try:
+    s.bind((HOST, PORT))
+except socket.error , msg:
+    print &apos;Bind failed. Error Code : &apos; + str(msg[0]) + &apos; Message &apos; + msg[1]
+    sys.exit()    
+print &apos;Socket bind complete&apos;
+
+s.listen(10)
+print &apos;Socket now listening&apos;
+
+def clientthread(conn):
+    conn.send(&apos;Welcome to the server. Type something and hit enter\n&apos;) 
+    while True:
+        data = conn.recv(1024)
+        reply = &apos;OK...&apos; + data
+        if not data: 
+            break     
+        conn.sendall(reply)     
+    conn.close()
+
+while 1:
+    conn, addr = s.accept()
+    print &apos;Connected with &apos; + addr[0] + &apos;:&apos; + str(addr[1])     
+    start_new_thread(clientthread ,(conn,))
+
 s.close()
-</code></pre><p>　　运行结果：<br>　　<br><img src="http://odsh9s4s2.bkt.clouddn.com/client-return.png" alt="客户端执行结果"></p>
-<h1 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h1><p>　 python网络编程客户端，我们需要经过如下五步：</p>
+</code></pre><p>　　在命令行下运行python server.py,服务端运行结果如下：<br><img src="http://odsh9s4s2.bkt.clouddn.com/server-socket.png" alt="服务端执行结果"></p>
+<h1 id="3、客户端测试"><a href="#3、客户端测试" class="headerlink" title="3、客户端测试"></a>3、客户端测试</h1><p>　　我们使用tcp/udp socket测试工具，模仿客户端。向服务端发送字符串，服务端接收字符串，然后返回。效果如下：<br>　　<img src="http://odsh9s4s2.bkt.clouddn.com/client-socket.png" alt="客户端执行结果">
+　　</p>
+<h1 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h1><p>　 python网络编程服务端，我们需要经过如下五步：</p>
 <ul>
 <li>创建socket    </li>
-<li>连接到服务器</li>
-<li>发送数据</li>
-<li>接收数据</li>
+<li>绑定到指定的地址及端口</li>
+<li>监听连接</li>
+<li>建立连接</li>
+<li>接收/发送数据</li>
 <li>关闭socket
 　　
 　　　　</li>
@@ -780,13 +809,13 @@ class AnotherWindow(QMainWindow):
     </entry>
     
     <entry>
-      <title><![CDATA[python中的socket网络编程（二）]]></title>
-      <url>http://hanxiaoluo.site/2016/10/08/python%E4%B8%AD%E7%9A%84socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%BA%8C)/</url>
-      <content type="html"><![CDATA[<h1 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h1><p>　　在python中的socket网络编程（一）一文中，我们介绍了客户端的主要功能。下面我们看下服务端。
-　　</p>
+      <title><![CDATA[python中的socket网络编程（一）]]></title>
+      <url>http://hanxiaoluo.site/2016/10/08/python%E4%B8%AD%E7%9A%84socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%B8%80)/</url>
+      <content type="html"><![CDATA[<h1 id="1、网络编程"><a href="#1、网络编程" class="headerlink" title="1、网络编程"></a>1、网络编程</h1><p>　　Socket 是进程间通信的一种方式，它与其他进程间通信的一个主要不同是：它能实现不同主机间的进程间通信，我们网络上各种各样的服务大多都是基于 Socket 来完成通信的，例如我们每天浏览网页、QQ 聊天、收发 email 等等。要解决网络上两台主机之间的进程通信问题，首先要唯一标识该进程，在 TCP/IP 网络协议中，就是通过 (IP地址，协议，端口号) 三元组来标识进程的，解决了进程标识问题，就有了通信的基础了。</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
+<p>　　TCP 是一种面向连接的传输层协议，TCP Socket 是基于一种 Client-Server 的编程模型，服务端监听客户端的连接请求，一旦建立连接即可以进行传输数据。那么对 TCP Socket 编程的介绍也分为客户端和服务端。下面我们看下客户端的实现。</p>
 <h1 id="2、具体实现"><a href="#2、具体实现" class="headerlink" title="2、具体实现"></a>2、具体实现</h1><p>　　创建socket：</p>
 <p>　　首先要创建 socket，用 Python 中 socket 模块的函数 socket 就可以完成：</p>
 <pre><code>#-*- coding: utf-8 -*-
@@ -798,79 +827,62 @@ print &apos;socket Created&apos;　
 <li>Address Family：可以选择 AF_INET（用于 Internet 进程间通信） 或者 AF_UNIX（用于同一台机器进程间通信）</li>
 <li>Type：套接字类型，可以是 SOCKET_STREAM（流式套接字，主要用于 TCP 协议）或者SOCKET_DGRAM（数据报套接字，主要用于 UDP 协议）</li>
 </ul>
-<p>　　绑定socket：</p>
-<p>　　函数 bind 可以用来将 socket 绑定到特定的地址和端口上，它需要一个 sockaddr_in 结构作为参数。</p>
+<p>　　错误处理：</p>
+<p>　　如果创建 socket 函数失败，会抛出一个 socket.error 的异常，需要捕获。</p>
 <pre><code># -*- coding: utf-8 -*-
 import socket
 import sys
-HOST = &apos;&apos;   
-PORT = 8888 
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-print &apos;Socket created&apos;
-
+#创建套接字,创建失败时会抛出一个 socket.error 的异常，需要捕获
 try:
-    s.bind((HOST, PORT))
-except socket.error , msg:
-    print &apos;Bind failed. Error Code : &apos; + str(msg[0]) + &apos; Message &apos; + msg[1]
+    s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+except socket.error,msg:
+    print &apos;Failed to create socket. Error code: &apos;+ str(msg[0]) + &apos; ,Error     message : &apos; + msg[1]
+    sys.exit();
+print &apos;socket Created&apos;
+</code></pre><p>　　连接服务器：</p>
+<p>　　socket 使用 (IP地址，协议，端口号) 来标识一个进程，那么我们要想和服务器进行通信，就需要知道它的 IP地址以及端口号。</p>
+<p>　　Python 提供了一个简单的函数 socket.gethostbyname 来获得远程主机的 IP 地址：</p>
+<pre><code>#获取服务器IP地址
+host = &apos;www.baidu.com&apos;
+port = 80
+try:
+    remote_ip = socket.gethostbyname( host )
+except socket.gaierror:
+    #could not resolve
+    print &apos;Hostname could not be resolved. Exiting&apos;
+    sys.exit()  
+print &apos;Ip address of &apos; + host + &apos; is &apos; + remote_ip
+</code></pre><p>　　使用连接函数 connect 连接到该 IP 的某个特定的端口上了，下面例子连接到 80 端口上（是 HTTP 服务的默认端口）：</p>
+<pre><code>#连接服务器
+s.connect((remote_ip , port))
+print &apos;Socket Connected to &apos; + host + &apos; on ip &apos; + remote_ip
+</code></pre><p>　　发送数据：</p>
+<p>　　例如发送字符串GET / HTTP/1.1\r\n\r\n，这是一个 HTTP 请求网页内容的命令。</p>
+<pre><code>#发送数据
+message = &quot;GET / HTTP/1.1\r\n\r\n&quot;
+try :
+    #Set the whole string
+    s.sendall(message)
+except socket.error:
+    #Send failed
+    print &apos;Send failed&apos;
     sys.exit()
-
-print &apos;Socket bind complete&apos;
-</code></pre><p>　　监听连接：</p>
-<p>　　函数 listen 可以将 socket 置于监听模式。</p>
-<pre><code>s.listen(10)
-print &apos;Socket now listening&apos;
-</code></pre><p>　　该函数带有一个参数称为 backlog，用来控制连接的个数。如果设为 10，那么有 10 个连接正在等待处理，此时第 11 个请求过来时将会被拒绝。</p>
-<p>　　接收连接，当有客户端向服务器发送连接请求时，服务器会接收连接。</p>
-<pre><code>conn, addr = s.accept()
-print &apos;Connected with &apos; + addr[0] + &apos;:&apos; + str(addr[1])
-</code></pre><p>　　为了处理每个连接，我们需要将处理的程序与主程序的接收连接分开。一种方法可以使用线程来实现，主服务程序接收连接，创建一个线程来处理该连接的通信，然后服务器回到接收其他连接的逻辑上来。完整的服务端代码如下：</p>
-<pre><code>import socket
-import sys
-from thread import *
-
-HOST = &apos;&apos;   
-PORT = 8888 
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-print &apos;Socket created&apos;
-
-try:
-    s.bind((HOST, PORT))
-except socket.error , msg:
-    print &apos;Bind failed. Error Code : &apos; + str(msg[0]) + &apos; Message &apos; + msg[1]
-    sys.exit()    
-print &apos;Socket bind complete&apos;
-
-s.listen(10)
-print &apos;Socket now listening&apos;
-
-def clientthread(conn):
-    conn.send(&apos;Welcome to the server. Type something and hit enter\n&apos;) 
-    while True:
-        data = conn.recv(1024)
-        reply = &apos;OK...&apos; + data
-        if not data: 
-            break     
-        conn.sendall(reply)     
-    conn.close()
-
-while 1:
-    conn, addr = s.accept()
-    print &apos;Connected with &apos; + addr[0] + &apos;:&apos; + str(addr[1])     
-    start_new_thread(clientthread ,(conn,))
-
+print &apos;Message send successfully&apos;
+</code></pre><p>　　接收数据：</p>
+<pre><code>#接受服务器反馈的数据
+reply = s.recv(4096)
+print reply
+</code></pre><p>　　关闭socket：</p>
+<p>　　当我们不想再次请求服务器数据时，可以将该 socket 关闭，结束这次通信。</p>
+<pre><code>#关闭套接字
 s.close()
-</code></pre><p>　　在命令行下运行python server.py,服务端运行结果如下：<br><img src="http://odsh9s4s2.bkt.clouddn.com/server-socket.png" alt="服务端执行结果"></p>
-<h1 id="3、客户端测试"><a href="#3、客户端测试" class="headerlink" title="3、客户端测试"></a>3、客户端测试</h1><p>　　我们使用tcp/udp socket测试工具，模仿客户端。向服务端发送字符串，服务端接收字符串，然后返回。效果如下：<br>　　<img src="http://odsh9s4s2.bkt.clouddn.com/client-socket.png" alt="客户端执行结果">
-　　</p>
-<h1 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h1><p>　 python网络编程服务端，我们需要经过如下五步：</p>
+</code></pre><p>　　运行结果：<br>　　<br><img src="http://odsh9s4s2.bkt.clouddn.com/client-return.png" alt="客户端执行结果"></p>
+<h1 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h1><p>　 python网络编程客户端，我们需要经过如下五步：</p>
 <ul>
 <li>创建socket    </li>
-<li>绑定到指定的地址及端口</li>
-<li>监听连接</li>
-<li>建立连接</li>
-<li>接收/发送数据</li>
+<li>连接到服务器</li>
+<li>发送数据</li>
+<li>接收数据</li>
 <li>关闭socket
 　　
 　　　　</li>
