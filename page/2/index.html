@@ -190,7 +190,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/client/">client</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab/">gitlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyqt/">pyqt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/qtcreator/">qtcreator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/">socket</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axure/">axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/client/">client</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab/">gitlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyqt/">pyqt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/qtcreator/">qtcreator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/">socket</a></li></ul>
                     </div>
                 </section>
                 
@@ -265,6 +265,72 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-django实现的投票系统详解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/12/django实现的投票系统详解/" class="article-date">
+      <time datetime="2016-10-12T12:45:24.000Z" itemprop="datePublished">2016-10-12</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/12/django实现的投票系统详解/">django实现的投票系统详解</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="1、创建项目-mysite-与应用-polls"><a href="#1、创建项目-mysite-与应用-polls" class="headerlink" title="1、创建项目(mysite)与应用(polls)"></a>1、创建项目(mysite)与应用(polls)</h1><p>　　如何创建项目及应用，在《python的Web开发之Django框架应用(一)》一文中已经讲的很清楚了。在此，不作说明。</p>
+<p>　　创建应用完成后，将应用添加到setting.py配置文件中。在<strong>INSTALLED_APPS</strong>中追加polls</p>
+<p><Excerpt in index | 首页摘要><br>+
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/10/12/django实现的投票系统详解/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-python的Web开发之Django框架应用(二)" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -315,72 +381,6 @@ def sayHello(request):
       
         <p class="article-more-link">
           <a href="/2016/10/11/python的Web开发之Django框架应用(二)/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-python中的socket网络编程(二)" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/08/python中的socket网络编程(二)/" class="article-date">
-      <time datetime="2016-10-08T15:01:42.000Z" itemprop="datePublished">2016-10-08</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/08/python中的socket网络编程(二)/">python中的socket网络编程（二）</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h1><p>　　在python中的socket网络编程（一）一文中，我们介绍了客户端的主要功能。下面我们看下服务端。
-　　</p>
-<p><Excerpt in index | 首页摘要><br>+
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/server/">server</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/socket/">socket</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/10/08/python中的socket网络编程(二)/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -529,10 +529,10 @@ def sayHello(request):
 
 
   
-    <article id="post-python中的socket网络编程(一)" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-python中的socket网络编程(二)" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/10/08/python中的socket网络编程(一)/" class="article-date">
+      <a href="/2016/10/08/python中的socket网络编程(二)/" class="article-date">
       <time datetime="2016-10-08T15:01:42.000Z" itemprop="datePublished">2016-10-08</time>
 </a>
 
@@ -548,7 +548,7 @@ def sayHello(request):
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/08/python中的socket网络编程(一)/">python中的socket网络编程（一）</a>
+      <a class="article-title" href="/2016/10/08/python中的socket网络编程(二)/">python中的socket网络编程（二）</a>
     </h1>
   
 
@@ -558,7 +558,8 @@ def sayHello(request):
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h1 id="1、网络编程"><a href="#1、网络编程" class="headerlink" title="1、网络编程"></a>1、网络编程</h1><p>　　Socket 是进程间通信的一种方式，它与其他进程间通信的一个主要不同是：它能实现不同主机间的进程间通信，我们网络上各种各样的服务大多都是基于 Socket 来完成通信的，例如我们每天浏览网页、QQ 聊天、收发 email 等等。要解决网络上两台主机之间的进程通信问题，首先要唯一标识该进程，在 TCP/IP 网络协议中，就是通过 (IP地址，协议，端口号) 三元组来标识进程的，解决了进程标识问题，就有了通信的基础了。</p>
+              <h1 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h1><p>　　在python中的socket网络编程（一）一文中，我们介绍了客户端的主要功能。下面我们看下服务端。
+　　</p>
 <p><Excerpt in index | 首页摘要><br>+
           
       
@@ -570,12 +571,12 @@ def sayHello(request):
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/client/">client</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/socket/">socket</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/server/">server</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/socket/">socket</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a href="/2016/10/08/python中的socket网络编程(一)/#more">阅读全文 >></a>
+          <a href="/2016/10/08/python中的socket网络编程(二)/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
