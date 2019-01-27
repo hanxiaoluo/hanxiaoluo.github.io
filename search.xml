@@ -638,26 +638,6 @@ urlpatterns = [
     </entry>
     
     <entry>
-      <title><![CDATA[python的Web开发之Django框架应用(一)]]></title>
-      <url>http://hanxiaoluo.site/2016/10/08/python%E7%9A%84Web%E5%BC%80%E5%8F%91%E4%B9%8BDjango%E6%A1%86%E6%9E%B6%E5%BA%94%E7%94%A8(%E4%B8%80)/</url>
-      <content type="html"><![CDATA[<h1 id="1、安装python"><a href="#1、安装python" class="headerlink" title="1、安装python"></a>1、安装python</h1><p>　　在官网下载python进行安装，在此不做说明。</p>
-<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
-<the rest="" of="" contents="" |="" 余下全文="">
-
-<h1 id="2、安装Django"><a href="#2、安装Django" class="headerlink" title="2、安装Django"></a>2、安装Django</h1><p>　　下载 Django 压缩包，解压并和Python安装目录放在同一个根目录，进入 Django 目录，执行<strong>python setup.py install</strong>，然后开始安装，Django将要被安装到Python的Lib下site-packages。<br>　　安装的过程中可能会出现“ImportError: No module named setuptools”的错误提示，这是新手很常遇见的错误提示。不用担心，这是因为Windows环境下Python默认是没有安装setuptools这个模块的。<br>　　现在<strong><a href="http://pypi.python.org/pypi/setuptools" target="_blank" rel="external">http://pypi.python.org/pypi/setuptools</a></strong>上面貌似没有提供exe下载了，取而代之的是一个自动化下载安装的脚本<strong><a href="https://bootstrap.pypa.io/ez_setup.py" target="_blank" rel="external">https://bootstrap.pypa.io/ez_setup.py</a></strong>，下载该脚本后运行<strong>python ez_setup.py</strong>即可。脚本会自动判断python的版本，自动下载，安装。
-　　</p>
-<h1 id="3、配置环境变量"><a href="#3、配置环境变量" class="headerlink" title="3、配置环境变量"></a>3、配置环境变量</h1><p>　　将这几个目录添加到系统环境变量中： D:\Python27\Lib\site-packages\Django-1.11-py2.7.egg\django\bin;D:\Python27\Scripts。 添加完成后就可以正常使用Django了。输入以下命令进行检查，验证是否安装成功。如果输出正确的版本号，则说明安装成功。<br>    python<br>    import django<br>    django.get_version()</p>
-<h1 id="4、创建web项目"><a href="#4、创建web项目" class="headerlink" title="4、创建web项目"></a>4、创建web项目</h1><p>　　在我们的python目录下，通过命令行创建项目。比如我的目录F://mypython，在命令行输入<strong>django-admin.py startproject mydjangopro</strong>创建项目。
-　　</p>
-<h1 id="5、生成Django应用"><a href="#5、生成Django应用" class="headerlink" title="5、生成Django应用"></a>5、生成Django应用</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py startapp sayhello</strong>生成django应用。
-　　</p>
-<h1 id="6、运行web服务器"><a href="#6、运行web服务器" class="headerlink" title="6、运行web服务器"></a>6、运行web服务器</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py runserver</strong>启动内置服务器。<strong>注意：虽然 django 自带的这个 web 服务器对于开发很方便，但是，千万不要在正式的应用布署环境中使用它。 在同一时间，该服务器只能可靠地处理一次单个请求，并且没有进行任何类型的安全审计。</strong></p>
-<h1 id="7、浏览器访问"><a href="#7、浏览器访问" class="headerlink" title="7、浏览器访问"></a>7、浏览器访问</h1><p>　　现在用网页浏览器访问，地址栏输入<strong><a href="http://127.0.0.1:8000/" target="_blank" rel="external">http://127.0.0.1:8000/</a></strong>，连接此web服务器，可以显示django项目的初始化页面。如下图所示：<br>　　<img src="http://odsh9s4s2.bkt.clouddn.com/django%E6%AC%A2%E8%BF%8E%E7%95%8C%E9%9D%A2.png" alt="django欢迎界面"></p>
-<p>　　</p>
-</the>]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[python图形用户界面之pyqt的使用]]></title>
       <url>http://hanxiaoluo.site/2016/10/08/python%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E4%B9%8Bpyqt4%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
       <content type="html"><![CDATA[<h1 id="1、安装pyqt（事先必须先完成python的安装）"><a href="#1、安装pyqt（事先必须先完成python的安装）" class="headerlink" title="1、安装pyqt（事先必须先完成python的安装）"></a>1、安装pyqt（事先必须先完成python的安装）</h1><p>　　我们可以在如下网址： <a href="http://www.riverbankcomputing.co.uk/software/pyqt/download" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/pyqt/download</a><br>这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。</p>
@@ -722,6 +702,26 @@ class AnotherWindow(QMainWindow):
 <p>　　（3）利用PyCharm运行。点击”File”菜单，选择“New Project”建立“Pure Python”工程，选择工程目录及python.exe目录。在工程下新建”Python File”，分别创建pyqt.py文件及anotherWindow.py文件。运行工程后即可看到代码实现的窗体。</p>
 <h1 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h1><p>　　python拥有多种图形界面编程，因为我自己平时用qt比较多，所以选择了pyqt。查看pyqt中的qt帮助文档，发现与qt的帮助文档基本相同，没必要把时间浪费到API上。
 　　</p>
+</the>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[python的Web开发之Django框架应用(一)]]></title>
+      <url>http://hanxiaoluo.site/2016/10/08/python%E7%9A%84Web%E5%BC%80%E5%8F%91%E4%B9%8BDjango%E6%A1%86%E6%9E%B6%E5%BA%94%E7%94%A8(%E4%B8%80)/</url>
+      <content type="html"><![CDATA[<h1 id="1、安装python"><a href="#1、安装python" class="headerlink" title="1、安装python"></a>1、安装python</h1><p>　　在官网下载python进行安装，在此不做说明。</p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h1 id="2、安装Django"><a href="#2、安装Django" class="headerlink" title="2、安装Django"></a>2、安装Django</h1><p>　　下载 Django 压缩包，解压并和Python安装目录放在同一个根目录，进入 Django 目录，执行<strong>python setup.py install</strong>，然后开始安装，Django将要被安装到Python的Lib下site-packages。<br>　　安装的过程中可能会出现“ImportError: No module named setuptools”的错误提示，这是新手很常遇见的错误提示。不用担心，这是因为Windows环境下Python默认是没有安装setuptools这个模块的。<br>　　现在<strong><a href="http://pypi.python.org/pypi/setuptools" target="_blank" rel="external">http://pypi.python.org/pypi/setuptools</a></strong>上面貌似没有提供exe下载了，取而代之的是一个自动化下载安装的脚本<strong><a href="https://bootstrap.pypa.io/ez_setup.py" target="_blank" rel="external">https://bootstrap.pypa.io/ez_setup.py</a></strong>，下载该脚本后运行<strong>python ez_setup.py</strong>即可。脚本会自动判断python的版本，自动下载，安装。
+　　</p>
+<h1 id="3、配置环境变量"><a href="#3、配置环境变量" class="headerlink" title="3、配置环境变量"></a>3、配置环境变量</h1><p>　　将这几个目录添加到系统环境变量中： D:\Python27\Lib\site-packages\Django-1.11-py2.7.egg\django\bin;D:\Python27\Scripts。 添加完成后就可以正常使用Django了。输入以下命令进行检查，验证是否安装成功。如果输出正确的版本号，则说明安装成功。<br>    python<br>    import django<br>    django.get_version()</p>
+<h1 id="4、创建web项目"><a href="#4、创建web项目" class="headerlink" title="4、创建web项目"></a>4、创建web项目</h1><p>　　在我们的python目录下，通过命令行创建项目。比如我的目录F://mypython，在命令行输入<strong>django-admin.py startproject mydjangopro</strong>创建项目。
+　　</p>
+<h1 id="5、生成Django应用"><a href="#5、生成Django应用" class="headerlink" title="5、生成Django应用"></a>5、生成Django应用</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py startapp sayhello</strong>生成django应用。
+　　</p>
+<h1 id="6、运行web服务器"><a href="#6、运行web服务器" class="headerlink" title="6、运行web服务器"></a>6、运行web服务器</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py runserver</strong>启动内置服务器。<strong>注意：虽然 django 自带的这个 web 服务器对于开发很方便，但是，千万不要在正式的应用布署环境中使用它。 在同一时间，该服务器只能可靠地处理一次单个请求，并且没有进行任何类型的安全审计。</strong></p>
+<h1 id="7、浏览器访问"><a href="#7、浏览器访问" class="headerlink" title="7、浏览器访问"></a>7、浏览器访问</h1><p>　　现在用网页浏览器访问，地址栏输入<strong><a href="http://127.0.0.1:8000/" target="_blank" rel="external">http://127.0.0.1:8000/</a></strong>，连接此web服务器，可以显示django项目的初始化页面。如下图所示：<br>　　<img src="http://odsh9s4s2.bkt.clouddn.com/django%E6%AC%A2%E8%BF%8E%E7%95%8C%E9%9D%A2.png" alt="django欢迎界面"></p>
+<p>　　</p>
 </the>]]></content>
     </entry>
     
