@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hanxiaoluo.site/"/>
-  <updated>2018-11-26T13:12:46.808Z</updated>
+  <updated>2019-01-27T04:24:15.564Z</updated>
   <id>http://hanxiaoluo.site/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://hanxiaoluo.site/2018/11/26/axure%E4%BA%A7%E5%93%81%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/"/>
     <id>http://hanxiaoluo.site/2018/11/26/axure产品原型设计的基础使用/</id>
     <published>2018-11-26T13:12:46.808Z</published>
-    <updated>2018-11-26T13:12:46.808Z</updated>
+    <updated>2019-01-27T04:24:15.564Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="一、说明"><a href="#一、说明" class="headerlink" title="一、说明"></a>一、说明</h1><p>关于axure的详细使用，请参考链接<a href="http://www.iaxure.com/menupage/book.html" target="_blank" rel="external">axure原创教程网</a>进行系统性学习。在这里只简单介绍在产品原型设计过程中，遇到的问题及解决方法。</p>
+    <content type="html"><![CDATA[<h1 id="一、说明"><a href="#一、说明" class="headerlink" title="一、说明"></a>一、说明</h1><p>关于axure的详细使用，请参考链接<a href="http://www.iaxure.com/menupage/book.html" target="_blank" rel="external">axure原创教程网</a>进行系统性学习。在这里只简单介绍在产品原型设计过程中，遇到的问题及解决方法。<br><a id="more"></a></p>
 <h1 id="二、内联框架嵌入网络多媒体文件"><a href="#二、内联框架嵌入网络多媒体文件" class="headerlink" title="二、内联框架嵌入网络多媒体文件"></a>二、内联框架嵌入网络多媒体文件</h1><h2 id="1、加载网络视频后出现视频播放界面，但提示错误码（优酷视频常见的资源寻址问题）"><a href="#1、加载网络视频后出现视频播放界面，但提示错误码（优酷视频常见的资源寻址问题）" class="headerlink" title="1、加载网络视频后出现视频播放界面，但提示错误码（优酷视频常见的资源寻址问题）"></a>1、加载网络视频后出现视频播放界面，但提示错误码（优酷视频常见的资源寻址问题）</h2><p>我之前用的链接地址是“分享”里面的flash地址，将该网址直接用网页打开，会出现下载，而不会播放；正确的链接地址为，“分享”里面，选择QQ空间，会出现一个弹窗，使用弹窗里面标明的网址就可以。</p>
 <h1 id="三、内联框架嵌入本地多媒体文件"><a href="#三、内联框架嵌入本地多媒体文件" class="headerlink" title="三、内联框架嵌入本地多媒体文件"></a>三、内联框架嵌入本地多媒体文件</h1><h2 id="1、无法正常播放"><a href="#1、无法正常播放" class="headerlink" title="1、无法正常播放"></a>1、无法正常播放</h2><p>暂未实现；我的方法是上传到自己的七牛云，以嵌入网络多媒体文件的形式使用本地多媒体文件。</p>
 <h1 id="四、axure使用FontAwesome字体icon"><a href="#四、axure使用FontAwesome字体icon" class="headerlink" title="四、axure使用FontAwesome字体icon"></a>四、axure使用FontAwesome字体icon</h1><h2 id="1、下载安装该字体"><a href="#1、下载安装该字体" class="headerlink" title="1、下载安装该字体"></a>1、下载安装该字体</h2><p>下载font-awesome-4.7.0，解压缩，选择font文件夹，双击字体文件进行安装；安装成功后，就可以在AXURE字体选择中看到该字体。</p>
@@ -34,7 +34,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;一、说明&quot;&gt;&lt;a href=&quot;#一、说明&quot; class=&quot;headerlink&quot; title=&quot;一、说明&quot;&gt;&lt;/a&gt;一、说明&lt;/h1&gt;&lt;p&gt;关于axure的详细使用，请参考链接&lt;a href=&quot;http://www.iaxure.com/menupage/book
+      &lt;h1 id=&quot;一、说明&quot;&gt;&lt;a href=&quot;#一、说明&quot; class=&quot;headerlink&quot; title=&quot;一、说明&quot;&gt;&lt;/a&gt;一、说明&lt;/h1&gt;&lt;p&gt;关于axure的详细使用，请参考链接&lt;a href=&quot;http://www.iaxure.com/menupage/book.html&quot;&gt;axure原创教程网&lt;/a&gt;进行系统性学习。在这里只简单介绍在产品原型设计过程中，遇到的问题及解决方法。&lt;br&gt;
     
     </summary>
     
@@ -766,79 +766,31 @@ def sayHello(request):
   </entry>
   
   <entry>
-    <title>python图形用户界面之pyqt的使用</title>
-    <link href="http://hanxiaoluo.site/2016/10/08/python%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E4%B9%8Bpyqt4%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/</id>
+    <title>python的Web开发之Django框架应用(一)</title>
+    <link href="http://hanxiaoluo.site/2016/10/08/python%E7%9A%84Web%E5%BC%80%E5%8F%91%E4%B9%8BDjango%E6%A1%86%E6%9E%B6%E5%BA%94%E7%94%A8(%E4%B8%80)/"/>
+    <id>http://hanxiaoluo.site/2016/10/08/python的Web开发之Django框架应用(一)/</id>
     <published>2016-10-08T15:01:42.000Z</published>
-    <updated>2016-10-09T14:12:20.000Z</updated>
+    <updated>2016-10-11T13:17:01.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="1、安装pyqt（事先必须先完成python的安装）"><a href="#1、安装pyqt（事先必须先完成python的安装）" class="headerlink" title="1、安装pyqt（事先必须先完成python的安装）"></a>1、安装pyqt（事先必须先完成python的安装）</h1><p>　　我们可以在如下网址： <a href="http://www.riverbankcomputing.co.uk/software/pyqt/download" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/pyqt/download</a><br>这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。</p>
+    <content type="html"><![CDATA[<h1 id="1、安装python"><a href="#1、安装python" class="headerlink" title="1、安装python"></a>1、安装python</h1><p>　　在官网下载python进行安装，在此不做说明。</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<p>　　对于windows系统来说，只需要下载exe格式的文件即可。在这个exe格式的文件中，已经包含了如下模块：</p>
-<ul>
-<li>pyqt</li>
-<li>Qt</li>
-<li>Qt Designer</li>
-<li>Qt Linguist</li>
-<li>Qt Assistant</li>
-<li>pyuic4(转换由设计师生成的.ui文件到.py)</li>
-<li>pylupdate4</li>
-<li>lrelease</li>
-<li>pyrcc4</li>
-<li>QScintilla(C++编辑器类Scintilla在QT环境下的移植版本)</li>
-</ul>
-<p>　一路点击next进行安装，直到路径选择界面，如下图所示。</p>
-<p>  <img src="http://odsh9s4s2.bkt.clouddn.com/pyqt%E5%AE%89%E8%A3%85.png" alt="配置git路径"><br>　一定要注意，<strong>这里的路径指的是python的安装路径</strong>，填写正确路径，点击“Install”按钮进行安装即可。</p>
-<h1 id="2、命令测试"><a href="#2、命令测试" class="headerlink" title="2、命令测试"></a>2、命令测试</h1><p>　　进入python自带的GUI工具-IDLE，输入import PyQt4，如果没有提示错误，则安装正确。</p>
-<h1 id="3、代码实例"><a href="#3、代码实例" class="headerlink" title="3、代码实例"></a>3、代码实例</h1><p>创建文件pyqt.py内容如下：</p>
-<pre><code># -*- coding: utf-8 -*-　　　　　
-from PyQt4.QtGui import (QMainWindow, QPushButton, QApplication, 
-                                 QVBoxLayout, QWidget)
-from PyQt4.QtCore import (Qt, QObject, SIGNAL)
-import anotherWindow
-import sys
-class OneWindow(QMainWindow):
-    def __init__(self):
-        super(OneWindow, self).__init__()
-        self.setGeometry(100, 100, 600, 400)
-        vLayout = QVBoxLayout()
-        self.button = QPushButton(&quot;OK&quot;)
-        vLayout.addWidget(self.button)
-        widget = QWidget()
-        widget.setLayout(vLayout)
-        self.setCentralWidget(widget)
-        QObject.connect(self.button,SIGNAL(&quot;clicked()&quot;) , self.anotherWindow)        
-    def anotherWindow(self):
-        print &apos;OK&apos;
-        self.another = anotherWindow.AnotherWindow()
-        self.another.show()                          
-if __name__ == &apos;__main__&apos;:
-    app = QApplication(sys.argv)
-    w = OneWindow()
-    w.show()     
-    app.exec_()
-</code></pre><p>创建文件anotherWindow.py内容如下：</p>
-<pre><code># -*- coding: utf-8 -*-
-from PyQt4.QtGui import (QMainWindow)
-class AnotherWindow(QMainWindow):
-    def __init__(self):
-        super(AnotherWindow, self).__init__()
-        self.resize(400, 300)
-        self.setWindowTitle(&quot;this is another window&quot;)
-</code></pre><p>　　两个文件主要实现通过点击按钮完成多界面切换。</p>
-<h1 id="4、运行实例"><a href="#4、运行实例" class="headerlink" title="4、运行实例"></a>4、运行实例</h1><p>　　运行代码实例有多种方式，在此列举几种我自己常用方式。</p>
-<p>　　（1）dos命令行运行。进入pyqt.py文件所在目录，比如我的目录F:\mypython,运行命令python pyqt.py即看到代码实现的窗体。</p>
-<p>　　（2）python自带IDLE运行。打开IDLE环境，点击“File”菜单，选择”Open”菜单项，打开pyqt.py文件。此时会弹出另外一个窗体。点击“Run”菜单，选择“Run Module”菜单项，即可看到代码实现的窗体。</p>
-<p>　　（3）利用PyCharm运行。点击”File”菜单，选择“New Project”建立“Pure Python”工程，选择工程目录及python.exe目录。在工程下新建”Python File”，分别创建pyqt.py文件及anotherWindow.py文件。运行工程后即可看到代码实现的窗体。</p>
-<h1 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h1><p>　　python拥有多种图形界面编程，因为我自己平时用qt比较多，所以选择了pyqt。查看pyqt中的qt帮助文档，发现与qt的帮助文档基本相同，没必要把时间浪费到API上。
+<h1 id="2、安装Django"><a href="#2、安装Django" class="headerlink" title="2、安装Django"></a>2、安装Django</h1><p>　　下载 Django 压缩包，解压并和Python安装目录放在同一个根目录，进入 Django 目录，执行<strong>python setup.py install</strong>，然后开始安装，Django将要被安装到Python的Lib下site-packages。<br>　　安装的过程中可能会出现“ImportError: No module named setuptools”的错误提示，这是新手很常遇见的错误提示。不用担心，这是因为Windows环境下Python默认是没有安装setuptools这个模块的。<br>　　现在<strong><a href="http://pypi.python.org/pypi/setuptools" target="_blank" rel="external">http://pypi.python.org/pypi/setuptools</a></strong>上面貌似没有提供exe下载了，取而代之的是一个自动化下载安装的脚本<strong><a href="https://bootstrap.pypa.io/ez_setup.py" target="_blank" rel="external">https://bootstrap.pypa.io/ez_setup.py</a></strong>，下载该脚本后运行<strong>python ez_setup.py</strong>即可。脚本会自动判断python的版本，自动下载，安装。
 　　</p>
+<h1 id="3、配置环境变量"><a href="#3、配置环境变量" class="headerlink" title="3、配置环境变量"></a>3、配置环境变量</h1><p>　　将这几个目录添加到系统环境变量中： D:\Python27\Lib\site-packages\Django-1.11-py2.7.egg\django\bin;D:\Python27\Scripts。 添加完成后就可以正常使用Django了。输入以下命令进行检查，验证是否安装成功。如果输出正确的版本号，则说明安装成功。<br>    python<br>    import django<br>    django.get_version()</p>
+<h1 id="4、创建web项目"><a href="#4、创建web项目" class="headerlink" title="4、创建web项目"></a>4、创建web项目</h1><p>　　在我们的python目录下，通过命令行创建项目。比如我的目录F://mypython，在命令行输入<strong>django-admin.py startproject mydjangopro</strong>创建项目。
+　　</p>
+<h1 id="5、生成Django应用"><a href="#5、生成Django应用" class="headerlink" title="5、生成Django应用"></a>5、生成Django应用</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py startapp sayhello</strong>生成django应用。
+　　</p>
+<h1 id="6、运行web服务器"><a href="#6、运行web服务器" class="headerlink" title="6、运行web服务器"></a>6、运行web服务器</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py runserver</strong>启动内置服务器。<strong>注意：虽然 django 自带的这个 web 服务器对于开发很方便，但是，千万不要在正式的应用布署环境中使用它。 在同一时间，该服务器只能可靠地处理一次单个请求，并且没有进行任何类型的安全审计。</strong></p>
+<h1 id="7、浏览器访问"><a href="#7、浏览器访问" class="headerlink" title="7、浏览器访问"></a>7、浏览器访问</h1><p>　　现在用网页浏览器访问，地址栏输入<strong><a href="http://127.0.0.1:8000/" target="_blank" rel="external">http://127.0.0.1:8000/</a></strong>，连接此web服务器，可以显示django项目的初始化页面。如下图所示：<br>　　<img src="http://odsh9s4s2.bkt.clouddn.com/django%E6%AC%A2%E8%BF%8E%E7%95%8C%E9%9D%A2.png" alt="django欢迎界面"></p>
+<p>　　</p>
 </the>]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;1、安装pyqt（事先必须先完成python的安装）&quot;&gt;&lt;a href=&quot;#1、安装pyqt（事先必须先完成python的安装）&quot; class=&quot;headerlink&quot; title=&quot;1、安装pyqt（事先必须先完成python的安装）&quot;&gt;&lt;/a&gt;1、安装pyqt（事先必须先完成python的安装）&lt;/h1&gt;&lt;p&gt;　　我们可以在如下网址： &lt;a href=&quot;http://www.riverbankcomputing.co.uk/software/pyqt/download&quot;&gt;http://www.riverbankcomputing.co.uk/software/pyqt/download&lt;/a&gt;&lt;br&gt;这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。&lt;/p&gt;
+      &lt;h1 id=&quot;1、安装python&quot;&gt;&lt;a href=&quot;#1、安装python&quot; class=&quot;headerlink&quot; title=&quot;1、安装python&quot;&gt;&lt;/a&gt;1、安装python&lt;/h1&gt;&lt;p&gt;　　在官网下载python进行安装，在此不做说明。&lt;/p&gt;
 &lt;p&gt;&lt;Excerpt in index | 首页摘要&gt;&lt;br&gt;+
     
     </summary>
@@ -846,7 +798,7 @@ class AnotherWindow(QMainWindow):
     
       <category term="python" scheme="http://hanxiaoluo.site/tags/python/"/>
     
-      <category term="pyqt" scheme="http://hanxiaoluo.site/tags/pyqt/"/>
+      <category term="Django" scheme="http://hanxiaoluo.site/tags/Django/"/>
     
   </entry>
   
@@ -1071,31 +1023,79 @@ s.close()
   </entry>
   
   <entry>
-    <title>python的Web开发之Django框架应用(一)</title>
-    <link href="http://hanxiaoluo.site/2016/10/08/python%E7%9A%84Web%E5%BC%80%E5%8F%91%E4%B9%8BDjango%E6%A1%86%E6%9E%B6%E5%BA%94%E7%94%A8(%E4%B8%80)/"/>
-    <id>http://hanxiaoluo.site/2016/10/08/python的Web开发之Django框架应用(一)/</id>
+    <title>python图形用户界面之pyqt的使用</title>
+    <link href="http://hanxiaoluo.site/2016/10/08/python%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E4%B9%8Bpyqt4%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://hanxiaoluo.site/2016/10/08/python图形用户界面之pyqt4的使用/</id>
     <published>2016-10-08T15:01:42.000Z</published>
-    <updated>2016-10-11T13:17:01.000Z</updated>
+    <updated>2016-10-09T14:12:20.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="1、安装python"><a href="#1、安装python" class="headerlink" title="1、安装python"></a>1、安装python</h1><p>　　在官网下载python进行安装，在此不做说明。</p>
+    <content type="html"><![CDATA[<h1 id="1、安装pyqt（事先必须先完成python的安装）"><a href="#1、安装pyqt（事先必须先完成python的安装）" class="headerlink" title="1、安装pyqt（事先必须先完成python的安装）"></a>1、安装pyqt（事先必须先完成python的安装）</h1><p>　　我们可以在如下网址： <a href="http://www.riverbankcomputing.co.uk/software/pyqt/download" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/pyqt/download</a><br>这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。</p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br>+<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<h1 id="2、安装Django"><a href="#2、安装Django" class="headerlink" title="2、安装Django"></a>2、安装Django</h1><p>　　下载 Django 压缩包，解压并和Python安装目录放在同一个根目录，进入 Django 目录，执行<strong>python setup.py install</strong>，然后开始安装，Django将要被安装到Python的Lib下site-packages。<br>　　安装的过程中可能会出现“ImportError: No module named setuptools”的错误提示，这是新手很常遇见的错误提示。不用担心，这是因为Windows环境下Python默认是没有安装setuptools这个模块的。<br>　　现在<strong><a href="http://pypi.python.org/pypi/setuptools" target="_blank" rel="external">http://pypi.python.org/pypi/setuptools</a></strong>上面貌似没有提供exe下载了，取而代之的是一个自动化下载安装的脚本<strong><a href="https://bootstrap.pypa.io/ez_setup.py" target="_blank" rel="external">https://bootstrap.pypa.io/ez_setup.py</a></strong>，下载该脚本后运行<strong>python ez_setup.py</strong>即可。脚本会自动判断python的版本，自动下载，安装。
+<p>　　对于windows系统来说，只需要下载exe格式的文件即可。在这个exe格式的文件中，已经包含了如下模块：</p>
+<ul>
+<li>pyqt</li>
+<li>Qt</li>
+<li>Qt Designer</li>
+<li>Qt Linguist</li>
+<li>Qt Assistant</li>
+<li>pyuic4(转换由设计师生成的.ui文件到.py)</li>
+<li>pylupdate4</li>
+<li>lrelease</li>
+<li>pyrcc4</li>
+<li>QScintilla(C++编辑器类Scintilla在QT环境下的移植版本)</li>
+</ul>
+<p>　一路点击next进行安装，直到路径选择界面，如下图所示。</p>
+<p>  <img src="http://odsh9s4s2.bkt.clouddn.com/pyqt%E5%AE%89%E8%A3%85.png" alt="配置git路径"><br>　一定要注意，<strong>这里的路径指的是python的安装路径</strong>，填写正确路径，点击“Install”按钮进行安装即可。</p>
+<h1 id="2、命令测试"><a href="#2、命令测试" class="headerlink" title="2、命令测试"></a>2、命令测试</h1><p>　　进入python自带的GUI工具-IDLE，输入import PyQt4，如果没有提示错误，则安装正确。</p>
+<h1 id="3、代码实例"><a href="#3、代码实例" class="headerlink" title="3、代码实例"></a>3、代码实例</h1><p>创建文件pyqt.py内容如下：</p>
+<pre><code># -*- coding: utf-8 -*-　　　　　
+from PyQt4.QtGui import (QMainWindow, QPushButton, QApplication, 
+                                 QVBoxLayout, QWidget)
+from PyQt4.QtCore import (Qt, QObject, SIGNAL)
+import anotherWindow
+import sys
+class OneWindow(QMainWindow):
+    def __init__(self):
+        super(OneWindow, self).__init__()
+        self.setGeometry(100, 100, 600, 400)
+        vLayout = QVBoxLayout()
+        self.button = QPushButton(&quot;OK&quot;)
+        vLayout.addWidget(self.button)
+        widget = QWidget()
+        widget.setLayout(vLayout)
+        self.setCentralWidget(widget)
+        QObject.connect(self.button,SIGNAL(&quot;clicked()&quot;) , self.anotherWindow)        
+    def anotherWindow(self):
+        print &apos;OK&apos;
+        self.another = anotherWindow.AnotherWindow()
+        self.another.show()                          
+if __name__ == &apos;__main__&apos;:
+    app = QApplication(sys.argv)
+    w = OneWindow()
+    w.show()     
+    app.exec_()
+</code></pre><p>创建文件anotherWindow.py内容如下：</p>
+<pre><code># -*- coding: utf-8 -*-
+from PyQt4.QtGui import (QMainWindow)
+class AnotherWindow(QMainWindow):
+    def __init__(self):
+        super(AnotherWindow, self).__init__()
+        self.resize(400, 300)
+        self.setWindowTitle(&quot;this is another window&quot;)
+</code></pre><p>　　两个文件主要实现通过点击按钮完成多界面切换。</p>
+<h1 id="4、运行实例"><a href="#4、运行实例" class="headerlink" title="4、运行实例"></a>4、运行实例</h1><p>　　运行代码实例有多种方式，在此列举几种我自己常用方式。</p>
+<p>　　（1）dos命令行运行。进入pyqt.py文件所在目录，比如我的目录F:\mypython,运行命令python pyqt.py即看到代码实现的窗体。</p>
+<p>　　（2）python自带IDLE运行。打开IDLE环境，点击“File”菜单，选择”Open”菜单项，打开pyqt.py文件。此时会弹出另外一个窗体。点击“Run”菜单，选择“Run Module”菜单项，即可看到代码实现的窗体。</p>
+<p>　　（3）利用PyCharm运行。点击”File”菜单，选择“New Project”建立“Pure Python”工程，选择工程目录及python.exe目录。在工程下新建”Python File”，分别创建pyqt.py文件及anotherWindow.py文件。运行工程后即可看到代码实现的窗体。</p>
+<h1 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h1><p>　　python拥有多种图形界面编程，因为我自己平时用qt比较多，所以选择了pyqt。查看pyqt中的qt帮助文档，发现与qt的帮助文档基本相同，没必要把时间浪费到API上。
 　　</p>
-<h1 id="3、配置环境变量"><a href="#3、配置环境变量" class="headerlink" title="3、配置环境变量"></a>3、配置环境变量</h1><p>　　将这几个目录添加到系统环境变量中： D:\Python27\Lib\site-packages\Django-1.11-py2.7.egg\django\bin;D:\Python27\Scripts。 添加完成后就可以正常使用Django了。输入以下命令进行检查，验证是否安装成功。如果输出正确的版本号，则说明安装成功。<br>    python<br>    import django<br>    django.get_version()</p>
-<h1 id="4、创建web项目"><a href="#4、创建web项目" class="headerlink" title="4、创建web项目"></a>4、创建web项目</h1><p>　　在我们的python目录下，通过命令行创建项目。比如我的目录F://mypython，在命令行输入<strong>django-admin.py startproject mydjangopro</strong>创建项目。
-　　</p>
-<h1 id="5、生成Django应用"><a href="#5、生成Django应用" class="headerlink" title="5、生成Django应用"></a>5、生成Django应用</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py startapp sayhello</strong>生成django应用。
-　　</p>
-<h1 id="6、运行web服务器"><a href="#6、运行web服务器" class="headerlink" title="6、运行web服务器"></a>6、运行web服务器</h1><p>　　切换到mydjangopro目录，在命令行输入<strong>manage.py runserver</strong>启动内置服务器。<strong>注意：虽然 django 自带的这个 web 服务器对于开发很方便，但是，千万不要在正式的应用布署环境中使用它。 在同一时间，该服务器只能可靠地处理一次单个请求，并且没有进行任何类型的安全审计。</strong></p>
-<h1 id="7、浏览器访问"><a href="#7、浏览器访问" class="headerlink" title="7、浏览器访问"></a>7、浏览器访问</h1><p>　　现在用网页浏览器访问，地址栏输入<strong><a href="http://127.0.0.1:8000/" target="_blank" rel="external">http://127.0.0.1:8000/</a></strong>，连接此web服务器，可以显示django项目的初始化页面。如下图所示：<br>　　<img src="http://odsh9s4s2.bkt.clouddn.com/django%E6%AC%A2%E8%BF%8E%E7%95%8C%E9%9D%A2.png" alt="django欢迎界面"></p>
-<p>　　</p>
 </the>]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;1、安装python&quot;&gt;&lt;a href=&quot;#1、安装python&quot; class=&quot;headerlink&quot; title=&quot;1、安装python&quot;&gt;&lt;/a&gt;1、安装python&lt;/h1&gt;&lt;p&gt;　　在官网下载python进行安装，在此不做说明。&lt;/p&gt;
+      &lt;h1 id=&quot;1、安装pyqt（事先必须先完成python的安装）&quot;&gt;&lt;a href=&quot;#1、安装pyqt（事先必须先完成python的安装）&quot; class=&quot;headerlink&quot; title=&quot;1、安装pyqt（事先必须先完成python的安装）&quot;&gt;&lt;/a&gt;1、安装pyqt（事先必须先完成python的安装）&lt;/h1&gt;&lt;p&gt;　　我们可以在如下网址： &lt;a href=&quot;http://www.riverbankcomputing.co.uk/software/pyqt/download&quot;&gt;http://www.riverbankcomputing.co.uk/software/pyqt/download&lt;/a&gt;&lt;br&gt;这里获取pyqt的下载，请选择正确的python版本和操作系统位数。需要注意的是，安装PyQt并不需要一些文章中提到的先安装sip和Qt的过程，因为在安装文件中已经包括。&lt;/p&gt;
 &lt;p&gt;&lt;Excerpt in index | 首页摘要&gt;&lt;br&gt;+
     
     </summary>
@@ -1103,7 +1103,7 @@ s.close()
     
       <category term="python" scheme="http://hanxiaoluo.site/tags/python/"/>
     
-      <category term="Django" scheme="http://hanxiaoluo.site/tags/Django/"/>
+      <category term="pyqt" scheme="http://hanxiaoluo.site/tags/pyqt/"/>
     
   </entry>
   

@@ -294,15 +294,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="一、说明"><a href="#一、说明" class="headerlink" title="一、说明"></a>一、说明</h1><p>关于axure的详细使用，请参考链接<a href="http://www.iaxure.com/menupage/book.html" target="_blank" rel="external">axure原创教程网</a>进行系统性学习。在这里只简单介绍在产品原型设计过程中，遇到的问题及解决方法。</p>
-<h1 id="二、内联框架嵌入网络多媒体文件"><a href="#二、内联框架嵌入网络多媒体文件" class="headerlink" title="二、内联框架嵌入网络多媒体文件"></a>二、内联框架嵌入网络多媒体文件</h1><h2 id="1、加载网络视频后出现视频播放界面，但提示错误码（优酷视频常见的资源寻址问题）"><a href="#1、加载网络视频后出现视频播放界面，但提示错误码（优酷视频常见的资源寻址问题）" class="headerlink" title="1、加载网络视频后出现视频播放界面，但提示错误码（优酷视频常见的资源寻址问题）"></a>1、加载网络视频后出现视频播放界面，但提示错误码（优酷视频常见的资源寻址问题）</h2><p>我之前用的链接地址是“分享”里面的flash地址，将该网址直接用网页打开，会出现下载，而不会播放；正确的链接地址为，“分享”里面，选择QQ空间，会出现一个弹窗，使用弹窗里面标明的网址就可以。</p>
-<h1 id="三、内联框架嵌入本地多媒体文件"><a href="#三、内联框架嵌入本地多媒体文件" class="headerlink" title="三、内联框架嵌入本地多媒体文件"></a>三、内联框架嵌入本地多媒体文件</h1><h2 id="1、无法正常播放"><a href="#1、无法正常播放" class="headerlink" title="1、无法正常播放"></a>1、无法正常播放</h2><p>暂未实现；我的方法是上传到自己的七牛云，以嵌入网络多媒体文件的形式使用本地多媒体文件。</p>
-<h1 id="四、axure使用FontAwesome字体icon"><a href="#四、axure使用FontAwesome字体icon" class="headerlink" title="四、axure使用FontAwesome字体icon"></a>四、axure使用FontAwesome字体icon</h1><h2 id="1、下载安装该字体"><a href="#1、下载安装该字体" class="headerlink" title="1、下载安装该字体"></a>1、下载安装该字体</h2><p>下载font-awesome-4.7.0，解压缩，选择font文件夹，双击字体文件进行安装；安装成功后，就可以在AXURE字体选择中看到该字体。</p>
-<h2 id="2、载入图标字体元件库"><a href="#2、载入图标字体元件库" class="headerlink" title="2、载入图标字体元件库"></a>2、载入图标字体元件库</h2><p>在axure中选择【载入元件库】，加载以rplib为后缀的文件，将图标字体元件库直接加载到axure工具中。</p>
-<h2 id="3、使用图标字体"><a href="#3、使用图标字体" class="headerlink" title="3、使用图标字体"></a>3、使用图标字体</h2><p>在axure的<a href="https://fontawesome.com/cheatsheet?from=io" target="_blank" rel="external">图标字体备忘页</a>中,直接复制要用的图标。</p>
-<h2 id="4、发布原型使用该图标字体"><a href="#4、发布原型使用该图标字体" class="headerlink" title="4、发布原型使用该图标字体"></a>4、发布原型使用该图标字体</h2><p>点击【发布】，【生成HTML】，在web字体中，链接到css文件，输入URL地址<a href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" target="_blank" rel="external">css文件地址</a>即可。</p>
-<h1 id="五、内联框架嵌入地图"><a href="#五、内联框架嵌入地图" class="headerlink" title="五、内联框架嵌入地图"></a>五、内联框架嵌入地图</h1><p>双击内联框架，预览选择【地图】，打开<a href="http://api.map.baidu.com/lbsapi/creatmap/" target="_blank" rel="external">百度地图开放平台地图生成器</a>，修改定位中心点，输入地名，添加标注。然后获取代码，在发布原型的根目录新建一个myapp.html文档，将获取的代码复制到该文件即可。此时发现嵌入的地图，那个用于标注地址的图标未显示，更换浏览器也没展示出来。打开该文本文件，在最后发现createIcon函数中有一个<a href="http://app.baidu.com/map/images/us_mk_icon.png" target="_blank" rel="external">链接</a>，复制到浏览器直接打开，提示页面不存在。这应该是百度地图开放平台的相关图标目录变更了。我上传了一份图标到我的七牛，然后复制图标的外链覆盖myapp.html文档中的该处链接就可以正常显示了。</p>
-
+              <h1 id="一、说明"><a href="#一、说明" class="headerlink" title="一、说明"></a>一、说明</h1><p>关于axure的详细使用，请参考链接<a href="http://www.iaxure.com/menupage/book.html">axure原创教程网</a>进行系统性学习。在这里只简单介绍在产品原型设计过程中，遇到的问题及解决方法。<br>
+          
       
     </div>
     
@@ -315,6 +308,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/axure/">axure</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2018/11/26/axure产品原型设计的基础使用/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -603,7 +600,7 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2016-2018 韩若熙
+                2016-2019 韩若熙
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
